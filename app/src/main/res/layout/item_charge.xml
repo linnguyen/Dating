@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/tvNameCharge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:text="Nộp tiền điện" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="235000" />
+
+    <TextView
+        android:id="@+id/tvDayCharge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="end"
+        android:text="23/5/2017" />
+
+</LinearLayout>
