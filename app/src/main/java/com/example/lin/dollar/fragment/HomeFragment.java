@@ -30,14 +30,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-        pager = (ViewPager) view.findViewById(R.id.view_paper);
-        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        FragmentManager manager = getChildFragmentManager();
-        PaperAdapter adapter = new PaperAdapter(manager);
-        pager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(pager);
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setTabsFromPagerAdapter(adapter);
+//        pager = (ViewPager) view.findViewById(R.id.view_paper);
+//        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+//        FragmentManager manager = getChildFragmentManager();
+//        PaperAdapter adapter = new PaperAdapter(manager);
+//        pager.setAdapter(adapter);
+//        tabLayout.setupWithViewPager(pager);
+//        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//        tabLayout.setTabsFromPagerAdapter(adapter);
         return view;
 
     }

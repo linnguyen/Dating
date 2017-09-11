@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -25,6 +26,7 @@ import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
+import com.example.lin.dollar.fragment.view_paper.LibraryFragment;
 import com.example.lin.dollar.other.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvName, tvWebsite;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private FragmentManager fragmentManager;
+    private Fragment fragment;
 
     // urls to load navigation header background image
     // and profile image
@@ -100,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
+
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = new LibraryFragment();
+        fragmentTransaction.replace(R.id.main_container_wrapper, fragment);
+        fragmentTransaction.commit();
+
+
     }
 
     private void loadNavHeader() {
@@ -135,21 +147,21 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Runnable mPendingRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Fragment fragment = getHomeFragment();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
-                fragmentTransaction.commitAllowingStateLoss();
-            }
-        };
+//        Runnable mPendingRunnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                Fragment fragment = getHomeFragment();
+//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+//                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
+//                fragmentTransaction.commitAllowingStateLoss();
+//            }
+//        };
 
         // If mPendingRunnable is not null, then add to the message queue
-        if (mPendingRunnable != null) {
-            mHandler.post(mPendingRunnable);
-        }
+//        if (mPendingRunnable != null) {
+//            mHandler.post(mPendingRunnable);
+//        }
 
         // show or hide the fab button
         toggleFab();
