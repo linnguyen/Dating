@@ -1,4 +1,4 @@
-package com.example.lin.dollar.fragment.view_paper;
+package com.example.lin.dollar.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

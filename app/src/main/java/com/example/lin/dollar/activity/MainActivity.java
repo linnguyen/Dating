@@ -2,12 +2,14 @@ package com.example.lin.dollar.activity;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,17 +19,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.fragment.HomeFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
-import com.example.lin.dollar.fragment.view_paper.LibraryFragment;
-import com.example.lin.dollar.other.CircleTransform;
+import com.example.lin.dollar.fragment.LibraryFragment;
 import com.squareup.picasso.Picasso;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -93,6 +93,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int id = item.getItemId();
+//                if (id == R.id.nav_home){
+//                     fragment = new LibraryFragment();
+//                }
+//                if (id == R.id.nav_movies){
+//                    Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
+//                }
+//
+//                Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
+//
+//                FragmentTransaction transaction = fragmentManager.beginTransaction();
+//                transaction.replace(R.id.main_container_wrapper, fragment);
+//                transaction.commit();
+//
+//                DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//                assert drawerLayout != null;
+//                drawerLayout.closeDrawers();
+//                return true;
+//            }
+//        });
+
         // load nav menu header data
         loadNavHeader();
 
@@ -133,35 +157,32 @@ public class MainActivity extends AppCompatActivity {
     private void loadHomeFragment() {
         // selecting appropriate nav menu item
         selectNavMenu();
-
         // set toolbar title
         setToolbarTitle();
-
         // if user select the current navigation menu again, don't do anything, just close
         // the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
             drawer.closeDrawers();
-
             // show otr hide the fab button
             toggleFab();
             return;
         }
 
-//        Runnable mPendingRunnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                Fragment fragment = getHomeFragment();
-//                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-//                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
-//                fragmentTransaction.commitAllowingStateLoss();
-//            }
-//        };
+        Runnable mPendingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Fragment fragment = getHomeFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+                fragmentTransaction.replace(R.id.main_container_wrapper, fragment, CURRENT_TAG);
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        };
 
-        // If mPendingRunnable is not null, then add to the message queue
-//        if (mPendingRunnable != null) {
-//            mHandler.post(mPendingRunnable);
-//        }
+//         If mPendingRunnable is not null, then add to the message queue
+        if (mPendingRunnable != null) {
+            mHandler.post(mPendingRunnable);
+        }
 
         // show or hide the fab button
         toggleFab();
@@ -216,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
@@ -229,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                         CURRENT_TAG = TAG_PHOTOS;
                         break;
                     case R.id.nav_movies:
+                        Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_MOVIES;
                         break;
