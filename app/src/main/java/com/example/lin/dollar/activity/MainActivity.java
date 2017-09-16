@@ -2,14 +2,12 @@ package com.example.lin.dollar.activity;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +25,6 @@ import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
-import com.example.lin.dollar.fragment.LibraryFragment;
 import com.squareup.picasso.Picasso;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 //                int id = item.getItemId();
 //                if (id == R.id.nav_home){
-//                     fragment = new LibraryFragment();
+//                     fragment = new HomeFragment();
 //                }
 //                if (id == R.id.nav_movies){
 //                    Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
@@ -131,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = new LibraryFragment();
+        fragment = new HomeFragment();
         fragmentTransaction.replace(R.id.main_container_wrapper, fragment);
         fragmentTransaction.commit();
 
@@ -198,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
         switch (navItemIndex) {
             case 0:
                 // home
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+                HomeFragment libraryFragment = new HomeFragment();
+                return libraryFragment;
             case 1:
                 // photos
                 PhotosFragment photosFragment = new PhotosFragment();

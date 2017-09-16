@@ -1,44 +1,41 @@
 package com.example.lin.dollar.fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.fragment.adapter.PaperAdapter;
+import com.example.lin.dollar.fragment.adapter.CustomFragmentPapeAdapter;
+
+/**
+ * Created by lin on 31/08/2017.
+ */
 
 public class HomeFragment extends Fragment {
-    ViewPager pager;
-    TabLayout tabLayout;
+    private static final String TAG = HomeFragment.class.getSimpleName();
 
-    public HomeFragment() {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
+    public HomeFragment(){
+
     }
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_library, container, false);
+        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        viewPager = (ViewPager) view.findViewById(R.id.view_paper);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        // Inflate the layout for this fragment
-//        pager = (ViewPager) view.findViewById(R.id.view_paper);
-//        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-//        FragmentManager manager = getChildFragmentManager();
-//        PaperAdapter adapter = new PaperAdapter(manager);
-//        pager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(pager);
-//        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//        tabLayout.setTabsFromPagerAdapter(adapter);
-        return view;
+        viewPager.setAdapter(new CustomFragmentPapeAdapter(getChildFragmentManager()));
+        tabLayout.setupWithViewPager(viewPager);
 
+        return  view;
     }
 }
