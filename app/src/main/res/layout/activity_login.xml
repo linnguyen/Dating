@@ -34,6 +34,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/edtEmail"
             style="@style/EditTextCusTom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/edtPassword"
             style="@style/EditTextCusTom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,6 +86,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
