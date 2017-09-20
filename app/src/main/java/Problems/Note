@@ -1,2 +1,16 @@
+TODO
 - do not understand addFlags using for intent android (should apply)
 - custom Login UI -> add crollview
+- Add Progressbar (circle for login)
+- Change color of text "Home" , "Income", "Charge" to white
+- find another icon for app, get it from adobe
+-
+
+LIST OF ANDROID TECHNOLOGY
+-
+-
+-
+
+IDEA
+- the system can automatically load data from local machine (at specific location), like google drive. -> difficult
+- Read file from local and load to server, all the infor will be displayed in app. Besides, user also can input data from form in app.
