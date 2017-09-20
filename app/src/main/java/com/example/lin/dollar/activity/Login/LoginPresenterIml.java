@@ -1,5 +1,7 @@
 package com.example.lin.dollar.activity.Login;
 
+import android.content.Context;
+
 /**
  * Created by lin on 19/09/2017.
  */
@@ -7,10 +9,12 @@ package com.example.lin.dollar.activity.Login;
 public class LoginPresenterIml implements LoginPresenter, LoginPresenter.OnLoginFinishedListener {
     private LoginView loginView;
     private LoginInteractor loginInteractor;
+    private Context context;
 
-    public LoginPresenterIml(LoginView loginView) {
+    public LoginPresenterIml(LoginView loginView, Context context) {
+        this.context = context;
         this.loginView = loginView;
-        this.loginInteractor = new LoginInteractorIml();
+        this.loginInteractor = new LoginInteractorIml(context);
     }
 
     @Override

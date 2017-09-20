@@ -1,12 +1,11 @@
 package com.example.lin.dollar.activity.Login;
 
-import android.util.Log;
+import android.content.Context;
 
 import com.example.lin.dollar.Entity.Response.User;
 import com.example.lin.dollar.Service.DolaxAPIs;
+import com.example.lin.dollar.localstorage.SessionManager;
 import com.google.gson.JsonObject;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,8 +17,10 @@ import retrofit2.Response;
 
 public class LoginInteractorIml implements LoginInteractor {
     private DolaxAPIs dolaxAPIs;
+    private Context context;
 
-    public LoginInteractorIml() {
+    public LoginInteractorIml(Context context) {
+        this.context = context;
         dolaxAPIs = DolaxAPIs.Factory.create();
     }
 
@@ -35,6 +36,8 @@ public class LoginInteractorIml implements LoginInteractor {
                 if (response.isSuccessful()) {
                     User user = response.body();
                     if (user != null) {
+                        SessionManager sessionManager = SessionManager.getInstance(context);
+                        sessionManager.setToken(user.getAuth_token());
                         listener.onSuccess();
                     }
                 }
