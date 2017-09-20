@@ -1,6 +1,7 @@
 package com.example.lin.dollar.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,7 +12,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         tvName.setText("Lin Nguyen");
         tvWebsite.setText("@lin.nguyen");
         // use picaso library to make a circular image
-        Picasso.with(this).load(R.drawable.ho_ngoc_ha)
+        Picasso.with(this).load(R.drawable.dog)
                 .transform(new CropCircleTransformation())
                 .into(imgProfile);
         // showing dot next to notifications label

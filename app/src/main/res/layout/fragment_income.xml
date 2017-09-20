@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:src="@drawable/ho_ngoc_ha"
+        android:src="@drawable/dog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView

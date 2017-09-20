@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
-        android:src="@drawable/ho_ngoc_ha" />
+        android:src="@drawable/dog" />
 
     <LinearLayout
         android:id="@+id/layout_info"

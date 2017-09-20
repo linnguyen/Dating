@@ -5,5 +5,5 @@ package com.example.lin.dollar.activity.Login;
  */
 
 public interface LoginInteractor {
-    public void login(String username, String password, LoginPresenter.OnLoginFinishedListener listener);
+    void login(String username, String password, LoginPresenter.OnLoginFinishedListener listener);
 }

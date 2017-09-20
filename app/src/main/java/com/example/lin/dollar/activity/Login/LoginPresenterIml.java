@@ -29,8 +29,8 @@ public class LoginPresenterIml implements LoginPresenter, LoginPresenter.OnLogin
     }
 
     @Override
-    public void validateCredentials(String username, String password) {
+    public void validateCredentials(String email, String password) {
         loginView.showProgress();
-        loginInteractor.login(username, password, this);
+        loginInteractor.login(email, password, this);
     }
 }
