@@ -54,7 +54,7 @@ public class ChargeFragment extends Fragment {
         for (int i = 0; i < 5; i++) {
             Calendar calendar = Calendar.getInstance();
             Date date = calendar.getTime();
-            Charge charge = new Charge("Mua gao", 134000, date);
+            Charge charge = new Charge("Action name here", 134000, date);
             chargeList.add(charge);
         }
     }
