@@ -41,7 +41,6 @@
                 android:layout_weight="4"
                 android:background="@color/app_color"
                 android:orientation="vertical">
-
                 <EditText
                     android:id="@+id/edtEmail"
                     style="@style/EditTextCusTom"

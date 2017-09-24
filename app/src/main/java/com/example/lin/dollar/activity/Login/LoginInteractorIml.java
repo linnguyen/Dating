@@ -3,6 +3,7 @@ package com.example.lin.dollar.activity.Login;
 import android.content.Context;
 
 import com.example.lin.dollar.Entity.Response.User;
+import com.example.lin.dollar.R;
 import com.example.lin.dollar.Service.DolaxAPIs;
 import com.example.lin.dollar.localstorage.SessionManager;
 import com.google.gson.JsonObject;
@@ -38,14 +39,18 @@ public class LoginInteractorIml implements LoginInteractor {
                     if (user != null) {
                         SessionManager sessionManager = SessionManager.getInstance(context);
                         sessionManager.setToken(user.getAuth_token());
-                        listener.onSuccess();
+                        listener.onSuccess(context.getString(R.string.toast_login_success));
+                    } else {
+                        listener.onFailure(context.getString(R.string.toast_login_fail));
                     }
+                } else {
+                    listener.onFailure(context.getString(R.string.toast_login_fail));
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                  listener.onFailure(context.getString(R.string.toast_login_fail));
             }
         });
     }

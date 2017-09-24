@@ -7,6 +7,8 @@ package com.example.lin.dollar.activity.Login;
 public interface LoginView {
     void showProgress();
 
+    void showMessage(String message);
+
     void hideProgress();
 
     void navigateToHome();

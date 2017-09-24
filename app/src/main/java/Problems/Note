@@ -1,15 +1,26 @@
 TODO
+* SHORT-TERM
 - do not understand addFlags using for intent android (should apply)
 - custom Login UI -> add crollview
 - Add Progressbar (circle for login)
 - Change color of text "Home" , "Income", "Charge" to white
 - find another icon for app, get it from adobe
 -
+* LONG-TERM
+- Add pagination for payment recycle view
+- Currently, the UI for login screen seems OK, but we should custom it in the future with the logo and color.
 
 LIST OF ANDROID TECHNOLOGY
 -
 -
 -
+DATA
+- Server dolax:
+ username: nguyenlin@gmail.com
+ password: 123abc@
+ - Server dolax-clone:
+
+ - Server local:
 
 IDEA
 - the system can automatically load data from local machine (at specific location), like google drive. -> difficult

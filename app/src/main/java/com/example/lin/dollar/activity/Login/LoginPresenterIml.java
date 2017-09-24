@@ -28,8 +28,16 @@ public class LoginPresenterIml implements LoginPresenter, LoginPresenter.OnLogin
     }
 
     @Override
-    public void onSuccess() {
+    public void onSuccess(String message) {
+        loginView.hideProgress();
         loginView.navigateToHome();
+        loginView.showMessage(message);
+    }
+
+    @Override
+    public void onFailure(String message) {
+        loginView.hideProgress();
+        loginView.showMessage(message);
     }
 
     @Override

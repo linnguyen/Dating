@@ -10,7 +10,9 @@ public interface LoginPresenter {
 
         void onPasswordError();
 
-        void onSuccess();
+        void onSuccess(String message);
+
+        void onFailure(String message);
     }
 
     void validateCredentials(String email, String password);
