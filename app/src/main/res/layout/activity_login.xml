@@ -41,6 +41,7 @@
                 android:layout_weight="4"
                 android:background="@color/app_color"
                 android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/edtEmail"
                     style="@style/EditTextCusTom"
@@ -52,6 +53,7 @@
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="10dp"
                     android:hint="Email"
+                    android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="@color/pirple"
                     android:textSize="20sp" />
@@ -59,6 +61,7 @@
                 <EditText
                     android:id="@+id/edtPassword"
                     style="@style/EditTextCusTom"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -67,6 +70,7 @@
                     android:drawableLeft="@drawable/ic_lock"
                     android:drawablePadding="10dp"
                     android:hint="Password"
+                    android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="@color/pirple"
                     android:textSize="20sp" />

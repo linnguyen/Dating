@@ -1,4 +1,4 @@
-package com.example.lin.dollar.fragment.view_paper;
+package com.example.lin.dollar.fragment.viewpaper.Payment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,29 +25,34 @@ import butterknife.ButterKnife;
  * Created by lin on 20/08/2017.
  */
 
-public class ChargeFragment extends Fragment {
+public class PaymentFragment extends Fragment implements PaymentView {
     @BindView(R.id.rvCharge)
     RecyclerView rvCharge;
     private List<Charge> chargeList;
     private ChargeAdapter chargeAdapter;
 
-    public ChargeFragment() {
+    private PaymentPresenter paymentPresenter;
 
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge, container, false);
         ButterKnife.bind(this, view);
+//        paymentPresenter = new PaymentPresenterIml(this);
         chargeList = new ArrayList<>();
         chargeAdapter = new ChargeAdapter(chargeList);
         rvCharge.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rvCharge.setLayoutManager(mLayoutManager);
-        fadeCharge();
+//        fadeCharge();
+        getListPayment();
         rvCharge.setAdapter(chargeAdapter);
         return view;
+    }
+
+    private void getListPayment(){
+        paymentPresenter.getListPayment();
     }
 
     public void fadeCharge() {

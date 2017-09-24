@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.fragment.adapter.CustomFragmentPapeAdapter;
+import com.example.lin.dollar.fragment.adapter.CustomFragmentPaperAdapter;
 
 /**
  * Created by lin on 31/08/2017.
@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) view.findViewById(R.id.view_paper);
 
-        viewPager.setAdapter(new CustomFragmentPapeAdapter(getChildFragmentManager()));
+        viewPager.setAdapter(new CustomFragmentPaperAdapter(getChildFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
         return  view;

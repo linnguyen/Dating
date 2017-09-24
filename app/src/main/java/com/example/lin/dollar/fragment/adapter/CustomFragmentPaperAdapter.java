@@ -4,19 +4,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.lin.dollar.fragment.view_paper.ChargeFragment;
-import com.example.lin.dollar.fragment.view_paper.IncomeFragment;
+import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
+import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
 
 /**
  * Created by lin on 31/08/2017.
  */
 
-public class CustomFragmentPapeAdapter extends FragmentPagerAdapter {
-    private static final String TAG = CustomFragmentPapeAdapter.class.getSimpleName();
+public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
+    private static final String TAG = CustomFragmentPaperAdapter.class.getSimpleName();
 
     private static final int FRAGMENT_COUNT = 2;
 
-    public CustomFragmentPapeAdapter(FragmentManager fm) {
+    public CustomFragmentPaperAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -24,7 +24,7 @@ public class CustomFragmentPapeAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new ChargeFragment();
+                return new PaymentFragment();
             case 1:
                 return new IncomeFragment();
         }
