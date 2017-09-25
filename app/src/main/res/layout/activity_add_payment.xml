@@ -4,34 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.lin.dollar.activity.AddPayment.AddPaymentActivity">
+
     <LinearLayout
-        android:layout_margin="20dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Name"
             android:textColor="@color/app_color"
             android:textSize="24sp"
-            android:textStyle="italic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textStyle="italic" />
+
         <EditText
-            android:padding="40dp"
-            android:background="@drawable/rounded_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bg"
+            android:padding="40dp" />
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Fee"
             android:textColor="@color/app_color"
             android:textSize="24sp"
-            android:textStyle="italic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textStyle="italic" />
+
         <EditText
-            android:padding="10dp"
-            android:background="@drawable/rounded_bg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_bg"
+            android:inputType="number"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/app_color"
+            android:text="OK"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

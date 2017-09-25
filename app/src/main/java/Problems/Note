@@ -5,6 +5,8 @@ TODO
 - Change color of text "Home" , "Income", "Charge" to white
 - find another icon for app, get it from adobe
 - Add logout API
+- Custom displaying money format, add . between the number
+- Should display record payment by month (reference to youtube)
 
 * LONG-TERM
 - Add pagination for payment recycle view
@@ -20,7 +22,8 @@ DATA
  username: nguyenlin@gmail.com
  password: 123abc@
  - Server dolax-clone:
-
+ username: admin@gmail.com
+ password: 123abc@
  - Server local:
 
 IDEA
