@@ -40,9 +40,9 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "INCOME";
+                return "Payment";
             case 1:
-                return "CHARGE";
+                return "Income";
         }
         return super.getPageTitle(position);
     }

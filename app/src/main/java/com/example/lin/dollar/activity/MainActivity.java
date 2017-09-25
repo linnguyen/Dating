@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lin.dollar.R;
+import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
 import com.example.lin.dollar.fragment.HomeFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
@@ -27,6 +28,7 @@ import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
 import com.squareup.picasso.Picasso;
 
+import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity {
@@ -85,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, AddPaymentActivity.class);
+                startActivity(intent);
+
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -315,6 +320,12 @@ public class MainActivity extends AppCompatActivity {
             fab.show();
         else
             fab.hide();
+    }
+
+    @OnClick(R.id.fab)
+    public void navigateToAddPayment() {
+        Intent intent = new Intent(this, AddPaymentActivity.class);
+        startActivity(intent);
     }
 
 }

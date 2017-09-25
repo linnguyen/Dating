@@ -5,5 +5,5 @@ package com.example.lin.dollar.fragment.viewpaper.Payment;
  */
 
 public interface PaymentInteractor {
-    void getListPayment();
+    void getListPayment(PaymentPresenter.OnPaymentFinishedListener listener);
 }

@@ -1,5 +1,6 @@
 package com.example.lin.dollar.Service;
 
+import com.example.lin.dollar.Entity.Response.Payment;
 import com.example.lin.dollar.Entity.Response.User;
 import com.example.lin.dollar.Utilities.Constant;
 import com.google.gson.Gson;
@@ -16,6 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -41,6 +43,12 @@ public interface DolaxAPIs {
      */
     @POST("sessions/")
     Call<User> logout(@Query("email") String email, @Query("password") String password);
+
+    /*
+     Get list payment
+     */
+    @GET("payments/")
+    Call<List<Payment>> getPayments(@Header("Authorization") String authToken);
 
     class Factory {
         public static DolaxAPIs create() {

@@ -1,5 +1,6 @@
 package com.example.lin.dollar.fragment.viewpaper.Payment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.entities.Charge;
-import com.example.lin.dollar.fragment.adapter.ChargeAdapter;
+import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,43 +27,58 @@ import butterknife.ButterKnife;
  */
 
 public class PaymentFragment extends Fragment implements PaymentView {
+    private Context context;
     @BindView(R.id.rvCharge)
     RecyclerView rvCharge;
-    private List<Charge> chargeList;
-    private ChargeAdapter chargeAdapter;
+    private List<Payment> listPayment;
+    private PaymentAdapter chargeAdapter;
 
     private PaymentPresenter paymentPresenter;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge, container, false);
         ButterKnife.bind(this, view);
-//        paymentPresenter = new PaymentPresenterIml(this);
-        chargeList = new ArrayList<>();
-        chargeAdapter = new ChargeAdapter(chargeList);
-        rvCharge.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        rvCharge.setLayoutManager(mLayoutManager);
+        context = getContext();
+        paymentPresenter = new PaymentPresenterIml(context, this);
+        listPayment = new ArrayList<>();
 //        fadeCharge();
+        // check internet here
         getListPayment();
-        rvCharge.setAdapter(chargeAdapter);
         return view;
     }
 
-    private void getListPayment(){
+    private void getListPayment() {
         paymentPresenter.getListPayment();
+    }
+
+    private void setupListPayment() {
+        chargeAdapter = new PaymentAdapter(listPayment);
+        rvCharge.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        rvCharge.setLayoutManager(mLayoutManager);
+        rvCharge.setAdapter(chargeAdapter);
+    }
+
+    @Override
+    public void getListPaymentSuccess(List<Payment> lisPayment) {
+        this.listPayment.clear();
+        this.listPayment.addAll(lisPayment);
+        setupListPayment();
     }
 
     public void fadeCharge() {
         for (int i = 0; i < 5; i++) {
             Calendar calendar = Calendar.getInstance();
             Date date = calendar.getTime();
-            Charge charge = new Charge("Action name here", 134000, date);
-            chargeList.add(charge);
+            Payment charge = new Payment("Action name here", 134000, date);
+            listPayment.add(charge);
         }
     }
-
-
 }

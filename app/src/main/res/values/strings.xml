@@ -32,10 +32,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Login -->
+    <!-- LOGIN -->
     <string name="login">LOGIN</string>
     <string name="dialog_login">Logging in</string>
     <!-- TODO: Should get this message from server -->
     <string name="toast_login_fail">Invalid username or password</string>
     <string name="toast_login_success">Login Success</string>
+    <!-- PAYMENT -->
+    <string name="toast_get_payment_fail">Fail to get payment</string>
 </resources>

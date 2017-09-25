@@ -1,18 +1,19 @@
 TODO
 * SHORT-TERM
-- do not understand addFlags using for intent android (should apply)
 - custom Login UI -> add crollview
-- Add Progressbar (circle for login)
+- Add Progressbar (circle for login) // seem ok
 - Change color of text "Home" , "Income", "Charge" to white
 - find another icon for app, get it from adobe
--
+- Add logout API
+
 * LONG-TERM
 - Add pagination for payment recycle view
 - Currently, the UI for login screen seems OK, but we should custom it in the future with the logo and color.
+- Add an image for slash screen
 
 LIST OF ANDROID TECHNOLOGY
-- GFM
--
+- GFM for sending report message monthly
+- do not understand addFlags using for intent android (should apply)
 -
 DATA
 - Server dolax:
@@ -25,3 +26,5 @@ DATA
 IDEA
 - the system can automatically load data from local machine (at specific location), like google drive. -> difficult
 - Read file from local and load to server, all the infor will be displayed in app. Besides, user also can input data from form in app.
+- Should return api with key_status from server. (Search: how to return key status with rails api?)
+- Multi language for app. (Add to settings, reference from facebook app)

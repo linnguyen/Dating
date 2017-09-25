@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.entities.Charge;
+import com.example.lin.dollar.Entity.Response.Payment;
 
 import java.util.List;
 
@@ -18,10 +18,10 @@ import butterknife.ButterKnife;
  * Created by lin on 20/08/2017.
  */
 
-public class ChargeAdapter extends RecyclerView.Adapter<ChargeAdapter.ViewHolder> {
-    List<Charge> chargeList;
+public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHolder> {
+    List<Payment> chargeList;
 
-    public ChargeAdapter(List<Charge> chargeList) {
+    public PaymentAdapter(List<Payment> chargeList) {
         this.chargeList = chargeList;
     }
 
@@ -34,10 +34,10 @@ public class ChargeAdapter extends RecyclerView.Adapter<ChargeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Charge charge = chargeList.get(position);
-        holder.tvNameCharge.setText(charge.getName());
-        holder.tvCost.setText(String.valueOf(charge.getPrice()));
-//        holder.tvDayCharge.setText(String.valueOf(charge.getDate()));
+        Payment payment = chargeList.get(position);
+        holder.tvNameCharge.setText(payment.getName());
+        holder.tvCost.setText(Double.toString(payment.getFee()));
+        holder.tvDayCharge.setText(String.valueOf(payment.getDate()));
     }
 
     @Override

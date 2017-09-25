@@ -5,5 +5,5 @@ package com.example.lin.dollar.Utilities;
  */
 
 public class Constant {
-    public static final String BASE_URL = "https://dolax.herokuapp.com/api/";
+    public static final String BASE_URL = "https://dolax-clone.herokuapp.com/api/";
 }
