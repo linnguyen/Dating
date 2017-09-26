@@ -7,11 +7,13 @@ TODO
 - Add logout API
 - Custom displaying money format, add . between the number
 - Should display record payment by month (reference to youtube)
+- Add internet connection check
 
 * LONG-TERM
 - Add pagination for payment recycle view
 - Currently, the UI for login screen seems OK, but we should custom it in the future with the logo and color.
 - Add an image for slash screen
+- Should research for store data in local and syncronize data between local and remote server (now your mindset is not the best)
 
 LIST OF ANDROID TECHNOLOGY
 - GFM for sending report message monthly

@@ -1,5 +1,6 @@
 package com.example.lin.dollar.fragment.viewpaper.Payment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.lin.dollar.Entity.Response.User;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.Utilities.Utils;
 import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by lin on 20/08/2017.
@@ -28,11 +32,11 @@ import butterknife.ButterKnife;
 
 public class PaymentFragment extends Fragment implements PaymentView {
     private Context context;
-    @BindView(R.id.rvCharge)
-    RecyclerView rvCharge;
+    RecyclerView rvPayment;
+    private ProgressDialog progressDialog;
+
     private List<Payment> listPayment;
     private PaymentAdapter chargeAdapter;
-
     private PaymentPresenter paymentPresenter;
 
     @Override
@@ -44,11 +48,11 @@ public class PaymentFragment extends Fragment implements PaymentView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_charge, container, false);
-        ButterKnife.bind(this, view);
         context = getContext();
+        rvPayment = (RecyclerView) view.findViewById(R.id.rvCharge);
         paymentPresenter = new PaymentPresenterIml(context, this);
         listPayment = new ArrayList<>();
-//        fadeCharge();
+//        fakeCharge();
         // check internet here
         getListPayment();
         return view;
@@ -60,10 +64,27 @@ public class PaymentFragment extends Fragment implements PaymentView {
 
     private void setupListPayment() {
         chargeAdapter = new PaymentAdapter(listPayment);
-        rvCharge.setHasFixedSize(true);
+        rvPayment.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        rvCharge.setLayoutManager(mLayoutManager);
-        rvCharge.setAdapter(chargeAdapter);
+        rvPayment.setLayoutManager(mLayoutManager);
+        rvPayment.setAdapter(chargeAdapter);
+    }
+
+    @Override
+    public void showProgress() {
+        progressDialog = new ProgressDialog(context, R.style.CustomProgressDialog);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getString(R.string.dialog_loading_payment));
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideProgress() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override
@@ -73,7 +94,12 @@ public class PaymentFragment extends Fragment implements PaymentView {
         setupListPayment();
     }
 
-    public void fadeCharge() {
+    @OnClick(R.id.imv_close_add_payment)
+    public void closeFormAddPayment() {
+
+    }
+
+    public void fakeCharge() {
         for (int i = 0; i < 5; i++) {
             Calendar calendar = Calendar.getInstance();
             Date date = calendar.getTime();
@@ -81,4 +107,5 @@ public class PaymentFragment extends Fragment implements PaymentView {
             listPayment.add(charge);
         }
     }
+
 }

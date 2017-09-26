@@ -23,11 +23,13 @@ public class PaymentPresenterIml implements PaymentPresenter, PaymentPresenter.O
 
     @Override
     public void getListPayment() {
+        paymentView.showProgress();
         paymentInteractor.getListPayment(this);
     }
 
     @Override
     public void onGetPaymentsSuccess(List<Payment> listPayment) {
+        paymentView.hideProgress();
         paymentView.getListPaymentSuccess(listPayment);
     }
 

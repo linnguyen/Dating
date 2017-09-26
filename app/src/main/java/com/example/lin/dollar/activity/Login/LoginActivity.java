@@ -64,7 +64,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
     @Override
     public void hideProgress() {
-        progressDialog.dismiss();
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override

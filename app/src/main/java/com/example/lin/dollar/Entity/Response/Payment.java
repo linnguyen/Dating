@@ -22,6 +22,11 @@ public class Payment {
         this.date = date;
     }
 
+    public Payment(String name, double fee) {
+        this.name = name;
+        this.fee = fee;
+    }
+
     public String getName() {
         return name;
     }

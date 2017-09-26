@@ -17,8 +17,8 @@ import retrofit2.Response;
  */
 
 public class LoginInteractorIml implements LoginInteractor {
-    private DolaxAPIs dolaxAPIs;
     private Context context;
+    private DolaxAPIs dolaxAPIs;
 
     public LoginInteractorIml(Context context) {
         this.context = context;

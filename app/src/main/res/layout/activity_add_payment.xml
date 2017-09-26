@@ -5,47 +5,73 @@
     android:layout_height="match_parent"
     tools:context="com.example.lin.dollar.activity.AddPayment.AddPaymentActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <TextView
+        <ImageView
+            android:id="@+id/imv_close_add_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_close" />
+
+        <TextView
+            android:id="@+id/tv_payment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imv_close_add_payment"
             android:text="Name"
             android:textColor="@color/app_color"
             android:textSize="24sp"
             android:textStyle="italic" />
 
         <EditText
+            android:id="@+id/edt_payment_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_payment_name"
             android:background="@drawable/rounded_bg"
             android:padding="40dp" />
 
         <TextView
+            android:id="@+id/tv_payment_fee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_payment_name"
             android:text="Fee"
             android:textColor="@color/app_color"
             android:textSize="24sp"
             android:textStyle="italic" />
 
         <EditText
+            android:id="@+id/edt_payment_fee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_payment_fee"
             android:background="@drawable/rounded_bg"
             android:inputType="number"
             android:padding="10dp" />
 
         <Button
+            android:id="@+id/btn_create_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edt_payment_fee"
             android:layout_margin="20dp"
             android:background="@color/app_color"
             android:text="OK"
             android:textColor="@color/white" />
-    </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_adding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:elevation="2dp"
+            android:visibility="gone" />
+    </RelativeLayout>
 </LinearLayout>

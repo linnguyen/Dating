@@ -9,5 +9,9 @@ import java.util.List;
  */
 
 public interface PaymentView {
+    void showProgress();
+
+    void hideProgress();
+
     void getListPaymentSuccess(List<Payment> lisPayment);
 }

@@ -19,16 +19,25 @@ public class Utils {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
-    public static String getText(EditText editText){
+    public static String getText(EditText editText) {
         return editText.getText().toString().trim();
     }
 
-    // Close keyboard in android
+    // Close android keyboard
     public static void hiddenKeyBoard(Activity activity) {
         View view = activity.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+    // Show progress dialog (cirle)
+    public static void showProgressDialog(ProgressDialog progressDialog, Context context, String message) {
+        progressDialog = new ProgressDialog(context, R.style.CustomProgressDialog);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(message);
+        progressDialog.show();
     }
 }

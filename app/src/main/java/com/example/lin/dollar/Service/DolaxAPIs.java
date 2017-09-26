@@ -50,6 +50,12 @@ public interface DolaxAPIs {
     @GET("payments/")
     Call<List<Payment>> getPayments(@Header("Authorization") String authToken);
 
+    /*
+     Add payment
+     */
+    @POST("users/100/payments/")
+    Call<Payment> createPayment(@Header("Authorization") String token, @Body JsonObject jsonObject);
+
     class Factory {
         public static DolaxAPIs create() {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

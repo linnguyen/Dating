@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.Entity.Response.Payment;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,7 +38,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         Payment payment = chargeList.get(position);
         holder.tvNameCharge.setText(payment.getName());
         holder.tvCost.setText(Double.toString(payment.getFee()));
-        holder.tvDayCharge.setText(String.valueOf(payment.getDate()));
+        // covert date to string with date format
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm dd/MM/yy");
+        String datePayment = simpleDateFormat.format(payment.getDate());
+        holder.tvDayCharge.setText(datePayment);
     }
 
     @Override
