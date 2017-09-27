@@ -35,8 +35,7 @@ public class PaymentFragment extends Fragment implements PaymentView {
     RecyclerView rvPayment;
     private ProgressDialog progressDialog;
 
-    private List<Payment> listPayment;
-    private PaymentAdapter chargeAdapter;
+    private PaymentAdapter paymentAdapter;
     private PaymentPresenter paymentPresenter;
 
     @Override
@@ -51,7 +50,7 @@ public class PaymentFragment extends Fragment implements PaymentView {
         context = getContext();
         rvPayment = (RecyclerView) view.findViewById(R.id.rvCharge);
         paymentPresenter = new PaymentPresenterIml(context, this);
-        listPayment = new ArrayList<>();
+        setupListPayment();
 //        fakeCharge();
         // check internet here
         getListPayment();
@@ -63,11 +62,11 @@ public class PaymentFragment extends Fragment implements PaymentView {
     }
 
     private void setupListPayment() {
-        chargeAdapter = new PaymentAdapter(listPayment);
         rvPayment.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rvPayment.setLayoutManager(mLayoutManager);
-        rvPayment.setAdapter(chargeAdapter);
+        paymentAdapter = new PaymentAdapter();
+        rvPayment.setAdapter(paymentAdapter);
     }
 
     @Override
@@ -89,23 +88,11 @@ public class PaymentFragment extends Fragment implements PaymentView {
 
     @Override
     public void getListPaymentSuccess(List<Payment> lisPayment) {
-        this.listPayment.clear();
-        this.listPayment.addAll(lisPayment);
-        setupListPayment();
+        paymentAdapter.setPaymentData(lisPayment);
     }
 
     @OnClick(R.id.imv_close_add_payment)
     public void closeFormAddPayment() {
 
     }
-
-    public void fakeCharge() {
-        for (int i = 0; i < 5; i++) {
-            Calendar calendar = Calendar.getInstance();
-            Date date = calendar.getTime();
-            Payment charge = new Payment("Action name here", 134000, date);
-            listPayment.add(charge);
-        }
-    }
-
 }

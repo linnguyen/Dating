@@ -20,10 +20,10 @@ import butterknife.ButterKnife;
  */
 
 public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHolder> {
-    List<Payment> chargeList;
+    List<Payment> listPayment;
 
-    public PaymentAdapter(List<Payment> chargeList) {
-        this.chargeList = chargeList;
+    public PaymentAdapter() {
+
     }
 
     @Override
@@ -35,10 +35,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Payment payment = chargeList.get(position);
+        Payment payment = listPayment.get(position);
         holder.tvNameCharge.setText(payment.getName());
         holder.tvCost.setText(Double.toString(payment.getFee()));
-        // covert date to string with date format
+        // convert date to string with date format
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm dd/MM/yy");
         String datePayment = simpleDateFormat.format(payment.getDate());
         holder.tvDayCharge.setText(datePayment);
@@ -46,7 +46,8 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return chargeList.size();
+        if (null == listPayment) return 0;
+        return listPayment.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,5 +62,10 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public void setPaymentData(List<Payment> listPayment) {
+        this.listPayment = listPayment;
+        notifyDataSetChanged();
     }
 }
