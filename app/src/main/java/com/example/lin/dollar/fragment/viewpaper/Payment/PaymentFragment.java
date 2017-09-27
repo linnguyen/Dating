@@ -57,7 +57,7 @@ public class PaymentFragment extends Fragment implements PaymentView {
         return view;
     }
 
-    private void getListPayment() {
+    public void getListPayment() {
         paymentPresenter.getListPayment();
     }
 
@@ -91,8 +91,9 @@ public class PaymentFragment extends Fragment implements PaymentView {
         paymentAdapter.setPaymentData(lisPayment);
     }
 
-    @OnClick(R.id.imv_close_add_payment)
-    public void closeFormAddPayment() {
-
+    @Override
+    public void onResume() {
+        paymentAdapter.notifyDataSetChanged();
+        super.onResume();
     }
 }

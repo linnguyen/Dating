@@ -8,6 +8,7 @@ TODO
 - Custom displaying money format, add . between the number
 - Should display record payment by month (reference to youtube)
 - Add internet connection check
+- Add Month-Year-Date-Picker for menu item.
 
 * LONG-TERM
 - Add pagination for payment recycle view
@@ -27,6 +28,10 @@ DATA
  username: admin@gmail.com
  password: 123abc@
  - Server local:
+
+LINK
+App Performance:
+https://medium.com/@jorgemf/making-your-android-app-faster-735328eaba25
 
 IDEA
 - the system can automatically load data from local machine (at specific location), like google drive. -> difficult
