@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.entity.Response.Payment;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

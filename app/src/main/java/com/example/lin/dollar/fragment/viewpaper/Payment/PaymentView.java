@@ -1,6 +1,6 @@
 package com.example.lin.dollar.fragment.viewpaper.Payment;
 
-import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.entity.Response.Payment;
 
 import java.util.List;
 

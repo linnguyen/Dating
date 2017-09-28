@@ -2,7 +2,7 @@ package com.example.lin.dollar.activity.Login;
 
 import android.content.Context;
 
-import com.example.lin.dollar.Entity.Response.User;
+import com.example.lin.dollar.entity.Response.User;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.Service.DolaxAPIs;
 import com.example.lin.dollar.localstorage.SessionManager;

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.Utilities.Utils;
 

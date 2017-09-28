@@ -9,6 +9,8 @@ TODO
 - Should display record payment by month (reference to youtube)
 - Add internet connection check
 - Add Month-Year-Date-Picker for menu item.
+- Change divider Date picker dialog
+- Show only month and year in Date Picker
 
 * LONG-TERM
 - Add pagination for payment recycle view

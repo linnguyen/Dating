@@ -1,11 +1,13 @@
 package com.example.lin.dollar.activity;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,19 +25,21 @@ import android.widget.Toast;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
+import com.example.lin.dollar.activity.DetailFinance.DetailFinanceActivity;
+import com.example.lin.dollar.dialog.DatePickerFragment;
 import com.example.lin.dollar.fragment.HomeFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
-import com.example.lin.dollar.fragment.adapter.CustomFragmentPaperAdapter;
-import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
 
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerFragment.NavigateToDetailFinanceActivity {
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
@@ -99,29 +103,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int id = item.getItemId();
-//                if (id == R.id.nav_home){
-//                     fragment = new HomeFragment();
-//                }
-//                if (id == R.id.nav_movies){
-//                    Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
-//                }
-//
-//                Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
-//
-//                FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                transaction.replace(R.id.main_container_wrapper, fragment);
-//                transaction.commit();
-//
-//                DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//                assert drawerLayout != null;
-//                drawerLayout.closeDrawers();
-//                return true;
-//            }
-//        });
 
         // load nav menu header data
         loadNavHeader();
@@ -342,10 +323,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_refresh){
-           // This will be done later, call the method from Payment fragment, use interface or something
+        if (id == R.id.action_refresh) {
+            // This will be done later, call the method from Payment fragment, use interface or something
+            DialogFragment dialogFragment = new DatePickerFragment(this);
+            dialogFragment.show(getSupportFragmentManager(), "datePicker");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onNavigateToDetailFinanceActivity() {
+        Intent intent = new Intent(this, DetailFinanceActivity.class);
+        startActivity(intent);
     }
 }
 

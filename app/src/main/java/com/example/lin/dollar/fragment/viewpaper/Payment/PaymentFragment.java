@@ -11,20 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lin.dollar.Entity.Response.User;
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Entity.Response.Payment;
-import com.example.lin.dollar.Utilities.Utils;
+import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by lin on 20/08/2017.

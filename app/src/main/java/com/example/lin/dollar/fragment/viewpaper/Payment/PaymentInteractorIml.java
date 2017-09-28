@@ -3,7 +3,7 @@ package com.example.lin.dollar.fragment.viewpaper.Payment;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.lin.dollar.Entity.Response.Payment;
+import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.Service.DolaxAPIs;
 import com.example.lin.dollar.localstorage.SessionManager;
