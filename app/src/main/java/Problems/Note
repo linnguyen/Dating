@@ -40,3 +40,4 @@ IDEA
 - Read file from local and load to server, all the infor will be displayed in app. Besides, user also can input data from form in app.
 - Should return api with key_status from server. (Search: how to return key status with rails api?)
 - Multi language for app. (Add to settings, reference from facebook app)
+- Currently, using email
