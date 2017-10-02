@@ -336,6 +336,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         Intent intent = new Intent(this, DetailFinanceActivity.class);
         startActivity(intent);
     }
+
 }
 
 
