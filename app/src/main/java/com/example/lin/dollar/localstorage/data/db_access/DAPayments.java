@@ -11,5 +11,6 @@ import com.example.lin.dollar.entity.Response.Payment;
 public class DAPayments {
     private ContentValues getContentValues(Payment payment){
         ContentValues values = new ContentValues();
+        return null;
     }
 }

@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_refresh) {
+        if (id == R.id.action_more) {
             // This will be done later, call the method from Payment fragment, use interface or something
             DialogFragment dialogFragment = new DatePickerFragment(this);
             dialogFragment.show(getSupportFragmentManager(), "datePicker");

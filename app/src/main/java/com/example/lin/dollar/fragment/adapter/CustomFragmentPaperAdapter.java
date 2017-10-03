@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
 import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
+import com.example.lin.dollar.fragment.viewpaper.Total.TotalFragment;
 
 /**
  * Created by lin on 31/08/2017.
@@ -14,7 +15,7 @@ import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
 public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
     private static final String TAG = CustomFragmentPaperAdapter.class.getSimpleName();
 
-    private static final int FRAGMENT_COUNT = 2;
+    private static final int FRAGMENT_COUNT = 3;
 
     public CustomFragmentPaperAdapter(FragmentManager fm) {
         super(fm);
@@ -27,6 +28,8 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
                 return new PaymentFragment();
             case 1:
                 return new IncomeFragment();
+            case 2:
+                return new TotalFragment();
         }
         return null;
     }
@@ -43,6 +46,8 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
                 return "Payment";
             case 1:
                 return "Income";
+            case 2:
+                return "Total";
         }
         return super.getPageTitle(position);
     }

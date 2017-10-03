@@ -18,6 +18,11 @@ public class IncomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
