@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     public static int navItemIndex = 0;
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_PHOTOS = "photos";
+    private static final String TAG_BANK = "bank";
     private static final String TAG_MOVIES = "movies";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
@@ -231,9 +231,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_photos:
+                    case R.id.nav_bank:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_PHOTOS;
+                        CURRENT_TAG = TAG_BANK;
                         break;
                     case R.id.nav_movies:
                         Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();

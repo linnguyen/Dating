@@ -10,6 +10,7 @@ import java.util.Date;
  */
 
 public class Payment {
+    private int id;
     private String name;
     private double fee;
     @SerializedName("created_at")
@@ -17,15 +18,25 @@ public class Payment {
     private Date date;
     private int user_id;
 
-    public Payment(String name, double fee, Date date) {
+    public Payment(int id, String name, double fee, Date date, int user_id) {
+        this.id = id;
         this.name = name;
         this.fee = fee;
         this.date = date;
+        this.user_id = user_id;
     }
 
     public Payment(String name, double fee) {
         this.name = name;
         this.fee = fee;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

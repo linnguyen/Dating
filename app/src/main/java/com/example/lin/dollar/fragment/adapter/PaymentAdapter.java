@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lin.dollar.R;
+import com.example.lin.dollar.Utilities.Utils;
 import com.example.lin.dollar.entity.Response.Payment;
 
 import java.text.SimpleDateFormat;
@@ -39,9 +40,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
         holder.tvNameCharge.setText(payment.getName());
         holder.tvCost.setText(Double.toString(payment.getFee()));
         // convert date to string with date format
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm dd/MM/yy");
-        String datePayment = simpleDateFormat.format(payment.getDate());
-        holder.tvDayCharge.setText(datePayment);
+        holder.tvDayCharge.setText(Utils.fromDateToDateString("hh:mm dd/MM/yy", payment.getDate()));
     }
 
     @Override

@@ -17,6 +17,7 @@ TODO
 - Currently, the UI for login screen seems OK, but we should custom it in the future with the logo and color.
 - Add an image for slash screen
 - Should research for store data in local and syncronize data between local and remote server (now your mindset is not the best)
+- Protect your finance (payment, income, total, bank) by fingerprint. (This is option and ask user for settings)
 
 LIST OF ANDROID TECHNOLOGY
 - GFM for sending report message monthly

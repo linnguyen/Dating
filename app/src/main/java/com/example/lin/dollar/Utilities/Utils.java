@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.example.lin.dollar.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by lin on 20/09/2017.
  */
@@ -31,6 +34,7 @@ public class Utils {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
     // Show progress dialog (cirle)
     public static void showProgressDialog(ProgressDialog progressDialog, Context context, String message) {
         progressDialog = new ProgressDialog(context, R.style.CustomProgressDialog);
@@ -39,5 +43,18 @@ public class Utils {
         progressDialog.setCancelable(false);
         progressDialog.setMessage(message);
         progressDialog.show();
+    }
+
+    public static long fromDateToMilliseconds(Date date) {
+        return date.getTime();
+    }
+
+    public static Date fromMillisecondsToDate(String format, long milliseconds) {
+        return new Date(milliseconds);
+    }
+
+    public static String fromDateToDateString(String format, Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return simpleDateFormat.format(date);
     }
 }
