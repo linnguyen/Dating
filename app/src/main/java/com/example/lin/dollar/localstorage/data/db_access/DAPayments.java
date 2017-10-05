@@ -3,7 +3,7 @@ package com.example.lin.dollar.localstorage.data.db_access;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.example.lin.dollar.Utilities.Utils;
+import com.example.lin.dollar.utilities.Utils;
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.localstorage.data.PaymentContract;
 

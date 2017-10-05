@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "540362766355",
+    "firebase_url": "https://dolax-9a44a.firebaseio.com",
+    "project_id": "dolax-9a44a",
+    "storage_bucket": "dolax-9a44a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540362766355:android:79050d2c0dbaaab9",
+        "android_client_info": {
+          "package_name": "com.example.lin.dollar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540362766355-fg8mr42jma2un683c64bte0q4b8lpu0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD34jYYGQfzGZtW-u_o0UTKn35eu-VW9N0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,8 +3,6 @@ package com.example.lin.dollar.localstorage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.lin.dollar.Utilities.Constant;
-
 /**
  * Created by ryne on 20/09/2017.
  */

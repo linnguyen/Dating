@@ -1,5 +1,6 @@
 package com.example.lin.dollar.dialog;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.Color;

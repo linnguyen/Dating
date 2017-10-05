@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.lin.dollar.entity.Response.User;
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Service.DolaxAPIs;
+import com.example.lin.dollar.service.DolaxAPIs;
 import com.example.lin.dollar.localstorage.SessionManager;
 import com.google.gson.JsonObject;
 

@@ -1,8 +1,8 @@
-package com.example.lin.dollar.Service;
+package com.example.lin.dollar.service;
 
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.entity.Response.User;
-import com.example.lin.dollar.Utilities.Constant;
+import com.example.lin.dollar.utilities.Constant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;

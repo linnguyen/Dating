@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Utilities.Utils;
+import com.example.lin.dollar.utilities.Utils;
 
 public class AddPaymentActivity extends AppCompatActivity implements AddPaymentView, View.OnClickListener {
     private Context context;

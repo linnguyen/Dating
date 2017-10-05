@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Utilities.Utils;
+import com.example.lin.dollar.utilities.Utils;
 import com.example.lin.dollar.entity.Response.Payment;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;

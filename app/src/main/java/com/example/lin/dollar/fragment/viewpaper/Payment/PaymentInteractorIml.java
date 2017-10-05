@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Service.DolaxAPIs;
+import com.example.lin.dollar.service.DolaxAPIs;
 import com.example.lin.dollar.localstorage.SessionManager;
 
 import java.util.List;

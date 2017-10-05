@@ -1,4 +1,4 @@
-package com.example.lin.dollar.Utilities;
+package com.example.lin.dollar.utilities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

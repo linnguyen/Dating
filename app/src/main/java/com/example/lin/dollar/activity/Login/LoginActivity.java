@@ -1,10 +1,8 @@
 package com.example.lin.dollar.activity.Login;
 
-import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.Utilities.Utils;
+import com.example.lin.dollar.utilities.Utils;
 import com.example.lin.dollar.activity.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {

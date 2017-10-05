@@ -12,5 +12,4 @@
         android:textColor="@color/app_color"
         android:textSize="24sp"
         android:textStyle="italic" />
-
 </FrameLayout>
