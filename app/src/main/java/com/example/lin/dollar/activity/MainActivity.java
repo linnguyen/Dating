@@ -2,7 +2,10 @@ package com.example.lin.dollar.activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +14,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +36,10 @@ import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
+import com.example.lin.dollar.utilities.Constant;
+import com.example.lin.dollar.utilities.NotificationUtils;
+import com.example.lin.dollar.utilities.Utils;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -69,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
+
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +131,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         fragment = new HomeFragment();
         fragmentTransaction.replace(R.id.main_container_wrapper, fragment);
         fragmentTransaction.commit();
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Constant.Config.REGISTRATION_COMPLETE)) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(Constant.Config.TOPIC_GLOBAL);
+                } else if (intent.getAction().equals(Constant.Config.PUSH_NOTIFICATION)) {
+                    String message = intent.getStringExtra("message");
+                    Utils.showToast(getApplicationContext(), message);
+                }
+
+            }
+        };
 
 
     }
@@ -337,6 +360,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(Constant.Config.REGISTRATION_COMPLETE));
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(Constant.Config.PUSH_NOTIFICATION));
+
+        NotificationUtils.clearNotifications(getApplicationContext());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+    }
 }
 
 
