@@ -1,7 +1,5 @@
 package com.example.lin.dollar.activity;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,23 +29,24 @@ import com.example.lin.dollar.R;
 import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
 import com.example.lin.dollar.activity.DetailFinance.DetailFinanceActivity;
 import com.example.lin.dollar.dialog.DatePickerFragment;
-import com.example.lin.dollar.fragment.HomeFragment;
+import com.example.lin.dollar.fragment.FinanceFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
 import com.example.lin.dollar.fragment.PhotosFragment;
 import com.example.lin.dollar.fragment.SettingsFragment;
+import com.example.lin.dollar.interfaces.HomeInterface;
 import com.example.lin.dollar.utilities.Constant;
 import com.example.lin.dollar.utilities.NotificationUtils;
 import com.example.lin.dollar.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
-import java.util.Calendar;
-
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class MainActivity extends AppCompatActivity implements DatePickerFragment.NavigateToDetailFinanceActivity {
+    private Context context;
+    //Declaring widget for activity
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
@@ -55,15 +54,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     private TextView tvName, tvWebsite;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    private FinanceFragment financeFragment;
 
-    // urls to load navigation header background image
-    // and profile image
-    private static final String urlNavHeaderBg = "https://api.androidhive.info/images/nav-menu-header-bg.jpg";
-    private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
-    //index to identify current nav menu item
-    public static int navItemIndex = 0;
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_BANK = "bank";
@@ -71,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
     public static String CURRENT_TAG = TAG_HOME;
+    public static int navItemIndex = 0;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
@@ -84,11 +80,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = getApplicationContext();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         mHandler = new Handler();
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -107,9 +102,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddPaymentActivity.class);
                 startActivity(intent);
-
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
 
@@ -128,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = new HomeFragment();
+        fragment = new FinanceFragment();
         fragmentTransaction.replace(R.id.main_container_wrapper, fragment);
         fragmentTransaction.commit();
 
@@ -207,9 +199,24 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
-                // home
-                HomeFragment libraryFragment = new HomeFragment();
-                return libraryFragment;
+                // finance fragment
+                financeFragment = new FinanceFragment();
+                financeFragment.setHomeInterface(new HomeInterface() {
+
+                    @Override
+                    public void changeFabButton(String tabName) {
+                        if (tabName.equals(Constant.TAB_PAYMENT)) {
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setImageResource(R.drawable.ic_money_off);
+                        } else if (tabName.equals(Constant.TAB_INCOME)) {
+                            fab.setVisibility(View.VISIBLE);
+                            fab.setImageResource(R.drawable.ic_attach_money);
+                        } else {
+                            fab.setVisibility(View.GONE);
+                        }
+                    }
+                });
+                return financeFragment;
             case 1:
                 // photos
                 PhotosFragment photosFragment = new PhotosFragment();
@@ -228,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
                 SettingsFragment settingsFragment = new SettingsFragment();
                 return settingsFragment;
             default:
-                return new HomeFragment();
+                return new FinanceFragment();
         }
     }
 
@@ -375,6 +382,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
+
 }
 
 

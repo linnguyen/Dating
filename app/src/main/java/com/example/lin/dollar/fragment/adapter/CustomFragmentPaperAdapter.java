@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
 import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
 import com.example.lin.dollar.fragment.viewpaper.Total.TotalFragment;
+import com.example.lin.dollar.utilities.Constant;
 
 /**
  * Created by lin on 31/08/2017.
@@ -43,12 +44,13 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Payment";
+                return Constant.TAB_PAYMENT;
             case 1:
-                return "Income";
+                return Constant.TAB_INCOME;
             case 2:
-                return "Total";
+                return Constant.TAB_TOTAL;
         }
         return super.getPageTitle(position);
     }
+
 }

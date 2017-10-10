@@ -6,6 +6,10 @@ package com.example.lin.dollar.utilities;
 
 public class Constant {
     public static final String BASE_URL = "https://dolax-clone.herokuapp.com/api/";
+    // Tab layout name
+    public static final String TAB_PAYMENT = "Payment";
+    public static final String TAB_INCOME = "Income";
+    public static final String TAB_TOTAL = "Total";
 
     // Firebase configuration
     public class Config {
