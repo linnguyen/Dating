@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
 import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
-import com.example.lin.dollar.fragment.viewpaper.Total.TotalFragment;
+import com.example.lin.dollar.fragment.viewpaper.Debt.DebtFragment;
 import com.example.lin.dollar.utilities.Constant;
 
 /**
@@ -30,7 +30,7 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
             case 1:
                 return new IncomeFragment();
             case 2:
-                return new TotalFragment();
+                return new DebtFragment();
         }
         return null;
     }

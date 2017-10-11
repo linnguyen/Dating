@@ -1,4 +1,4 @@
-package com.example.lin.dollar.activity.DetailFinance;
+package com.example.lin.dollar.activity.WeeklyFinanceReport;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

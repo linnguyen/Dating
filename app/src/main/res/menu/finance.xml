@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_more"
-        android:orderInCategory="1"
-        android:title="Refresh"
         android:icon="@drawable/ic_more"
+        android:orderInCategory="2"
+        android:title="Date Picker"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_total"
+        android:icon="@drawable/ic_insert_chart"
+        android:orderInCategory="1"
+        android:title="Total"
         app:showAsAction="ifRoom" />
 </menu>

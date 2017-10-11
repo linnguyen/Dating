@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
-import com.example.lin.dollar.activity.DetailFinance.DetailFinanceActivity;
+import com.example.lin.dollar.activity.WeeklyFinanceReport.DetailFinanceActivity;
 import com.example.lin.dollar.dialog.DatePickerFragment;
 import com.example.lin.dollar.fragment.FinanceFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.payment, menu);
+        inflater.inflate(R.menu.finance, menu);
         return true;
     }
 

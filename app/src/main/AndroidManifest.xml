@@ -23,7 +23,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.Login.LoginActivity" />
         <activity android:name=".activity.AddPayment.AddPaymentActivity" />
-        <activity android:name=".activity.DetailFinance.DetailFinanceActivity"></activity>
+        <activity android:name=".activity.WeeklyFinanceReport.DetailFinanceActivity"></activity>
    <!-- Firebase Notifications -->
         <service android:name=".service.MyFirebaseMessagingService">
             <intent-filter>

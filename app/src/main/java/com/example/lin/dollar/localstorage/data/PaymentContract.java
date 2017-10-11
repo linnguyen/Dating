@@ -8,8 +8,8 @@ import android.provider.BaseColumns;
 
 public class PaymentContract {
     public final static class PaymentEntry implements BaseColumns {
-        // TABLE_NAME -> payment
-        public static final String TABLE_NAME = "payment";
+        // TABLE_NAME -> finance
+        public static final String TABLE_NAME = "finance";
         // COLUMN_PAYMENT_ID -> id
         public static final String COLUMN_PAYMENT_ID = "id";
         // COLUMN_PAYMENT_NAME -> name
