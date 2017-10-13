@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
 import com.example.lin.dollar.activity.WeeklyFinanceReport.DetailFinanceActivity;
-import com.example.lin.dollar.dialog.DatePickerFragment;
+import com.example.lin.dollar.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.dollar.fragment.FinanceFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
 import com.example.lin.dollar.fragment.NotificationsFragment;
@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_more) {
+        if (id == R.id.action_date_picker) {
             // This will be done later, call the method from Payment fragment, use interface or something
             DialogFragment dialogFragment = new DatePickerFragment(this);
             dialogFragment.show(getSupportFragmentManager(), "datePicker");

@@ -48,7 +48,7 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
             case 1:
                 return Constant.TAB_INCOME;
             case 2:
-                return Constant.TAB_TOTAL;
+                return Constant.TAB_DEBT;
         }
         return super.getPageTitle(position);
     }

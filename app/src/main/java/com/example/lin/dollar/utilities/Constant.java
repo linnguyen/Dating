@@ -9,7 +9,7 @@ public class Constant {
     // Tab layout name
     public static final String TAB_PAYMENT = "Payment";
     public static final String TAB_INCOME = "Income";
-    public static final String TAB_TOTAL = "Total";
+    public static final String TAB_DEBT = "Debt";
 
     // Firebase configuration
     public class Config {

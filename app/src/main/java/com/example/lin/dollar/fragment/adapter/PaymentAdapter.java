@@ -49,16 +49,15 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tvNameCharge)
         TextView tvNameCharge;
-        @BindView(R.id.tvCost)
         TextView tvCost;
-        @BindView(R.id.tvDayCharge)
         TextView tvDayCharge;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            tvDayCharge = (TextView) itemView.findViewById(R.id.tvNameCharge);
+            tvCost = (TextView) itemView.findViewById(R.id.tvCost);
+            tvDayCharge = (TextView) itemView.findViewById(R.id.tvDayCharge);
         }
     }
 
