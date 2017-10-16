@@ -14,10 +14,12 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
  */
 
 public class DolaxFirebaseInstanceIdService extends FirebaseInstanceIdService {
+
     @Override
     public void onTokenRefresh() {
         super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d("TOKEN", refreshedToken);
         // Saving reg id to  shared preferences
         storeRegIdInPref(refreshedToken);
         // sending reg id to your server
