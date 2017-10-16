@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PaymentFragment extends Fragment implements PaymentView {
     private Context context;
-    RecyclerView rvPayment;
+    private RecyclerView rvPayment;
     private ProgressDialog progressDialog;
 
     private PaymentAdapter paymentAdapter;
@@ -32,17 +32,17 @@ public class PaymentFragment extends Fragment implements PaymentView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
+        paymentPresenter = new PaymentPresenterIml(context, this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_charge, container, false);
-        context = getContext();
+        View view = inflater.inflate(R.layout.fragment_payment, container, false);
         rvPayment = (RecyclerView) view.findViewById(R.id.rvCharge);
-        paymentPresenter = new PaymentPresenterIml(context, this);
         setupListPayment();
-//        fakeCharge();
+        // fakeCharge();
         // check internet here
         getListPayment();
         return view;
@@ -54,7 +54,7 @@ public class PaymentFragment extends Fragment implements PaymentView {
 
     private void setupListPayment() {
         rvPayment.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         rvPayment.setLayoutManager(mLayoutManager);
         paymentAdapter = new PaymentAdapter();
         rvPayment.setAdapter(paymentAdapter);

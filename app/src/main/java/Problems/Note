@@ -13,6 +13,7 @@ TODO
 - Show only month and year in Date Picker
 - FCM for report notification every month, the report should include: which one is the most payment, the offset compared to last month.
 https://stackoverflow.com/questions/37711082/how-to-handle-notification-when-app-in-background-in-firebase/37845174#37845174
+- Should change login screen to contrainslayout
 
 
 * LONG-TERM
@@ -34,7 +35,7 @@ DATA
  - Server dolax-clone:
  username: admin@gmail.com
  password: 123abc@
- - Server local:
+ - Server local: eJ3AQbg2y0E:APA91bGDXBnyngc7jh-fGksWrkue0o0U4UmhbIQHwurEn4lLUV-VR8__FHzZ0ATYykwP_2VSkqHOKHSpauVlUhqQgL5vFOV6LYE6DGXNniIK4ncuLUGUN3KFx6BR--DablBcfK_KEW-k
 
 LINK
 App Performance:
@@ -46,3 +47,4 @@ IDEA
 - Should return api with key_status from server. (G: how to return key status with rails api?)
 - Multi language for app. (Add to settings, reference from facebook app)
 - Currently, using email
+- Display history of money withdrawing in bank feature

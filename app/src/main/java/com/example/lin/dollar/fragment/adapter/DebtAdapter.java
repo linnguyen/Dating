@@ -48,4 +48,9 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.ViewHolder> {
             super(itemView);
         }
     }
+
+    public void setDebtData(List<Debt> listDebt) {
+        this.mListDebt = listDebt;
+        notifyDataSetChanged();
+    }
 }

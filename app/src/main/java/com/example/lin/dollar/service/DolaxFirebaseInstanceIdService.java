@@ -3,6 +3,7 @@ package com.example.lin.dollar.service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.example.lin.dollar.utilities.Constant;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -12,7 +13,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
  * Created by ryne on 05/10/2017.
  */
 
-public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+public class DolaxFirebaseInstanceIdService extends FirebaseInstanceIdService {
     @Override
     public void onTokenRefresh() {
         super.onTokenRefresh();

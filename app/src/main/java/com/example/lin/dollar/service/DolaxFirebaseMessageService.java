@@ -9,39 +9,58 @@ import android.util.Log;
 import com.example.lin.dollar.activity.MainActivity;
 import com.example.lin.dollar.utilities.Constant;
 import com.example.lin.dollar.utilities.NotificationUtils;
+import com.example.lin.dollar.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 /**
  * Created by ryne on 05/10/2017.
  */
 
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
+public class DolaxFirebaseMessageService extends FirebaseMessagingService {
 
-    private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
+    private static final String TAG = DolaxFirebaseMessageService.class.getSimpleName();
+    private static final String JSON_KEY_MESSAGE = "message";
     private NotificationUtils notificationUtils;
+    private static String LOG_TAG = DolaxFirebaseMessageService.class.getSimpleName();
+
+    /**
+     * Called when message is received
+     *
+     * @param remoteMessage Object representing the message received from Firebase Cloud Message
+     */
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        if (remoteMessage == null)
-            return;
-
-        if (remoteMessage.getNotification() != null) {
-            handleNotification(remoteMessage.getNotification().getBody());
+        Map<String, String> data = remoteMessage.getData();
+        if (data.size() > 0) {
+            Log.d(LOG_TAG, "Message data payload: " + data);
+            Intent pushNotification = new Intent(Constant.Config.PUSH_NOTIFICATION);
+            pushNotification.putExtra("message", data.get(JSON_KEY_MESSAGE));
+            LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
+            sendNotification(data);
         }
-
-        if (remoteMessage.getData().size() > 0) {
-            try {
-                JSONObject json = new JSONObject(remoteMessage.getData().toString());
-                handleDataMessage(json);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+//        if (remoteMessage == null)
+//            return;
+//
+//        if (remoteMessage.getNotification() != null) {
+//            handleNotification(remoteMessage.getNotification().getBody());
+//        }
+//
+//        if (remoteMessage.getData().size() > 0) {
+//            try {
+//                JSONObject json = new JSONObject(remoteMessage.getData().toString());
+//                handleDataMessage(json);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     private void handleNotification(String message) {
@@ -118,6 +137,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationUtils = new NotificationUtils(context);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         notificationUtils.showNotificationMessage(title, message, timeStamp, intent, imageUrl);
+    }
+
+    private void sendNotification(Map<String, String> data) {
+
     }
 
 
