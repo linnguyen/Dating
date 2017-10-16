@@ -4,17 +4,21 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.view.ContextThemeWrapper;
+import android.util.Log;
+import android.view.View;
 import android.widget.DatePicker;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.other.TimePickerDialogFixedNougatSpinner;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
 
 /**
@@ -23,6 +27,7 @@ import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     private NavigateToDetailFinanceActivity navigateToDetailFinanceActivity;
+    private String TAG = DatePickerFragment.class.getSimpleName();
 
     public DatePickerFragment(NavigateToDetailFinanceActivity navigateToDetailFinanceActivity) {
         this.navigateToDetailFinanceActivity = navigateToDetailFinanceActivity;
@@ -30,13 +35,51 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog;
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        // DatePick isn't still fixed here..!
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), R.style.CustomDatePicker, this, year, month, day);
-        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        /* Check if android 7.0 (Nougut) to fix the Holo theme bug.*/
+        if (Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.N) {
+            Context themedContext = new ContextThemeWrapper(getContext(), R.style.CustomDatePicker);
+            datePickerDialog = new FixedHoloDatePickerDialog(
+                    themedContext,
+                    this,
+                    year,
+                    month,
+                    day
+            );
+        } else {
+            datePickerDialog = new DatePickerDialog(getActivity(), R.style.CustomDatePicker, this, year, month, day);
+            datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        /* Only display month and year for Date picker */
+        try {
+            Field[] datePickerDialogFields = datePickerDialog.getClass().getDeclaredFields();
+            for (Field datePickerDialogField : datePickerDialogFields) {
+                if (datePickerDialogField.getName().equals("mDatePicker")) {
+                    datePickerDialogField.setAccessible(true);
+                    DatePicker datePicker =
+                            (DatePicker) datePickerDialogField.get(datePickerDialog);
+                    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        int daySpinnerId =
+                                Resources.getSystem().getIdentifier("day", "id", "android");
+                        if (daySpinnerId != 0) {
+                            View daySpinner = datePicker.findViewById(daySpinnerId);
+                            if (daySpinner != null) {
+                                // Hidden date, only display month and year
+                                daySpinner.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "IllegalAccessException: ", e);
+        }
+
         return datePickerDialog;
     }
 
