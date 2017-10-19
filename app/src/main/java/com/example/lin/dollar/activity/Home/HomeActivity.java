@@ -1,9 +1,10 @@
-package com.example.lin.dollar.activity;
+package com.example.lin.dollar.activity.Home;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -26,8 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lin.dollar.R;
+import com.example.lin.dollar.activity.AboutUsActivity;
 import com.example.lin.dollar.activity.AddPayment.AddPaymentActivity;
-import com.example.lin.dollar.activity.WeeklyFinanceReport.DetailFinanceActivity;
+import com.example.lin.dollar.activity.PrivacyPolicyActivity;
 import com.example.lin.dollar.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.dollar.fragment.FinanceFragment;
 import com.example.lin.dollar.fragment.MoviesFragment;
@@ -44,7 +46,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class MainActivity extends AppCompatActivity implements DatePickerFragment.NavigateToDetailFinanceActivity {
+public class HomeActivity extends AppCompatActivity implements DatePickerFragment.UpdateToolbarTitleInterface {
     private Context context;
     //Declaring widget for activity
     private NavigationView navigationView;
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddPaymentActivity.class);
+                Intent intent = new Intent(HomeActivity.this, AddPaymentActivity.class);
                 startActivity(intent);
             }
         });
@@ -240,7 +243,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     }
 
     private void setToolbarTitle() {
-        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+//        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+        getSupportActionBar().setTitle("October");
     }
 
     private void selectNavMenu() {
@@ -280,12 +284,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
                         break;
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                        startActivity(new Intent(HomeActivity.this, AboutUsActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_privacy_policy:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, PrivacyPolicyActivity.class));
+                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
                         drawer.closeDrawers();
                         return true;
                     default:
@@ -362,12 +366,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
     }
 
     @Override
-    public void onNavigateToDetailFinanceActivity() {
-        Intent intent = new Intent(this, DetailFinanceActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(Constant.Config.REGISTRATION_COMPLETE));
@@ -383,6 +381,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
 
+
+    @Override
+    public void updateToolbarTitle(int month, int year) {
+        getSupportActionBar().setTitle(month + " / " + year);
+    }
 }
 
 

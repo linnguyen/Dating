@@ -26,37 +26,39 @@ import java.util.Calendar;
  */
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-    private NavigateToDetailFinanceActivity navigateToDetailFinanceActivity;
+    private UpdateToolbarTitleInterface updateToolbarTitleInterface;
     private String TAG = DatePickerFragment.class.getSimpleName();
 
-    public DatePickerFragment(NavigateToDetailFinanceActivity navigateToDetailFinanceActivity) {
-        this.navigateToDetailFinanceActivity = navigateToDetailFinanceActivity;
+    public DatePickerFragment(UpdateToolbarTitleInterface updateToolbarTitleInterface) {
+        this.updateToolbarTitleInterface = updateToolbarTitleInterface;
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Calendar calendar = Calendar.getInstance();
-        DatePickerDialog datePickerDialog;
+        DatePickerDialog datePickerDialog = null;
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        /* Check if android 7.0 (Nougut) to fix the Holo theme bug.*/
-        if (Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.N) {
-            Context themedContext = new ContextThemeWrapper(getContext(), R.style.CustomDatePicker);
-            datePickerDialog = new FixedHoloDatePickerDialog(
-                    themedContext,
-                    this,
-                    year,
-                    month,
-                    day
-            );
-        } else {
-            datePickerDialog = new DatePickerDialog(getActivity(), R.style.CustomDatePicker, this, year, month, day);
-            datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        }
 
-        /* Only display month and year for Date picker */
         try {
+
+        /* Check if android 7.0 (Nougut) to fix the Holo theme bug.*/
+            if (Build.VERSION.SDK_INT == android.os.Build.VERSION_CODES.N) {
+                Context themedContext = new ContextThemeWrapper(getContext(), R.style.CustomDatePicker);
+                datePickerDialog = new FixedHoloDatePickerDialog(
+                        themedContext,
+                        this,
+                        year,
+                        month,
+                        day
+                );
+            } else {
+                datePickerDialog = new DatePickerDialog(getActivity(), R.style.CustomDatePicker, this, year, month, day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+
+            /* Only display month and year for Date picker */
             Field[] datePickerDialogFields = datePickerDialog.getClass().getDeclaredFields();
             for (Field datePickerDialogField : datePickerDialogFields) {
                 if (datePickerDialogField.getName().equals("mDatePicker")) {
@@ -69,7 +71,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
                         if (daySpinnerId != 0) {
                             View daySpinner = datePicker.findViewById(daySpinnerId);
                             if (daySpinner != null) {
-                                // Hidden date, only display month and year
+                                //Ẩn cột date, chỉ còn lại month và year
                                 daySpinner.setVisibility(View.GONE);
                             }
                         }
@@ -79,16 +81,15 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         } catch (IllegalAccessException e) {
             Log.e(TAG, "IllegalAccessException: ", e);
         }
-
         return datePickerDialog;
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-        navigateToDetailFinanceActivity.onNavigateToDetailFinanceActivity();
+        updateToolbarTitleInterface.updateToolbarTitle(month, year);
     }
 
-    public interface NavigateToDetailFinanceActivity {
-        void onNavigateToDetailFinanceActivity();
+    public interface UpdateToolbarTitleInterface {
+        void updateToolbarTitle(int month, int year);
     }
 }

@@ -2,8 +2,10 @@ package com.example.lin.dollar.dialog.DatePicker;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.DatePicker;
 
 import java.lang.reflect.Constructor;
@@ -15,7 +17,7 @@ import java.lang.reflect.Field;
 
 public class FixedHoloDatePickerDialog extends DatePickerDialog {
     public FixedHoloDatePickerDialog(Context context, OnDateSetListener callBack,
-                                      int year, int monthOfYear, int dayOfMonth) {
+                                     int year, int monthOfYear, int dayOfMonth) {
         super(context, callBack, year, monthOfYear, dayOfMonth);
 
         // Force spinners on Android 7.0 only (SDK 24).

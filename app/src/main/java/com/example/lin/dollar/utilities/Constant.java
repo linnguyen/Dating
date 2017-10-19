@@ -1,5 +1,7 @@
 package com.example.lin.dollar.utilities;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by ryne on 20/09/2017.
  */
@@ -10,6 +12,10 @@ public class Constant {
     public static final String TAB_PAYMENT = "Payment";
     public static final String TAB_INCOME = "Income";
     public static final String TAB_DEBT = "Debt";
+
+    public static TestBuilder builder() {
+        return new TestBuilder();
+    }
 
     // Firebase configuration
     public class Config {
@@ -27,4 +33,25 @@ public class Constant {
 
         public static final String SHARED_PREF = "ah_firebase";
     }
+
+
+    public static class TestBuilder {
+        public TestBuilder() {
+
+        }
+
+        public TestBuilder hello() {
+            return this;
+        }
+
+        public TestBuilder hi() {
+            return this;
+        }
+
+        public TestBuilder goodMorning() {
+            return this;
+        }
+    }
+
+
 }

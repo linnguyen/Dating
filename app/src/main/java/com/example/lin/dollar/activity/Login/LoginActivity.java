@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.lin.dollar.R;
+import com.example.lin.dollar.activity.Home.HomeActivity;
 import com.example.lin.dollar.utilities.Utils;
-import com.example.lin.dollar.activity.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
     private Context context;
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
     @Override
     public void navigateToHome() {
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }

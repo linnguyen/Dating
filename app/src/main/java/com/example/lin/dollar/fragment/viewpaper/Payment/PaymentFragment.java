@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
+import com.example.lin.dollar.utilities.Constant;
 
 import java.util.List;
 
@@ -34,6 +36,18 @@ public class PaymentFragment extends Fragment implements PaymentView {
         super.onCreate(savedInstanceState);
         context = getContext();
         paymentPresenter = new PaymentPresenterIml(context, this);
+//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+//
+//            }
+//        }).attachToRecyclerView(rvPayment);
+
     }
 
     @Nullable

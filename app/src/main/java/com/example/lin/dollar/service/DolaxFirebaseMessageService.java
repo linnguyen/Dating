@@ -10,11 +10,10 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.lin.dollar.R;
-import com.example.lin.dollar.activity.MainActivity;
+import com.example.lin.dollar.activity.Home.HomeActivity;
 import com.example.lin.dollar.activity.WeeklyFinanceReport.DetailFinanceActivity;
 import com.example.lin.dollar.utilities.Constant;
 import com.example.lin.dollar.utilities.NotificationUtils;
-import com.example.lin.dollar.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -108,7 +107,7 @@ public class DolaxFirebaseMessageService extends FirebaseMessagingService {
 //                notificationUtils.playNotificationSound();
             } else {
                 // app is in background, show the notification in notification tray
-                Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent resultIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 resultIntent.putExtra("message", message);
 
                 // check for image attachment

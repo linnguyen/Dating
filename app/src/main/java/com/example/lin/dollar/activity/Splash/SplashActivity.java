@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.example.lin.dollar.R;
 import com.example.lin.dollar.activity.Login.LoginActivity;
-import com.example.lin.dollar.activity.MainActivity;
+import com.example.lin.dollar.activity.Home.HomeActivity;
 import com.example.lin.dollar.localstorage.SessionManager;
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void directActivity() {
-        Intent intent = new Intent(this, TextUtils.isEmpty(SessionManager.getInstance(this).getToken()) ? LoginActivity.class : MainActivity.class);
+        Intent intent = new Intent(this, TextUtils.isEmpty(SessionManager.getInstance(this).getToken()) ? LoginActivity.class : HomeActivity.class);
         startActivity(intent);
         finish();
     }

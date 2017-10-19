@@ -36,8 +36,8 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Payment payment = listPayment.get(position);
-        holder.tvNameCharge.setText(payment.getName());
-        holder.tvCost.setText(Double.toString(payment.getFee()));
+        holder.tvNamePayment.setText(payment.getName());
+        holder.tvFee.setText(Double.toString(payment.getFee()));
         // convert date to string with date format
         holder.tvDayCharge.setText(Utils.fromDateToDateString("hh:mm dd/MM/yy", payment.getDate()));
     }
@@ -49,15 +49,15 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNameCharge;
-        TextView tvCost;
+        TextView tvNamePayment;
+        TextView tvFee;
         TextView tvDayCharge;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvNameCharge = (TextView) itemView.findViewById(R.id.tvNameCharge);
-            tvCost = (TextView) itemView.findViewById(R.id.tvCost);
-            tvDayCharge = (TextView) itemView.findViewById(R.id.tvDayCharge);
+            tvNamePayment = (TextView) itemView.findViewById(R.id.tv_name_payment);
+            tvFee = (TextView) itemView.findViewById(R.id.tv_fee);
+            tvDayCharge = (TextView) itemView.findViewById(R.id.tv_day_charge);
         }
     }
 
