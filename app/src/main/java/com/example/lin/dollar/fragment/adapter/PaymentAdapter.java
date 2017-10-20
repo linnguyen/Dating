@@ -12,9 +12,6 @@ import com.example.lin.dollar.entity.Response.Payment;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by lin on 20/08/2017.
  */

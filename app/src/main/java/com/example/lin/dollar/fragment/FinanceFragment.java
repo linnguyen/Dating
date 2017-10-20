@@ -9,11 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.fragment.adapter.CustomFragmentPaperAdapter;
 import com.example.lin.dollar.interfaces.HomeInterface;
-import com.example.lin.dollar.utilities.Utils;
 
 /**
  * Created by lin on 31/08/2017.
@@ -39,10 +39,11 @@ public class FinanceFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_finance, container, false);
         tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) view.findViewById(R.id.view_paper);
 
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(customFragmentPaperAdapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

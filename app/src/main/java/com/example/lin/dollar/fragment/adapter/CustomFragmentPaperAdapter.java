@@ -3,6 +3,7 @@ package com.example.lin.dollar.fragment.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.lin.dollar.fragment.viewpaper.Payment.PaymentFragment;
 import com.example.lin.dollar.fragment.viewpaper.Income.IncomeFragment;
@@ -52,5 +53,4 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
         }
         return super.getPageTitle(position);
     }
-
 }

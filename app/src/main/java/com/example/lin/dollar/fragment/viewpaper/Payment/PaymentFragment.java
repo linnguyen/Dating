@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
-import com.example.lin.dollar.utilities.Constant;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.example.lin.dollar.fragment.viewpaper.Income;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lin.dollar.R;
+import com.example.lin.dollar.utilities.Utils;
 
 /**
  * Created by lin on 20/08/2017.
  */
 
 public class IncomeFragment extends Fragment {
-    public IncomeFragment(){
+    public IncomeFragment() {
 
     }
 
