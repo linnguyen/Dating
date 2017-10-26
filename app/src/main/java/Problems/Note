@@ -17,6 +17,8 @@ https://stackoverflow.com/questions/37711082/how-to-handle-notification-when-app
 - design GUI for month summary.
 - design GUI for week report.
 - Add API for server (modify payment, income, debt)
+- Load data for single tab android
+https://stackoverflow.com/questions/43089978/load-selected-active-tab-content-in-view-pager
 
 
 * LONG-TERM
