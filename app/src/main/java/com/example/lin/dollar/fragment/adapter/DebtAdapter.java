@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.entity.Response.Debt;
+import com.example.lin.dollar.utilities.Utils;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ import java.util.List;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.ViewHolder> {
     private List<Debt> mListDebt;
+
+    public DebtAdapter() {
+
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,6 +34,14 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Debt debt = mListDebt.get(position);
         // Processing for display view here
+        holder.tvContent.setText(debt.getContent());
+        holder.tvFee.setText(Double.toString(debt.getFee()));
+        holder.tvDateCreated.setText(Utils.fromDateToDateString("hh:mm dd/MM/yy", debt.getDate()));
+        if (debt.getFinanceType() == 0) {
+            holder.imvDebtType.setImageResource(R.drawable.ic_red_point);
+        } else {
+
+        }
     }
 
     @Override
@@ -38,14 +51,17 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imvDebtType;
         TextView tvContent;
         TextView tvDateCreated;
         TextView tvFee;
-        ImageView imvFinanceType;
+        ImageView imvDebtType;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.tvContent = (TextView) itemView.findViewById(R.id.tv_debt_content);
+            this.tvFee = (TextView) itemView.findViewById(R.id.tv_fee);
+            this.tvDateCreated = (TextView) itemView.findViewById(R.id.tv_date_created);
+            this.imvDebtType = (ImageView) itemView.findViewById(R.id.imv_debt_type);
         }
     }
 

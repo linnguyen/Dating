@@ -52,9 +52,9 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvNamePayment = (TextView) itemView.findViewById(R.id.tv_name_payment);
-            tvFee = (TextView) itemView.findViewById(R.id.tv_fee);
-            tvDayCharge = (TextView) itemView.findViewById(R.id.tv_day_charge);
+            this.tvNamePayment = (TextView) itemView.findViewById(R.id.tv_name_payment);
+            this.tvFee = (TextView) itemView.findViewById(R.id.tv_fee);
+            this.tvDayCharge = (TextView) itemView.findViewById(R.id.tv_day_charge);
         }
     }
 

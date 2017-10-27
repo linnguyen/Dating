@@ -5,4 +5,5 @@ package com.example.lin.dollar.fragment.viewpaper.Debt;
  */
 
 public interface DebtInteractor {
+    void getListDebt(DebtPresenter.OnDebtFinishedListener listener);
 }

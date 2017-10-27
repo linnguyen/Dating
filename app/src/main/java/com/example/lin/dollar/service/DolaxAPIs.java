@@ -1,5 +1,7 @@
 package com.example.lin.dollar.service;
 
+import com.example.lin.dollar.entity.Response.Debt;
+import com.example.lin.dollar.entity.Response.Income;
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.entity.Response.User;
 import com.example.lin.dollar.utilities.Constant;
@@ -33,28 +35,41 @@ public interface DolaxAPIs {
     Call<List<User>> getUsers();
 
     /*
-    * Login
+     * Login
      */
     @POST("sessions/")
     Call<User> login(@Body JsonObject jsonObject);
 
     /*
-     Logout
+     *Logout
      */
     @POST("sessions/")
     Call<User> logout(@Query("email") String email, @Query("password") String password);
 
     /*
-     Get list payment
+     *Get list payment
      */
     @GET("payments/")
     Call<List<Payment>> getPayments(@Header("Authorization") String authToken);
 
     /*
-     Add payment
+     *Add payment
      */
     @POST("users/100/payments/")
-    Call<Payment> createPayment(@Header("Authorization") String token, @Body JsonObject jsonObject);
+    Call<Payment> createPayment(@Header("Authorization") String authToken, @Body JsonObject jsonObject);
+
+    /*
+     *Get list debt
+     */
+    @GET("debts/")
+    Call<List<Debt>> getDebts(@Header("Authorization") String authToken);
+
+    /*
+     *Get list income
+     */
+    @GET("incomes/")
+    Call<List<Income>> getIncomes(@Header("Authorization") String authToken);
+
 
     class Factory {
         public static DolaxAPIs create() {

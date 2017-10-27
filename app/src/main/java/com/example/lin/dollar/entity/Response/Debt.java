@@ -1,5 +1,8 @@
 package com.example.lin.dollar.entity.Response;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -10,7 +13,11 @@ public class Debt {
     // still consider for image here
     private String content;
     private double fee;
+    @SerializedName("created_at")
+    @Expose
     private Date date;
+    @SerializedName("finance_type")
+    @Expose
     private int financeType;
     private int user_id;
 

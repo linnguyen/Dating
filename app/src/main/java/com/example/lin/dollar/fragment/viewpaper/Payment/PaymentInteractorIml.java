@@ -34,7 +34,6 @@ public class PaymentInteractorIml implements PaymentInteractor {
         call.enqueue(new Callback<List<Payment>>() {
             @Override
             public void onResponse(Call<List<Payment>> call, Response<List<Payment>> response) {
-                Log.d("PAYMENTS", response.body().toString());
                 if (response.isSuccessful()) {
                     List<Payment> listPayment = response.body();
                     if (listPayment != null) {

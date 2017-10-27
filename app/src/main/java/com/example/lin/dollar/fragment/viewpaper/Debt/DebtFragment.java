@@ -9,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.lin.dollar.R;
 import com.example.lin.dollar.entity.Response.Debt;
+import com.example.lin.dollar.fragment.DxBaseFragment;
 import com.example.lin.dollar.fragment.adapter.DebtAdapter;
 import com.example.lin.dollar.other.VegalayoutManager.VegaLayoutManager;
 import com.example.lin.dollar.utilities.Utils;
@@ -20,48 +22,31 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class DebtFragment extends Fragment {
-    private Context context;
+public class DebtFragment extends DxBaseFragment implements DebtView {
     private RecyclerView rvDebt;
+    private ProgressBar pgLoading;
 
     private DebtAdapter mDebtAdapter;
+    private DebtPresenter debtPresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        context = getContext();
+    protected int getLayoutResource() {
+        return R.layout.fragment_debt;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_debt, container, false);
+    protected void initViews(View view) {
         rvDebt = (RecyclerView) view.findViewById(R.id.rv_debt);
-        /* Still clear for this piece of code
-        View positionView = view.findViewById(R.id.main_position_view);
-        boolean immerse = Utils.immerseStatusBar(getActivity());
-        boolean darkMode = Utils.setDarkMode(getActivity());
-        if (immerse) {
-            ViewGroup.LayoutParams lp = positionView.getLayoutParams();
-            lp.height = Utils.getStatusBarHeight(context);
-            positionView.setLayoutParams(lp);
-            if (!darkMode) {
-                positionView.setBackgroundColor(Color.BLACK);
-            }
-        } else {
-            positionView.setVisibility(View.GONE);
-        }
-        */
+        pgLoading = (ProgressBar) view.findViewById(R.id.pg_loading);
+        debtPresenter = new DebtPresenterIml(mContext, this);
         setupListDebt();
-        // fake Debt
-        fakeDebt();
-        return view;
+//       fakeDebt();
     }
 
     private void setupListDebt() {
         rvDebt.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
-        rvDebt.setLayoutManager(new VegaLayoutManager());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(mContext);
+        rvDebt.setLayoutManager(mLayoutManager);
         mDebtAdapter = new DebtAdapter();
         rvDebt.setAdapter(mDebtAdapter);
     }
@@ -74,5 +59,35 @@ public class DebtFragment extends Fragment {
             debtList.add(debt);
         }
         mDebtAdapter.setDebtData(debtList);
+    }
+
+    private void getListDebt() {
+        debtPresenter.getListDebt();
+    }
+
+    @Override
+    public void showProgressBar() {
+        pgLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        pgLoading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void getListDebtSuccess(List<Debt> listDebt) {
+        mDebtAdapter.setDebtData(listDebt);
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if (isVisibleToUser && mContext != null) {
+            // Load data here
+//            Utils.showToast(mContext, "Visible");
+            // check internet connection here
+            getListDebt();
+        }
     }
 }

@@ -28,20 +28,11 @@
 
                 <TextView
                     android:id="@+id/tv_debt_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="abc def dsdovddhosf"
+                    android:text="abc def dsdifidhfihfisovddhosf"
                     android:textColor="#222"
                     android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_fee"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="5"
-                    android:text="320840"
-                    android:textColor="#222" />
 
             </RelativeLayout>
 
@@ -51,6 +42,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/tv_date_created"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
@@ -58,8 +50,22 @@
                     android:textColor="#888"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_fee"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="682649264" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <ImageView
-                    android:id="@+id/imv_finance_type"
+                    android:id="@+id/imv_debt_type"
                     android:layout_width="15sp"
                     android:layout_height="15sp"
                     android:layout_gravity="right|center_vertical"

@@ -40,8 +40,11 @@
     <string name="toast_login_fail">Invalid username or password</string>
     <string name="toast_login_success">Login success</string>
     <!-- PAYMENT -->
-    <string name="toast_get_payment_fail">Fail to get payment</string>
+    <string name="toast_get_payment_fail">Fail to get payments</string>
     <string name="dialog_loading_payment">Loading payment...</string>
-    <!-- ADD PAYMENT -->
+    <!--INCOME -->
+    <string name="toast_get_income_fail">Fail to get incomes</string>
+    <!--DEBT -->
+    <string name="toast_get_debt_fail">Fail to get debts</string>
 
 </resources>

@@ -10,6 +10,7 @@ import com.example.lin.dollar.R;
 import com.example.lin.dollar.entity.Response.Payment;
 import com.example.lin.dollar.fragment.DxBaseFragment;
 import com.example.lin.dollar.fragment.adapter.PaymentAdapter;
+import com.example.lin.dollar.other.VegalayoutManager.VegaLayoutManager;
 import com.example.lin.dollar.utilities.Utils;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class PaymentFragment extends DxBaseFragment implements PaymentView {
     }
 
     @Override
-    public void showProgress() {
+    public void showProgressBar() {
 //        progressDialog = new ProgressDialog(mContext, R.style.CustomProgressDialog);
 //        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 //        progressDialog.setCanceledOnTouchOutside(false);
@@ -64,7 +65,7 @@ public class PaymentFragment extends DxBaseFragment implements PaymentView {
     }
 
     @Override
-    public void hideProgress() {
+    public void hideProgressBar() {
         if (pgLoading != null) {
             pgLoading.setVisibility(View.GONE);
         }
@@ -73,6 +74,11 @@ public class PaymentFragment extends DxBaseFragment implements PaymentView {
     @Override
     public void getListPaymentSuccess(List<Payment> lisPayment) {
         paymentAdapter.setPaymentData(lisPayment);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Utils.showToast(mContext, message);
     }
 
     @Override
@@ -85,7 +91,8 @@ public class PaymentFragment extends DxBaseFragment implements PaymentView {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser && mContext != null) {
             // Load data here
-            Utils.showToast(mContext, "Visible");
+//            Utils.showToast(mContext, "Visible");
+            getListPayment();
         }
     }
 }
