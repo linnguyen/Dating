@@ -14,10 +14,10 @@ TODO
 - FCM for report notification every month, the report should include: which one is the most payment, the offset compared to last month.
 https://stackoverflow.com/questions/37711082/how-to-handle-notification-when-app-in-background-in-firebase/37845174#37845174
 - Should change login screen to contrainslayout
-- design GUI for month summary.
+- design GUI for month summary (Payment Amount (light red), Income Amount (app-color), pdf icon for export f
 - design GUI for week report.
 - Add API for server (modify payment, income, debt)
-- Load data for single tab android
+- Load data for single tab android // Done
 https://stackoverflow.com/questions/43089978/load-selected-active-tab-content-in-view-pager
 
 

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lin.dollar.activity.Splash.SplashActivity">
+    tools:context="com.example.lin.boylove.activity.Splash.SplashActivity">
 
 </android.support.constraint.ConstraintLayout>
