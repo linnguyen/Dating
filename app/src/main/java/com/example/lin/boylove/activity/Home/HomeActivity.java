@@ -34,7 +34,7 @@ import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
 import com.example.lin.boylove.fragment.MoviesFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
-import com.example.lin.boylove.fragment.PhotosFragment;
+import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.interfaces.HomeInterface;
 import com.example.lin.boylove.utilities.Constant;
@@ -46,7 +46,8 @@ import com.squareup.picasso.Picasso;
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class HomeActivity extends AppCompatActivity implements DatePickerFragment.UpdateToolbarTitleInterface {
+public class HomeActivity extends AppCompatActivity implements
+        DatePickerFragment.UpdateToolbarTitleInterface {
     private Context context;
     //Declaring widget for activity
     private NavigationView navigationView;
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements DatePickerFragmen
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
-    private static final String TAG_BANK = "bank";
+    private static final String TAG_ONLINE = "online";
     private static final String TAG_MOVIES = "movies";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
@@ -222,7 +223,7 @@ public class HomeActivity extends AppCompatActivity implements DatePickerFragmen
                 return financeFragment;
             case 1:
                 // photos
-                PhotosFragment photosFragment = new PhotosFragment();
+                OnlineFragment photosFragment = new OnlineFragment();
                 return photosFragment;
             case 2:
                 // movies fragment
@@ -265,9 +266,9 @@ public class HomeActivity extends AppCompatActivity implements DatePickerFragmen
                         navItemIndex = 0;
                         CURRENT_TAG = TAG_HOME;
                         break;
-                    case R.id.nav_bank:
+                    case R.id.nav_online:
                         navItemIndex = 1;
-                        CURRENT_TAG = TAG_BANK;
+                        CURRENT_TAG = TAG_ONLINE;
                         break;
                     case R.id.nav_movies:
                         Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();

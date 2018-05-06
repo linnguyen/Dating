@@ -2,6 +2,7 @@ package com.example.lin.boylove.service;
 
 import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.entity.Response.Income;
+import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.Payment;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.utilities.Constant;
@@ -70,6 +71,12 @@ public interface DolaxAPIs {
     @GET("incomes/")
     Call<List<Income>> getIncomes(@Header("Authorization") String authToken);
 
+    /*
+     * Get online user
+     */
+    @GET("users/")
+    Call<List<Online>> getOnline();
+
 
     class Factory {
         public static DolaxAPIs create() {
@@ -84,7 +91,7 @@ public interface DolaxAPIs {
                     .setLenient()
                     .create();
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constant.BASE_URL)
+                    .baseUrl(Constant.Config.BASE_URL)
                     .client(client.build())
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();

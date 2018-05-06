@@ -13,4 +13,12 @@
     <dimen name="recycler_item_margin">10dp</dimen>
     <dimen name="recycler_item_margin_top">1dp</dimen>
     <dimen name="recycler_item_margin_bottom">10dp</dimen>
+
+    <!-- image size -->
+    <dimen name="size_icon_normal">120dp</dimen>
+
+    <!-- margin -->
+    <dimen name="margin_tiny">5dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">10dp</dimen>
 </resources>

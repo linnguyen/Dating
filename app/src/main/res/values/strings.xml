@@ -8,7 +8,7 @@
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
-    <string name="nav_bank">Bank</string>
+    <string name="nav_bank">Online</string>
     <string name="nav_movies">Movies</string>
     <string name="nav_notifications">Notifications</string>
     <string name="nav_settings">Settings</string>
