@@ -2,14 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.example.lin.dollar"
-        minSdkVersion 15
+        applicationId "com.example.lin.boylove"
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -44,6 +45,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'org.jetbrains:annotations-java5:15.0'
+
+    //firebase chat app
+    compile 'com.firebaseui:firebase-ui:0.6.0'
+    // websocket
+    compile 'org.java-websocket:Java-WebSocket:1.3.0'
 }
 apply plugin: 'com.google.gms.google-services'
 

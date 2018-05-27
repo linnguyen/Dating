@@ -47,4 +47,6 @@
     <!--DEBT -->
     <string name="toast_get_debt_fail">Fail to get debts</string>
 
+    <string name="btn_send">Send</string>
+
 </resources>

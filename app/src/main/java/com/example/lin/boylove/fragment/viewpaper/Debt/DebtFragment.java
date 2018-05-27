@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.fragment.DxBaseFragment;
-import com.example.lin.boylove.fragment.adapter.DebtAdapter;
+import com.example.lin.boylove.adapter.DebtAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.example.lin.boylove.fragment.adapter;
+package com.example.lin.boylove.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
-import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.entity.Response.Online;
-import com.example.lin.boylove.utilities.Constant;
 
 import java.util.List;
 
@@ -24,6 +21,8 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     private Context context;
     private List<Online> list;
     private static final String URL_IMAGE = "http://206.189.71.173";
+
+    private OnlineListener listener;
 
     public OnlineAdapter(Context context) {
         this.context = context;
@@ -53,17 +52,31 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imvUser;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.imvUser = (ImageView) itemView.findViewById(R.id.imv_user);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick();
         }
     }
 
     public void setData(List<Online> list) {
         this.list = list;
         notifyDataSetChanged();
+    }
+
+    public void setListener(OnlineListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnlineListener {
+        void onClick();
     }
 }

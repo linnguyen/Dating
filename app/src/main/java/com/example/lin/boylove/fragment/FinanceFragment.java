@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lin.boylove.R;
-import com.example.lin.boylove.fragment.adapter.CustomFragmentPaperAdapter;
+import com.example.lin.boylove.adapter.CustomFragmentPaperAdapter;
 import com.example.lin.boylove.interfaces.HomeInterface;
 
 /**

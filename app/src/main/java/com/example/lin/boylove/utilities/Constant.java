@@ -32,6 +32,8 @@ public class Constant {
         public static final String SHARED_PREF = "ah_firebase";
 
         public static final String BASE_URL = "http://206.189.71.173/api/";
+
+        public static final String SOCKET_URL = "ws://192.168.1.9:3000/cable";
     }
 
 

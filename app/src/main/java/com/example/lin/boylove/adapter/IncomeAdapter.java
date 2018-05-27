@@ -1,4 +1,4 @@
-package com.example.lin.boylove.fragment.adapter;
+package com.example.lin.boylove.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

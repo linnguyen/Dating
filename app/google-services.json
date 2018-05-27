@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "540362766355",
-    "firebase_url": "https://dolax-9a44a.firebaseio.com",
-    "project_id": "dolax-9a44a",
-    "storage_bucket": "dolax-9a44a.appspot.com"
+    "project_number": "246980642089",
+    "firebase_url": "https://fir-43d96.firebaseio.com",
+    "project_id": "fir-43d96",
+    "storage_bucket": "fir-43d96.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:540362766355:android:79050d2c0dbaaab9",
+        "mobilesdk_app_id": "1:246980642089:android:a6adaa3ee8aa4ad3",
         "android_client_info": {
-          "package_name": "com.example.lin.dollar"
+          "package_name": "com.example.lin.boylove"
         }
       },
       "oauth_client": [
         {
-          "client_id": "540362766355-fg8mr42jma2un683c64bte0q4b8lpu0j.apps.googleusercontent.com",
+          "client_id": "246980642089-nde0fgrijmtaj21qannfq5sdq934da2k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD34jYYGQfzGZtW-u_o0UTKn35eu-VW9N0"
+          "current_key": "AIzaSyBtH_E-ovpsj6At3vjNdnLwUQh168vSVsE"
         }
       ],
       "services": {

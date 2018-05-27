@@ -38,6 +38,8 @@ public class LoginPresenterIml implements LoginPresenter, LoginPresenter.OnLogin
     public void onFailure(String message) {
         loginView.hideProgress();
         loginView.showMessage(message);
+        // remove here
+        loginView.navigateToHome();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.lin.boylove.fragment.adapter;
+package com.example.lin.boylove.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

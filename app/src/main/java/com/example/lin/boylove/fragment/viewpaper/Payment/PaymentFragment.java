@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Payment;
 import com.example.lin.boylove.fragment.DxBaseFragment;
-import com.example.lin.boylove.fragment.adapter.PaymentAdapter;
+import com.example.lin.boylove.adapter.PaymentAdapter;
 import com.example.lin.boylove.utilities.Utils;
 
 import java.util.List;

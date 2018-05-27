@@ -37,11 +37,15 @@ import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.interfaces.HomeInterface;
+import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.example.lin.boylove.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import butterknife.OnClick;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
@@ -140,7 +144,6 @@ public class HomeActivity extends AppCompatActivity implements
 
             }
         };
-
 
     }
 
@@ -387,6 +390,7 @@ public class HomeActivity extends AppCompatActivity implements
     public void updateToolbarTitle(int month, int year) {
         getSupportActionBar().setTitle(month + " / " + year);
     }
+
 }
 
 
