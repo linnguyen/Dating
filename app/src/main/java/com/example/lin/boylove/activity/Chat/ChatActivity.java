@@ -94,8 +94,14 @@ public class ChatActivity extends AppCompatActivity
 
     @Override
     public void onMessageResponse(String message) {
+        ChatActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.setData("Hello" + Math.random());
+                Utils.showToast(getApplicationContext(), "Co nef");
+            }
+        });
 //        Utils.showToast(ChatActivity.this, message.toString());
-        adapter.setData("Hello" + Math.random());
 //        rcvChat.scrollToPosition(adapter.getItemCount() - 1);
 
     }

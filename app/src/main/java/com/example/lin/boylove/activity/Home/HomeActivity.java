@@ -145,6 +145,8 @@ public class HomeActivity extends AppCompatActivity implements
             }
         };
 
+        Utils.showToast(getApplicationContext(), "Co nef");
+
     }
 
     private void loadNavHeader() {
