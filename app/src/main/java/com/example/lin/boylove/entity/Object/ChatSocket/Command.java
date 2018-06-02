@@ -38,7 +38,7 @@ public class Command {
         return new Command("subscribe", identifier);
     }
 
-    static Command unsubscribe(String identifier) {
+    public static Command unsubscribe(String identifier) {
         return new Command("unsubscribe", identifier);
     }
 

@@ -42,6 +42,7 @@ public class ChatActivity extends AppCompatActivity
 
     private WebSocketClient socket;
     private ChatAdapter adapter;
+    private Channel channel;
 
 
     @Override
@@ -49,19 +50,9 @@ public class ChatActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
-//        FirebaseAuth
-
-        //load chat message here.F
-//        AuthUI.getInstance().s
         adapter = new ChatAdapter(this);
         rcvChat.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rcvChat.setAdapter(adapter);
-        List<String> lst = new ArrayList<>();
-        lst.add("hehe");
-        lst.add("sojd");
-        adapter.setListData(lst);
-
-        displayChatMessage();
 
         connectToWebsocket();
 
@@ -70,16 +61,17 @@ public class ChatActivity extends AppCompatActivity
     @OnClick(R.id.btn_send)
     public void onSendClick() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("content", "Gic gic");
-        Channel channel = new Channel("ChatChannel", "1470155475503808512");
+        jsonObject.addProperty("content", Utils.getText(edtMessage));
+        channel = new Channel("ChatChannel", "1470155475503808512");
         Command commandSubcribe = Command.subscribe(channel.toIdentifier());
         socket.send(commandSubcribe.toJson());
         Command command = Command.message(channel.toIdentifier(), jsonObject);
         socket.send(command.toJson());
     }
 
-    private void displayChatMessage() {
-
+    @OnClick(R.id.imv_back)
+    public void onBackClick() {
+        finish();
     }
 
     private void connectToWebsocket() {
@@ -93,16 +85,19 @@ public class ChatActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMessageResponse(String message) {
+    public void onMessageResponse(final String message) {
         ChatActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adapter.setData("Hello" + Math.random());
-                Utils.showToast(getApplicationContext(), "Co nef");
+                adapter.setData(message);
             }
         });
-//        Utils.showToast(ChatActivity.this, message.toString());
-//        rcvChat.scrollToPosition(adapter.getItemCount() - 1);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Command unsubscribe = Command.unsubscribe(channel.toIdentifier());
+        socket.send(unsubscribe.toJson());
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dollax</string>
+    <string name="app_name">Dolax</string>
     <string name="text_under_development">UNDER DEVELOPMENT</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -49,4 +49,5 @@
 
     <string name="btn_send">Send</string>
 
+    <string name="hint_edt_chat">Say something!</string>
 </resources>
