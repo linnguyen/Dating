@@ -38,16 +38,16 @@ public class DebtInteractorIml implements DebtInteractor {
                     if (listDebt != null) {
                         listener.onGetDebtsSuccess(listDebt);
                     } else {
-                        listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
+//                        listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
                     }
                 } else {
-                    listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
+//                    listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
                 }
             }
 
             @Override
             public void onFailure(Call<List<Debt>> call, Throwable t) {
-                listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
+//                listener.onGetDebtsFail(context.getString(R.string.toast_get_debt_fail));
             }
         });
     }

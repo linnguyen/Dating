@@ -54,6 +54,7 @@ public class ChatActivity extends AppCompatActivity
         rcvChat.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rcvChat.setAdapter(adapter);
 
+        // open socket connect when user enters chat room
         connectToWebsocket();
 
     }
@@ -90,6 +91,7 @@ public class ChatActivity extends AppCompatActivity
             @Override
             public void run() {
                 adapter.setData(message);
+                edtMessage.setText(Constant.EMPTY);
             }
         });
     }
@@ -97,7 +99,9 @@ public class ChatActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        Command unsubscribe = Command.unsubscribe(channel.toIdentifier());
-        socket.send(unsubscribe.toJson());
+        if (channel != null) {
+            Command unsubscribe = Command.unsubscribe(channel.toIdentifier());
+            socket.send(unsubscribe.toJson());
+        }
     }
 }

@@ -44,7 +44,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
         } else if (response.isPing()) {
             // process ping here
         } else { // message content
-            listener.onMessageResponse(response.getMessage().toString());
+            listener.onMessageResponse(response.getMessageContent());
         }
     }
 

@@ -30,24 +30,25 @@
     <string name="action_mark_all_read">Mark All as Read</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- GENERAL MESSAGE -->
+
     <string name="create_success">Created successfully</string>
     <string name="create_fail">Created failed</string>
-    <!-- LOGIN -->
+
     <string name="login">LOGIN</string>
     <string name="dialog_login">Logging in</string>
-    <!-- TODO: Should get this message from server -->
-    <string name="toast_login_fail">Invalid username or password</string>
-    <string name="toast_login_success">Login success</string>
-    <!-- PAYMENT -->
-    <string name="toast_get_payment_fail">Fail to get payments</string>
-    <string name="dialog_loading_payment">Loading payment...</string>
-    <!--INCOME -->
-    <string name="toast_get_income_fail">Fail to get incomes</string>
-    <!--DEBT -->
-    <string name="toast_get_debt_fail">Fail to get debts</string>
 
     <string name="btn_send">Send</string>
 
+    <!-- TODO: Should get this message from server -->
+    <string name="toast_login_fail">Something went wrong!</string>
+    <string name="toast_login_success">Login success</string>
+    <string name="toast_get_payment_fail">Fail to get payments</string>
+
+    <string name="dialog_loading_payment">Loading payment...</string>
+
     <string name="hint_edt_chat">Say something!</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+
+    <string name="txt_not_member">Not a member? Signup here.</string>
 </resources>

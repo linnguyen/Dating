@@ -13,15 +13,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/app_color"
             android:orientation="vertical"
-            android:weightSum="10"
+            android:weightSum="1"
             tools:context=".activity.Login.LoginActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:background="@color/app_color">
+                android:layout_height="0dp"
+                android:layout_weight="0.3">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -37,9 +37,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:background="@color/app_color"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
                 android:orientation="vertical">
 
                 <EditText
@@ -52,7 +51,7 @@
                     android:layout_marginRight="15dp"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="10dp"
-                    android:hint="Email"
+                    android:hint="@string/hint_email"
                     android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="@color/pirple"
@@ -61,41 +60,28 @@
                 <EditText
                     android:id="@+id/edtPassword"
                     style="@style/EditTextCusTom"
-                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:drawableLeft="@drawable/ic_lock"
-                    android:drawablePadding="10dp"
-                    android:hint="Password"
+                    android:drawablePadding="@dimen/padding_normal"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
                     android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="@color/pirple"
                     android:textSize="20sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <CheckBox
+                    style="@style/CheckBoxCommon"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:weightSum="10">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="Show Password"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="Forget Password?"
-                        android:textColor="@color/white" />
-                </LinearLayout>
+                    android:text="Show Password"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btnLogin"
@@ -109,11 +95,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Not a member? Signup here."
+                    android:layout_gravity="center"
+                    android:text="Forget Password?"
                     android:textColor="@color/white" />
-
             </LinearLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1px"-->
+                    <!--android:background="@color/white" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_marginTop="@dimen/margin_small"-->
+                    <!--android:text="@string/txt_not_member"-->
+                    <!--android:textColor="@color/white" />-->
+            <!--</LinearLayout>-->
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

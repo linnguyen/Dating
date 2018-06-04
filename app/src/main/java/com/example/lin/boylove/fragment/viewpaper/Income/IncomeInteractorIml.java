@@ -38,16 +38,16 @@ public class IncomeInteractorIml implements IncomeInteractor {
                     if (listIncome != null) {
                         listener.onGetIncomesSuccess(listIncome);
                     } else {
-                        listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
+//                        listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
                     }
                 } else {
-                    listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
+//                    listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
                 }
             }
 
             @Override
             public void onFailure(Call<List<Income>> call, Throwable t) {
-                listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
+//                listener.onGetIncomesFail(context.getString(R.string.toast_get_income_fail));
             }
         });
     }

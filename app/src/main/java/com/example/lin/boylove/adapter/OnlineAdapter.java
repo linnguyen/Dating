@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.utilities.Constant;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Online online = list.get(position);
         // Processing for display view here
-        String imageUrl = URL_IMAGE + online.getImage().getUrl();
+        String imageUrl = Constant.Config.URL_IMAGE + online.getImage().getUrl();
         Glide.with(context)
                 .load(imageUrl)
                 .centerCrop()

@@ -1,5 +1,6 @@
 package com.example.lin.boylove.entity.Object.ChatSocket;
 
+import com.example.lin.boylove.entity.Object.ChatMessage;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
@@ -23,11 +24,11 @@ public class MessageResponse {
         return GSON.fromJson(json, MessageResponse.class);
     }
 
-    /*package*/ String getIdentifier() {
+    public String getIdentifier() {
         return identifier;
     }
 
-    /*package*/ String getType() {
+    public String getType() {
         return type;
     }
 
@@ -43,11 +44,15 @@ public class MessageResponse {
         return "ping".equals(getType());
     }
 
-    /*package*/ boolean isConfirmation() {
+    public boolean isConfirmation() {
         return "confirm_subscription".equals(getType());
     }
 
-    /*package*/ boolean isRejection() {
+    public boolean isRejection() {
         return "reject_subscription".equals(getType());
+    }
+
+    public String getMessageContent() {
+        return GSON.fromJson(getMessage(), ChatMessage.class).getContent();
     }
 }

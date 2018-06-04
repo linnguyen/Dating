@@ -2,14 +2,18 @@ package com.example.lin.boylove.activity.Login;
 
 import android.content.Context;
 
+import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.localstorage.SessionManager;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Converter;
 import retrofit2.Response;
 
 /**
@@ -26,7 +30,7 @@ public class LoginInteractorIml implements LoginInteractor {
     }
 
     @Override
-    public void login(String email, String password, final LoginPresenter.OnLoginFinishedListener listener) {
+    public void login(final String email, String password, final LoginPresenter.OnLoginFinishedListener listener) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("email", email);
         jsonObject.addProperty("password", password);
@@ -40,17 +44,16 @@ public class LoginInteractorIml implements LoginInteractor {
                         SessionManager sessionManager = SessionManager.getInstance(context);
                         sessionManager.setToken(user.getAuth_token());
                         listener.onSuccess(context.getString(R.string.toast_login_success));
-                    } else {
-                        listener.onFailure(context.getString(R.string.toast_login_fail));
                     }
                 } else {
-                    listener.onFailure(context.getString(R.string.toast_login_fail));
+                    Error error = DolaxAPIs.Factory.getError(response.errorBody());
+                    listener.onFailure(error.getErrors());
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                  listener.onFailure(context.getString(R.string.toast_login_fail));
+                listener.onFailure(context.getString(R.string.toast_login_fail));
             }
         });
     }

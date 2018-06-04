@@ -1,6 +1,7 @@
 package com.example.lin.boylove.service;
 
 import com.example.lin.boylove.entity.Response.Debt;
+import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Income;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.Payment;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -97,5 +99,11 @@ public interface DolaxAPIs {
                     .build();
             return retrofit.create(DolaxAPIs.class);
         }
+
+        public static Error getError(ResponseBody errorResponse) {
+            return new Gson().fromJson(errorResponse.charStream(), Error.class);
+        }
     }
 }
+
+
