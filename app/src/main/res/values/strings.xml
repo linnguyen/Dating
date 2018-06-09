@@ -51,4 +51,11 @@
     <string name="hint_email">Email</string>
 
     <string name="txt_not_member">Not a member? Signup here.</string>
+
+    <string name="title_newfeed">New Feed</string>
+    <string name="title_online">Online</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_livestream">Live Stream</string>
+
+
 </resources>

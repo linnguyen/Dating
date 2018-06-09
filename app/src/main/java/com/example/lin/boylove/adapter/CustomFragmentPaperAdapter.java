@@ -4,9 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.lin.boylove.fragment.viewpaper.Payment.PaymentFragment;
 import com.example.lin.boylove.fragment.viewpaper.Income.IncomeFragment;
-import com.example.lin.boylove.fragment.viewpaper.Debt.DebtFragment;
 import com.example.lin.boylove.utilities.Constant;
 
 /**
@@ -26,18 +24,14 @@ public class CustomFragmentPaperAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new PaymentFragment();
-            case 1:
                 return new IncomeFragment();
-            case 2:
-                return new DebtFragment();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return FRAGMENT_COUNT;
+        return 1;
     }
 
     @Override

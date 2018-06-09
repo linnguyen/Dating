@@ -6,20 +6,24 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
+import com.example.lin.boylove.adapter.IncomeAdapter;
 import com.example.lin.boylove.entity.Response.Income;
 import com.example.lin.boylove.fragment.DxBaseFragment;
-import com.example.lin.boylove.adapter.IncomeAdapter;
 import com.example.lin.boylove.utilities.Utils;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by lin on 20/08/2017.
  */
 
 public class IncomeFragment extends DxBaseFragment implements IncomeView {
-    private RecyclerView rvIncome;
-    private ProgressBar pgLoading;
+    @BindView(R.id.rv_income)
+    RecyclerView rvIncome;
+    @BindView(R.id.pg_loading)
+    ProgressBar pgLoading;
 
     private IncomePresenter incomePresenter;
     private IncomeAdapter incomeAdapter;
@@ -34,11 +38,13 @@ public class IncomeFragment extends DxBaseFragment implements IncomeView {
     }
 
     @Override
-    protected void initViews(View view) {
-        rvIncome = (RecyclerView) view.findViewById(R.id.rv_income);
-        pgLoading = (ProgressBar) view.findViewById(R.id.pg_loading);
-        incomePresenter = new IncomePresenterIml(mContext, this);
+    protected void initViews() {
         setupListIncome();
+    }
+
+    @Override
+    protected void initAttributes() {
+        incomePresenter = new IncomePresenterIml(mContext, this);
     }
 
     private void setupListIncome() {

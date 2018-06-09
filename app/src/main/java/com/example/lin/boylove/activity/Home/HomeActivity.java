@@ -7,7 +7,8 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.AboutUsActivity;
-import com.example.lin.boylove.activity.AddPayment.AddPaymentActivity;
+import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.activity.PrivacyPolicyActivity;
 import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
@@ -36,31 +36,32 @@ import com.example.lin.boylove.fragment.MoviesFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
-import com.example.lin.boylove.interfaces.HomeInterface;
-import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.example.lin.boylove.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import butterknife.OnClick;
+import butterknife.BindView;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class HomeActivity extends AppCompatActivity implements
-        DatePickerFragment.UpdateToolbarTitleInterface {
-    private Context context;
-    //Declaring widget for activity
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
+public class HomeActivity extends DxBaseActivity implements
+        DatePickerFragment.UpdateToolbarTitleInterface,
+        BottomNavigationView.OnNavigationItemSelectedListener {
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+    @BindView(R.id.bottom_nav_view)
+    BottomNavigationView bottomNavView;
+    //    @BindView(R.id.tv_website)
+//    TextView tvWebsite;
+//    @BindView(R.id.img_profile)
+//    ImageView imvProfile;
+
     private View navHeader;
-    private ImageView imgProfile;
-    private TextView tvName, tvWebsite;
-    private Toolbar toolbar;
-    private FloatingActionButton fab;
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
@@ -86,32 +87,17 @@ public class HomeActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_main);
-        context = getApplicationContext();
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        mHandler = new Handler();
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        // Navigation view header
-        navHeader = navigationView.getHeaderView(0);
-        tvName = (TextView) navHeader.findViewById(R.id.name);
-        tvWebsite = (TextView) navHeader.findViewById(R.id.website);
-        imgProfile = (ImageView) navHeader.findViewById(R.id.img_profile);
 
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, AddPaymentActivity.class);
-                startActivity(intent);
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(HomeActivity.this, AddPaymentActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         // load nav menu header data
@@ -144,19 +130,34 @@ public class HomeActivity extends AppCompatActivity implements
 
             }
         };
+    }
 
-        Utils.showToast(getApplicationContext(), "Co nef");
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.activity_main;
+    }
 
+    @Override
+    protected void initAttributes() {
+        mHandler = new Handler();
+    }
+
+    @Override
+    protected void initViews() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setSupportActionBar(toolbar);
+        // Navigation view header
+        navHeader = navigationView.getHeaderView(0);
+        bottomNavView.setOnNavigationItemSelectedListener(this);
     }
 
     private void loadNavHeader() {
         // name, website
-        tvName.setText("Lin Nguyen");
-        tvWebsite.setText("@lin.nguyen");
+//        tvWebsite.setText("@lin.nguyen");
         // use picaso library to make a circular image
-        Picasso.with(this).load(R.drawable.dog)
-                .transform(new CropCircleTransformation())
-                .into(imgProfile);
+//        Picasso.with(this).load(R.drawable.dog)
+//                .transform(new CropCircleTransformation())
+//                .into(imvProfile);
         // showing dot next to notifications label
         navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
     }
@@ -174,8 +175,6 @@ public class HomeActivity extends AppCompatActivity implements
         // the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
             drawer.closeDrawers();
-            // show otr hide the fab button
-            toggleFab();
             return;
         }
 
@@ -195,9 +194,6 @@ public class HomeActivity extends AppCompatActivity implements
             mHandler.post(mPendingRunnable);
         }
 
-        // show or hide the fab button
-        toggleFab();
-
         //Closing drawer on item click
         drawer.closeDrawers();
 
@@ -210,21 +206,6 @@ public class HomeActivity extends AppCompatActivity implements
             case 0:
                 // finance fragment
                 financeFragment = new FinanceFragment();
-                financeFragment.setHomeInterface(new HomeInterface() {
-
-                    @Override
-                    public void changeFabButton(String tabName) {
-                        if (tabName.equals(Constant.TAB_PAYMENT)) {
-                            fab.setVisibility(View.VISIBLE);
-                            fab.setImageResource(R.drawable.ic_money_off);
-                        } else if (tabName.equals(Constant.TAB_INCOME)) {
-                            fab.setVisibility(View.VISIBLE);
-                            fab.setImageResource(R.drawable.ic_attach_money);
-                        } else {
-                            fab.setVisibility(View.GONE);
-                        }
-                    }
-                });
                 return financeFragment;
             case 1:
                 // photos
@@ -339,19 +320,19 @@ public class HomeActivity extends AppCompatActivity implements
         actionBarDrawerToggle.syncState();
     }
 
-    // show or hide the fab
-    private void toggleFab() {
-        if (navItemIndex == 0)
-            fab.show();
-        else
-            fab.hide();
-    }
+//    // show or hide the fab
+//    private void toggleFab() {
+//        if (navItemIndex == 0)
+//            fab.show();
+//        else
+//            fab.hide();
+//    }
 
-    @OnClick(R.id.fab)
-    public void navigateToAddPayment() {
-        Intent intent = new Intent(this, AddPaymentActivity.class);
-        startActivity(intent);
-    }
+//    @OnClick(R.id.fab)
+//    public void navigateToAddPayment() {
+//        Intent intent = new Intent(this, AddPaymentActivity.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -393,6 +374,46 @@ public class HomeActivity extends AppCompatActivity implements
         getSupportActionBar().setTitle(month + " / " + year);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment;
+        switch (item.getItemId()) {
+            case R.id.navigation_shop:
+                toolbar.setTitle("Shop");
+                fragment = new OnlineFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_gifts:
+                toolbar.setTitle("My Gifts");
+                fragment = new MoviesFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_cart:
+                toolbar.setTitle("Cart");
+                fragment = new OnlineFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_profile:
+                toolbar.setTitle("Profile");
+                fragment = new MoviesFragment();
+                loadFragment(fragment);
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * loading fragment into FrameLayout
+     *
+     * @param fragment
+     */
+    private void loadFragment(Fragment fragment) {
+        // load fragment
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_container_wrapper, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
 
 

@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.lin.boylove.utilities.Utils;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by ryne on 26/10/2017.
  */
@@ -21,6 +24,8 @@ public abstract class DxBaseFragment extends Fragment {
 
     protected Context mContext;
 
+    private Unbinder unbinder;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +36,17 @@ public abstract class DxBaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutResource(), container, false);
-        initViews(view);
+        unbinder = ButterKnife.bind(this, view);
+        initAttributes();
+        initViews();
         return view;
     }
 
     protected abstract int getLayoutResource();
 
-    protected abstract void initViews(View view);
+    protected abstract void initViews();
+
+    protected abstract void initAttributes();
 
     protected void showMessage(String msg) {
         Utils.showToast(mContext, msg);
@@ -46,5 +55,8 @@ public abstract class DxBaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
     }
 }
