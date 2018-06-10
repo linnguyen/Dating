@@ -21,7 +21,6 @@ import java.util.List;
 public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder> {
     private Context context;
     private List<Online> list;
-    private static final String URL_IMAGE = "http://206.189.71.173";
 
     private OnlineListener listener;
 

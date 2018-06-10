@@ -23,19 +23,19 @@ public class OnlinePresenterIml implements OnlinePresenter,
     }
 
     @Override
-    public void getListIncome() {
+    public void getLstOnline() {
         view.showProgressBar();
         interactor.getListOnline(this);
     }
 
     @Override
-    public void onGetOnlineSuccess(List<Online> lstOnline) {
+    public void onSuccess(List<Online> lstOnline) {
         view.hideProgressBar();
         view.getListOnlineSuccess(lstOnline);
     }
 
     @Override
-    public void onGetOnlineFail(String message) {
+    public void onFailure(String message) {
         view.hideProgressBar();
         view.showMessage(message);
     }

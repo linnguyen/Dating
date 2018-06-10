@@ -2,6 +2,8 @@ package com.example.lin.boylove.fragment.Online;
 
 import android.content.Context;
 
+import com.example.lin.boylove.R;
+import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.utilities.Utils;
@@ -34,18 +36,17 @@ public class OnlineInteractorIml implements OnlineInteractor {
                 if (response.isSuccessful()) {
                     List<Online> lstOnline = response.body();
                     if (lstOnline != null) {
-                        listener.onGetOnlineSuccess(lstOnline);
-                    } else {
-                        Utils.showToast(context, "Fail");
+                        listener.onSuccess(lstOnline);
                     }
                 } else {
-                    Utils.showToast(context, "Fail");
+                    Error error = DolaxAPIs.Factory.getError(response.errorBody());
+                    listener.onFailure(error.getErrors());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Online>> call, Throwable t) {
-                Utils.showToast(context, "Fail");
+                Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
             }
         });
     }

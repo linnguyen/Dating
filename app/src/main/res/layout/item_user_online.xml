@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/margin_small"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_tiny">
+
     <ImageView
         android:id="@+id/imv_user"
-        android:src="@drawable/jlbt_flag"
         android:layout_width="@dimen/size_icon_normal"
-        android:layout_height="@dimen/size_icon_normal" />
+        android:layout_height="@dimen/size_icon_normal"
+        android:src="@drawable/jlbt_flag" />
+
+    <TextView
+        android:layout_width="@dimen/dot_xx"
+        android:layout_height="@dimen/dot_xx"
+        android:layout_margin="@dimen/margin_normal"
+        android:background="@drawable/circle_background_active_color" />
 </FrameLayout>

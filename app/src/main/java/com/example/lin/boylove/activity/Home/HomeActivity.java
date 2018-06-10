@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -22,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lin.boylove.R;
@@ -36,14 +35,13 @@ import com.example.lin.boylove.fragment.MoviesFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
+import com.example.lin.boylove.helper.BottomNavigationBehavior;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.example.lin.boylove.utilities.Utils;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
-import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 public class HomeActivity extends DxBaseActivity implements
         DatePickerFragment.UpdateToolbarTitleInterface,
@@ -149,6 +147,10 @@ public class HomeActivity extends DxBaseActivity implements
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
         bottomNavView.setOnNavigationItemSelectedListener(this);
+
+        // attaching bottom sheet behaviour - hide / show on scroll
+        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavView.getLayoutParams();
+        layoutParams.setBehavior(new BottomNavigationBehavior());
     }
 
     private void loadNavHeader() {
@@ -379,22 +381,22 @@ public class HomeActivity extends DxBaseActivity implements
         Fragment fragment;
         switch (item.getItemId()) {
             case R.id.navigation_shop:
-                toolbar.setTitle("Shop");
-                fragment = new OnlineFragment();
-                loadFragment(fragment);
-                return true;
-            case R.id.navigation_gifts:
-                toolbar.setTitle("My Gifts");
+                toolbar.setTitle(getString(R.string.title_newfeed));
                 fragment = new MoviesFragment();
                 loadFragment(fragment);
                 return true;
-            case R.id.navigation_cart:
-                toolbar.setTitle("Cart");
+            case R.id.navigation_gifts:
+                toolbar.setTitle(getString(R.string.title_online));
                 fragment = new OnlineFragment();
                 loadFragment(fragment);
                 return true;
+            case R.id.navigation_cart:
+                toolbar.setTitle(getString(R.string.title_chat));
+                fragment = new MoviesFragment();
+                loadFragment(fragment);
+                return true;
             case R.id.navigation_profile:
-                toolbar.setTitle("Profile");
+                toolbar.setTitle(getString(R.string.title_livestream));
                 fragment = new MoviesFragment();
                 loadFragment(fragment);
                 return true;

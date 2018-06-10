@@ -20,7 +20,7 @@ import butterknife.BindView;
  */
 
 public class IncomeFragment extends DxBaseFragment implements IncomeView {
-    @BindView(R.id.rv_income)
+    @BindView(R.id.rcv_online)
     RecyclerView rvIncome;
     @BindView(R.id.pg_loading)
     ProgressBar pgLoading;
@@ -34,7 +34,7 @@ public class IncomeFragment extends DxBaseFragment implements IncomeView {
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_income;
+        return R.layout.fragment_online;
     }
 
     @Override

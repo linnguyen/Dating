@@ -23,8 +23,8 @@ import butterknife.BindView;
 
 public class OnlineFragment extends DxBaseFragment implements OnlineView,
         OnlineAdapter.OnlineListener {
-    @BindView(R.id.rv_income)
-    RecyclerView rcvIncome;
+    @BindView(R.id.rcv_online)
+    RecyclerView rcvOnline;
     @BindView(R.id.pg_loading)
     ProgressBar pgLoading;
 
@@ -37,13 +37,13 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_income;
+        return R.layout.fragment_online;
     }
 
     @Override
     protected void initViews() {
-        setupListIncome();
-        getListIncome();
+        setupLstOnline();
+        getLstOnline();
     }
 
     @Override
@@ -51,16 +51,16 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
         presenter = new OnlinePresenterIml(mContext, this);
     }
 
-    private void setupListIncome() {
-        rcvIncome.setHasFixedSize(true);
-        rcvIncome.setLayoutManager(new GridLayoutManager(mContext, 3));
+    private void setupLstOnline() {
+        rcvOnline.setHasFixedSize(true);
+        rcvOnline.setLayoutManager(new GridLayoutManager(mContext, 3));
         adapter = new OnlineAdapter(getContext());
         adapter.setListener(this);
-        rcvIncome.setAdapter(adapter);
+        rcvOnline.setAdapter(adapter);
     }
 
-    private void getListIncome() {
-        presenter.getListIncome();
+    private void getLstOnline() {
+        presenter.getLstOnline();
     }
 
     @Override
@@ -70,7 +70,8 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
 
     @Override
     public void hideProgressBar() {
-        pgLoading.setVisibility(View.GONE);
+        if (pgLoading != null)
+            pgLoading.setVisibility(View.GONE);
     }
 
     @Override

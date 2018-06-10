@@ -43,6 +43,7 @@
     <string name="toast_login_fail">Something went wrong!</string>
     <string name="toast_login_success">Login success</string>
     <string name="toast_get_payment_fail">Fail to get payments</string>
+    <string name="toast_st_went_wrong">Something went wrong!</string>
 
     <string name="dialog_loading_payment">Loading payment...</string>
 

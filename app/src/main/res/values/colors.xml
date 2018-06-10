@@ -8,4 +8,5 @@
     <color name="pirple">#9C27B0</color>
     <color name="red">#DD2C00</color>
     <color name="black">#000000</color>
+    <color name="active_color">#00FF1C</color>
 </resources>
