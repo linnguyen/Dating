@@ -1,5 +1,6 @@
 package com.example.lin.boylove.service;
 
+import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Income;
@@ -40,7 +41,7 @@ public interface DolaxAPIs {
     /*
      * Login
      */
-    @POST("sessions/")
+    @POST("signin/")
     Call<User> login(@Body JsonObject jsonObject);
 
     /*
@@ -77,7 +78,13 @@ public interface DolaxAPIs {
      * Get online user
      */
     @GET("users/")
-    Call<List<Online>> getOnline();
+    Call<List<Online>> getOnlines();
+
+    /*
+     * Get list chatrooms
+     */
+    @GET("rooms/")
+    Call<List<ChatRoom>> getChatRooms();
 
 
     class Factory {

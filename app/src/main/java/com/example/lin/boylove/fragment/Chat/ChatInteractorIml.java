@@ -1,10 +1,12 @@
-package com.example.lin.boylove.fragment.Online;
+package com.example.lin.boylove.fragment.Chat;
 
 import android.content.Context;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.fragment.Online.OnlineInteractor;
+import com.example.lin.boylove.fragment.Online.OnlinePresenter;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.utilities.Utils;
 
@@ -18,18 +20,18 @@ import retrofit2.Response;
  * Created by ryne on 27/10/2017.
  */
 
-public class OnlineInteractorIml implements OnlineInteractor {
+public class ChatInteractorIml implements OnlineInteractor {
     private Context context;
     private DolaxAPIs dolaxAPIs;
 
-    public OnlineInteractorIml(Context context) {
+    public ChatInteractorIml(Context context) {
         this.context = context;
         dolaxAPIs = DolaxAPIs.Factory.create();
     }
 
     @Override
     public void getListOnline(final OnlinePresenter.OnOnlineFinishedListener listener) {
-        Call<List<Online>> call = dolaxAPIs.getOnline();
+        Call<List<Online>> call = dolaxAPIs.getOnlines();
         call.enqueue(new Callback<List<Online>>() {
             @Override
             public void onResponse(Call<List<Online>> call, Response<List<Online>> response) {

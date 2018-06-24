@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.lin.boylove.DXApplication;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -20,7 +22,7 @@ public abstract class DxBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this.getApplicationContext();
+        context = DXApplication.get(this).getContext();
         setContentView(getLayoutRes());
         unbinder = ButterKnife.bind(this);
         initAttributes();

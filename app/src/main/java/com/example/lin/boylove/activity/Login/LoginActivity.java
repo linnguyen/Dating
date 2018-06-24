@@ -11,7 +11,13 @@ import android.widget.EditText;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Home.HomeActivity;
+import com.example.lin.boylove.localstorage.SessionManager;
+import com.example.lin.boylove.service.WebSocketClient;
+import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.Utils;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
     private Context context;
@@ -69,8 +75,22 @@ public class LoginActivity extends AppCompatActivity implements LoginView, View.
 
     @Override
     public void navigateToHome() {
+//        // open socket connect when user enters chat room
+//        connectToWebsocket();
+
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
+
+//    private void connectToWebsocket() {
+//        try {
+//            socket = new WebSocketClient(new
+//                    URI(Constant.Config.SOCKET_URL+ SessionManager.getInstance(getApplicationContext()).getToken()));
+//            socket.setListener(this);
+//            socket.connect();
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

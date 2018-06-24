@@ -1,47 +1,52 @@
 package com.example.lin.boylove;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
-import com.enclaveit.ezfaxing.services.EzFaxingAPIs;
-import com.enclaveit.ezfaxing.services.EzFaxingWebAPIs;
+import com.example.lin.boylove.activity.Chat.ChatActivity;
+import com.example.lin.boylove.entity.Object.ChatSocket.Channel;
+import com.example.lin.boylove.entity.Object.ChatSocket.Command;
+import com.example.lin.boylove.fragment.Chat.ChatFragment;
+import com.example.lin.boylove.localstorage.SessionManager;
+import com.example.lin.boylove.service.WebSocketClient;
+import com.example.lin.boylove.utilities.Constant;
+import com.google.gson.JsonObject;
 
-import java.lang.reflect.Field;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-/**
- * Created by thanh.nguyen on 7/5/17.
- */
-public class EFApplication extends Application {
+public class DXApplication extends android.app.Application {
     /**
-     * EzFaxingAPIs
+     * Font Style
      */
-    public static Typeface efFontStyle;
+    public static Typeface dxFontStyle;
     /**
-     * Application context
+     * DXApplication context
      */
     private Context context;
-    /**
-     * EzFaxingAPIs
-     */
-    private EzFaxingAPIs ezFaxingAPIs;
-    /**
-     * EzFaxingWebAPIs
-     */
-    private EzFaxingWebAPIs ezFaxingWebAPIs;
 
     /**
-     * Get EFApplication instance
+     * Get DXApplication instance
      *
      * @param context the context
-     * @return EFApplication
+     * @return DXApplication
      */
-    public static EFApplication get(Context context) {
-        return (EFApplication) context.getApplicationContext();
+    public static DXApplication get(Context context) {
+        return (DXApplication) context.getApplicationContext();
     }
+
+    /*
+     * Websocket
+     */
+    private WebSocketClient socket;
+
+    /*
+     * Channel
+     */
+    private Channel channel;
 
     @Override
     public void onCreate() {
@@ -53,8 +58,10 @@ public class EFApplication extends Application {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
                 // new activity created; force its orientation to portrait
+                // Todo, handle this if allow the app rotate
                 activity.setRequestedOrientation(
                         ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
             }
 
             @Override
@@ -99,46 +106,64 @@ public class EFApplication extends Application {
         return context;
     }
 
-    /**
-     * Get the EzFaxingAPIs
-     *
-     * @return EzFaxingAPIs
-     */
-    public EzFaxingAPIs getEzFaxingAPIs() {
-        if (ezFaxingAPIs == null) {
-            ezFaxingAPIs = EzFaxingAPIs.Factory.create();
-        }
-        return ezFaxingAPIs;
-    }
-
-    /**
-     * Get the EzFaxingWebAPIs
-     *
-     * @return EzFaxingWebAPIs
-     */
-    public EzFaxingWebAPIs getEzFaxingWebAPIs() {
-        if (ezFaxingWebAPIs == null) {
-            ezFaxingWebAPIs = EzFaxingWebAPIs.Factory.create();
-        }
-        return ezFaxingWebAPIs;
-    }
 
     static class FontsOverride {
         static void setDefaultFont(Context context, String staticTypefaceFieldName, String fontAssetName) {
-            efFontStyle = Typeface.createFromAsset(context.getAssets(),
-                    fontAssetName);
-            replaceFont(staticTypefaceFieldName, efFontStyle);
+//            dxFontStyle = Typeface.createFromAsset(context.getAssets(),
+//                    fontAssetName);
+//            replaceFont(staticTypefaceFieldName, dxFontStyle);
         }
 
-        static void replaceFont(String staticTypefaceFieldName, final Typeface newTypeface) {
-            try {
-                final Field staticField = Typeface.class
-                        .getDeclaredField(staticTypefaceFieldName);
-                staticField.setAccessible(true);
-                staticField.set(null, newTypeface);
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
+//        static void replaceFont(String staticTypefaceFieldName, final Typeface newTypeface) {
+//            try {
+//                final Field staticField = Typeface.class
+//                        .getDeclaredField(staticTypefaceFieldName);
+//                staticField.setAccessible(true);
+//                staticField.set(null, newTypeface);
+//            } catch (NoSuchFieldException | IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//        }
+    }
+
+    public void connectToWebsocket() {
+        try {
+            socket = new WebSocketClient(new
+                    URI(Constant.Config.SOCKET_URL + SessionManager.getInstance(getApplicationContext()).getToken()));
+            socket.setListener(new WebSocketClient.WebSocketListener() {
+                @Override
+                public void onMessageResponse(String message) {
+                    if (ChatActivity.instance != null)
+                        ChatActivity.instance.setMessageResponse(message);
+
+                    if (ChatFragment.instance != null)
+                        ChatFragment.instance.setMessageResponse(message);
+                }
+
+                @Override
+                public void onConnectSuccess() {
+                    // subcribe to channel
+                    subcribeChannel("RoomChannel");
+                }
+            });
+            socket.connect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void subcribeChannel(String subcribedChannel) {
+        // RoomChannel
+        channel = new Channel(subcribedChannel);
+        Command commandSubcribe = Command.subscribe(channel.toIdentifier());
+        socket.send(commandSubcribe.toJson());
+    }
+
+    public void sendMessage(String content, String roomId) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("content", content);
+        jsonObject.addProperty("room_id", roomId);
+        Command command = Command.message(channel.toIdentifier(), jsonObject);
+        socket.send(command.toJson());
     }
 }

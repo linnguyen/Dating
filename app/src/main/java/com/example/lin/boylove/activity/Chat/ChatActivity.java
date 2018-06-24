@@ -1,73 +1,48 @@
 package com.example.lin.boylove.activity.Chat;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
+import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.adapter.ChatAdapter;
-import com.example.lin.boylove.entity.Object.ChatSocket.Channel;
-import com.example.lin.boylove.entity.Object.ChatSocket.ChatSocket;
-import com.example.lin.boylove.entity.Object.ChatSocket.Command;
-import com.example.lin.boylove.entity.Object.ChatSocket.Data;
-import com.example.lin.boylove.entity.Object.ChatSocket.Identifier;
-import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.Utils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ChatActivity extends AppCompatActivity
-        implements WebSocketClient.WebSocketListener {
+public class ChatActivity extends DxBaseActivity {
     @BindView(R.id.edt_message)
     public EditText edtMessage;
     @BindView(R.id.rcv_message_chat)
     public RecyclerView rcvChat;
 
-    private WebSocketClient socket;
     private ChatAdapter adapter;
-    private Channel channel;
-
+    public static ChatActivity instance;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
-        ButterKnife.bind(this);
+    protected int getLayoutRes() {
+        return R.layout.activity_chat;
+    }
+
+    @Override
+    protected void initAttributes() {
+        instance = this;
+    }
+
+    @Override
+    protected void initViews() {
         adapter = new ChatAdapter(this);
         rcvChat.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rcvChat.setAdapter(adapter);
-
-        // open socket connect when user enters chat room
-        connectToWebsocket();
-
     }
 
     @OnClick(R.id.btn_send)
     public void onSendClick() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("content", Utils.getText(edtMessage));
-        channel = new Channel("ChatChannel", "1470155475503808512");
-        Command commandSubcribe = Command.subscribe(channel.toIdentifier());
-        socket.send(commandSubcribe.toJson());
-        Command command = Command.message(channel.toIdentifier(), jsonObject);
-        socket.send(command.toJson());
+        DXApplication.get(context).sendMessage(Utils.getText(edtMessage), "5");
     }
 
     @OnClick(R.id.imv_back)
@@ -75,21 +50,11 @@ public class ChatActivity extends AppCompatActivity
         finish();
     }
 
-    private void connectToWebsocket() {
-        try {
-            socket = new WebSocketClient(new URI(Constant.Config.SOCKET_URL));
-            socket.setListener(this);
-            socket.connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onMessageResponse(final String message) {
+    public void setMessageResponse(final String message) {
         ChatActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Utils.showToast(context, message);
                 adapter.setData(message);
                 edtMessage.setText(Constant.EMPTY);
             }
@@ -99,9 +64,11 @@ public class ChatActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        if (channel != null) {
-            Command unsubscribe = Command.unsubscribe(channel.toIdentifier());
-            socket.send(unsubscribe.toJson());
-        }
+        instance = null;
+//        if (channel != null) {
+//            Command unsubscribe = Command.unsubscribe(channel.toIdentifier());
+//            socket.send(unsubscribe.toJson());
+//        }
     }
 }
+

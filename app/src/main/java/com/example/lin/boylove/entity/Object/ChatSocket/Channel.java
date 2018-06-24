@@ -36,6 +36,16 @@ public class Channel {
      *
      * @param channel Channel name
      */
+    public Channel(String channel) {
+        params.addProperty(KEY_CHANNEL, channel);
+    }
+
+    /**
+     * Constructor
+     *
+     * @param channel Channel name
+     * @param room Room room
+     */
     public Channel(String channel, String room) {
         params.addProperty(KEY_CHANNEL, channel);
         params.addProperty(KEY_ROOM, room);

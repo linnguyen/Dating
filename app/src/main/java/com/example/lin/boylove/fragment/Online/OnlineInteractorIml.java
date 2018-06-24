@@ -29,7 +29,7 @@ public class OnlineInteractorIml implements OnlineInteractor {
 
     @Override
     public void getListOnline(final OnlinePresenter.OnOnlineFinishedListener listener) {
-        Call<List<Online>> call = dolaxAPIs.getOnline();
+        Call<List<Online>> call = dolaxAPIs.getOnlines();
         call.enqueue(new Callback<List<Online>>() {
             @Override
             public void onResponse(Call<List<Online>> call, Response<List<Online>> response) {

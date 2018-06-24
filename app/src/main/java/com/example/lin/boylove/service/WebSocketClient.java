@@ -41,6 +41,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
         final MessageResponse response = MessageResponse.fromJson(message);
         if (response.isWelcome()) {
             // process welcome here
+            listener.onConnectSuccess();
         } else if (response.isPing()) {
             // process ping here
         } else { // message content
@@ -63,7 +64,9 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     }
 
     public interface WebSocketListener {
-        void onMessageResponse(String jsonElement);
+        void onMessageResponse(String message);
+
+        void onConnectSuccess();
     }
 
 }
