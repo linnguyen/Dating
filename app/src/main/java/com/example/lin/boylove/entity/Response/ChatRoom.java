@@ -1,10 +1,13 @@
 package com.example.lin.boylove.entity.Response;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by ryne on 20/09/2017.
  */
 
-public class ChatRoom {
+public class ChatRoom implements Parcelable {
     private int id;
 
     private String topic;
@@ -12,6 +15,39 @@ public class ChatRoom {
     private String created_at;
 
     private String updated_at;
+
+    protected ChatRoom(Parcel in) {
+        id = in.readInt();
+        topic = in.readString();
+        created_at = in.readString();
+        updated_at = in.readString();
+    }
+
+    public static final Creator<ChatRoom> CREATOR = new Creator<ChatRoom>() {
+        @Override
+        public ChatRoom createFromParcel(Parcel in) {
+            return new ChatRoom(in);
+        }
+
+        @Override
+        public ChatRoom[] newArray(int size) {
+            return new ChatRoom[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(topic);
+        parcel.writeString(created_at);
+        parcel.writeString(updated_at);
+    }
+
 
     public int getId() {
         return id;

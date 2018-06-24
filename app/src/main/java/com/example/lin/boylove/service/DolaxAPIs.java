@@ -84,7 +84,7 @@ public interface DolaxAPIs {
      * Get list chatrooms
      */
     @GET("rooms/")
-    Call<List<ChatRoom>> getChatRooms();
+    Call<List<ChatRoom>> getChatRooms(@Header("Authorization") String authToken);
 
 
     class Factory {

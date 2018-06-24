@@ -31,7 +31,7 @@ import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.activity.PrivacyPolicyActivity;
 import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
-import com.example.lin.boylove.fragment.Chat.ChatFragment;
+import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
@@ -219,7 +219,7 @@ public class HomeActivity extends DxBaseActivity implements
                 return photosFragment;
             case 2:
                 // movies fragment
-                ChatFragment moviesFragment = new ChatFragment();
+                ChatRoomFragment moviesFragment = new ChatRoomFragment();
                 return moviesFragment;
             case 3:
                 // notifications fragment
@@ -386,7 +386,7 @@ public class HomeActivity extends DxBaseActivity implements
         switch (item.getItemId()) {
             case R.id.navigation_shop:
                 toolbar.setTitle(getString(R.string.title_newfeed));
-                fragment = new ChatFragment();
+                fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;
             case R.id.navigation_gifts:
@@ -396,12 +396,12 @@ public class HomeActivity extends DxBaseActivity implements
                 return true;
             case R.id.navigation_cart:
                 toolbar.setTitle(getString(R.string.title_chat));
-                fragment = new ChatFragment();
+                fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;
             case R.id.navigation_profile:
                 toolbar.setTitle(getString(R.string.title_livestream));
-                fragment = new ChatFragment();
+                fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;
         }

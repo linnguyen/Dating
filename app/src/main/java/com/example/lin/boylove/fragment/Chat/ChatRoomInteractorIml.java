@@ -3,10 +3,9 @@ package com.example.lin.boylove.fragment.Chat;
 import android.content.Context;
 
 import com.example.lin.boylove.R;
+import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Error;
-import com.example.lin.boylove.entity.Response.Online;
-import com.example.lin.boylove.fragment.Online.OnlineInteractor;
-import com.example.lin.boylove.fragment.Online.OnlinePresenter;
+import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.utilities.Utils;
 
@@ -20,25 +19,25 @@ import retrofit2.Response;
  * Created by ryne on 27/10/2017.
  */
 
-public class ChatInteractorIml implements OnlineInteractor {
+public class ChatRoomInteractorIml implements ChatRoomInteractor {
     private Context context;
     private DolaxAPIs dolaxAPIs;
 
-    public ChatInteractorIml(Context context) {
+    public ChatRoomInteractorIml(Context context) {
         this.context = context;
         dolaxAPIs = DolaxAPIs.Factory.create();
     }
 
     @Override
-    public void getListOnline(final OnlinePresenter.OnOnlineFinishedListener listener) {
-        Call<List<Online>> call = dolaxAPIs.getOnlines();
-        call.enqueue(new Callback<List<Online>>() {
+    public void getLstChatRoom(final ChatRoomPresenter.OnChatFinishedListener listener) {
+        Call<List<ChatRoom>> call = dolaxAPIs.getChatRooms(SessionManager.getInstance(context).getToken());
+        call.enqueue(new Callback<List<ChatRoom>>() {
             @Override
-            public void onResponse(Call<List<Online>> call, Response<List<Online>> response) {
+            public void onResponse(Call<List<ChatRoom>> call, Response<List<ChatRoom>> response) {
                 if (response.isSuccessful()) {
-                    List<Online> lstOnline = response.body();
-                    if (lstOnline != null) {
-                        listener.onSuccess(lstOnline);
+                    List<ChatRoom> lstChatRoom = response.body();
+                    if (lstChatRoom != null) {
+                        listener.onSuccess(lstChatRoom);
                     }
                 } else {
                     Error error = DolaxAPIs.Factory.getError(response.errorBody());
@@ -47,7 +46,7 @@ public class ChatInteractorIml implements OnlineInteractor {
             }
 
             @Override
-            public void onFailure(Call<List<Online>> call, Throwable t) {
+            public void onFailure(Call<List<ChatRoom>> call, Throwable t) {
                 Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
             }
         });

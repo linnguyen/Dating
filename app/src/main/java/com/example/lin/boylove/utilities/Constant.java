@@ -43,6 +43,10 @@ public class Constant {
     public static final String TAB_INCOME = "Income";
     public static final String TAB_DEBT = "Debt";
 
+
+    public static final String CHAT_ROOM = "chatRoom";
+
+
     public static final String EMPTY = "";
 
 

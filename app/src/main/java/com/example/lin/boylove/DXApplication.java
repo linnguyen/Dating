@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.example.lin.boylove.activity.Chat.ChatActivity;
 import com.example.lin.boylove.entity.Object.ChatSocket.Channel;
 import com.example.lin.boylove.entity.Object.ChatSocket.Command;
-import com.example.lin.boylove.fragment.Chat.ChatFragment;
+import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
@@ -136,8 +136,8 @@ public class DXApplication extends android.app.Application {
                     if (ChatActivity.instance != null)
                         ChatActivity.instance.setMessageResponse(message);
 
-                    if (ChatFragment.instance != null)
-                        ChatFragment.instance.setMessageResponse(message);
+                    if (ChatRoomFragment.instance != null)
+                        ChatRoomFragment.instance.setMessageResponse(message);
                 }
 
                 @Override
@@ -159,7 +159,7 @@ public class DXApplication extends android.app.Application {
         socket.send(commandSubcribe.toJson());
     }
 
-    public void sendMessage(String content, String roomId) {
+    public void sendMessage(String content, int roomId) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("content", content);
         jsonObject.addProperty("room_id", roomId);

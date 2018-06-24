@@ -35,6 +35,11 @@
     <dimen name="dot_xx">10dp</dimen>
     <dimen name="dot_xxx">12dp</dimen>
 
+    <!-- text size -->
+    <dimen name="text_size_x">4dp</dimen>
+    <dimen name="text_size_xx">12dp</dimen>
+    <dimen name="text_size_xxx">16dp</dimen>
+
     <!-- height -->
     <dimen name="toolbar_height">60dp</dimen>
 </resources>
