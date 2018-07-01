@@ -7,8 +7,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import com.example.lin.boylove.activity.Chat.ChatActivity;
-import com.example.lin.boylove.entity.Object.ChatSocket.Channel;
-import com.example.lin.boylove.entity.Object.ChatSocket.Command;
+import com.example.lin.boylove.entity.ChatSocket.Channel;
+import com.example.lin.boylove.entity.ChatSocket.Command;
+import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.WebSocketClient;
@@ -132,7 +133,7 @@ public class DXApplication extends android.app.Application {
                     URI(Constant.Config.SOCKET_URL + SessionManager.getInstance(getApplicationContext()).getToken()));
             socket.setListener(new WebSocketClient.WebSocketListener() {
                 @Override
-                public void onMessageResponse(String message) {
+                public void onMessageResponse(ChatMessage message) {
                     if (ChatActivity.instance != null)
                         ChatActivity.instance.setMessageResponse(message);
 

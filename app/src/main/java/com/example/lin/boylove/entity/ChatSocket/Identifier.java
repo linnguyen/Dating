@@ -1,4 +1,4 @@
-package com.example.lin.boylove.entity.Object.ChatSocket;
+package com.example.lin.boylove.entity.ChatSocket;
 
 /**
  * Created by lin on 26/05/2018.

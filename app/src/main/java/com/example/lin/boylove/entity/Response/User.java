@@ -1,10 +1,13 @@
 package com.example.lin.boylove.entity.Response;
 
+
+import com.example.lin.boylove.custom.commons.models.IUser;
+
 /**
  * Created by ryne on 20/09/2017.
  */
 
-public class User {
+public class User implements IUser {
     private int id;
     private String email;
     private String auth_token;
@@ -12,8 +15,19 @@ public class User {
     private String created_at;
     private String updated_at;
 
+    @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String getName() {
+        return email;
+    }
+
+    @Override
+    public String getAvatar() {
+        return image.getUrl();
     }
 
     public void setId(int id) {

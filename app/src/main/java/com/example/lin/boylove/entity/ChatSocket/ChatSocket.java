@@ -1,4 +1,4 @@
-package com.example.lin.boylove.entity.Object.ChatSocket;
+package com.example.lin.boylove.entity.ChatSocket;
 
 /**
  * Created by lin on 26/05/2018.
@@ -9,7 +9,7 @@ public class ChatSocket {
 
     private Identifier identifier;
 
-    private Data data;
+    private com.example.lin.boylove.entity.ChatSocket.Data data;
 
     public ChatSocket(String command, Identifier identifier) {
         this.command = command;

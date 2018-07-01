@@ -13,6 +13,12 @@ public class SessionManager {
      */
     private static final String TOKEN = "token";
     /**
+     * User Id
+     */
+    private static final String USER_ID = "user_id";
+    /**
+     * /**
+     * <p>
      * Shared preferences file name
      */
     private static final String PREF_NAME = "Dolax_sharedpreferences";
@@ -58,10 +64,17 @@ public class SessionManager {
         return preferences.getString(TOKEN, "");
     }
 
+    public int getUserId() {
+        return preferences.getInt(USER_ID, -1);
+    }
+
     public void setToken(String token) {
         editor.putString(TOKEN, token);
         editor.commit();
     }
 
-
+    public void setUserId(int userId) {
+        editor.putInt(USER_ID, userId);
+        editor.commit();
+    }
 }

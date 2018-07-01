@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.lin.boylove.activity.AboutUsActivity">
+    android:background="@color/white">
 
     <RelativeLayout
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
         android:background="@color/app_color">
@@ -53,43 +52,51 @@
                     android:textColor="@color/white" />
             </RelativeLayout>
         </RelativeLayout>
-
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_message_chat"
+    <com.example.lin.boylove.custom.messages.MessagesList
+        android:id="@+id/message_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/input"
+        android:layout_below="@+id/tool_bar"
+        app:dateHeaderFormat="dd MMMM yyyy"
+        app:incomingDefaultBubbleColor="@color/ivory"
+        app:incomingDefaultBubblePressedColor="@color/ivory_dark"
+        app:incomingDefaultBubbleSelectedColor="@color/gray"
+        app:incomingDefaultImageOverlayPressedColor="@color/black_10"
+        app:incomingDefaultImageOverlaySelectedColor="@color/gray_transparent"
+        app:incomingTextColor="@color/black"
+        app:incomingTextLinkColor="@color/green"
+        app:incomingTextSize="18sp"
+        app:outcomingDefaultBubbleColor="@color/green"
+        app:outcomingDefaultBubblePressedColor="@color/green_dark"
+        app:outcomingDefaultBubbleSelectedColor="@color/gray_dark_transparent"
+        app:outcomingDefaultImageOverlayPressedColor="@color/black_10"
+        app:outcomingDefaultImageOverlaySelectedColor="@color/gray_transparent"
+        app:outcomingTextColor="@color/white"
+        app:outcomingTextLinkColor="@color/brown"
+        app:outcomingTextSize="18sp"
+        app:textAutoLink="all" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/app_color" />
+        android:layout_height="1dp"
+        android:layout_above="@+id/input"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/gray_light" />
 
-    <LinearLayout
+    <com.example.lin.boylove.custom.messages.MessageInput
+        android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rcv_message_chat"
-        android:orientation="horizontal">
+        android:layout_alignParentBottom="true"
+        app:attachmentButtonDefaultIconColor="@color/green"
+        app:attachmentButtonDefaultIconPressedColor="@color/green_dark"
+        app:inputButtonDefaultBgColor="@color/green"
+        app:inputButtonDefaultBgPressedColor="@color/green_dark"
+        app:inputHint="@string/hint_edt_chat"
+        app:showAttachmentButton="true" />
 
-        <EditText
-            android:layout_gravity="center"
-            android:id="@+id/edt_message"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:hint="@string/hint_edt_chat"
-            android:padding="@dimen/padding_small" />
-
-        <ImageView
-            android:id="@+id/btn_send"
-            android:layout_width="@dimen/size_icon_tiny"
-            android:layout_height="@dimen/size_icon_tiny"
-            android:layout_gravity="center"
-            android:background="@color/app_color"
-            android:padding="@dimen/padding_big"
-            android:src="@drawable/ic_sent_white" />
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

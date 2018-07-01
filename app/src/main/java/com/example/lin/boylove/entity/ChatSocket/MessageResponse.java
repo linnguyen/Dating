@@ -1,6 +1,6 @@
-package com.example.lin.boylove.entity.Object.ChatSocket;
+package com.example.lin.boylove.entity.ChatSocket;
 
-import com.example.lin.boylove.entity.Object.ChatMessage;
+import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
@@ -52,7 +52,7 @@ public class MessageResponse {
         return "reject_subscription".equals(getType());
     }
 
-    public String getMessageContent() {
-        return GSON.fromJson(getMessage(), ChatMessage.class).getContent();
+    public ChatMessage getMessageObject() {
+        return GSON.fromJson(getMessage(), ChatMessage.class);
     }
 }

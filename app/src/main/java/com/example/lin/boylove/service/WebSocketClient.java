@@ -1,9 +1,7 @@
 package com.example.lin.boylove.service;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import com.example.lin.boylove.entity.Object.ChatSocket.MessageResponse;
+import com.example.lin.boylove.entity.ChatSocket.MessageResponse;
+import com.example.lin.boylove.entity.Response.ChatMessage;
 
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
@@ -45,7 +43,7 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
         } else if (response.isPing()) {
             // process ping here
         } else { // message content
-            listener.onMessageResponse(response.getMessageContent());
+            listener.onMessageResponse(response.getMessageObject());
         }
     }
 
@@ -64,9 +62,8 @@ public class WebSocketClient extends org.java_websocket.client.WebSocketClient {
     }
 
     public interface WebSocketListener {
-        void onMessageResponse(String message);
+        void onMessageResponse(ChatMessage message);
 
         void onConnectSuccess();
     }
-
 }

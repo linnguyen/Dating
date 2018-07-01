@@ -1,5 +1,6 @@
 package com.example.lin.boylove.service;
 
+import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.entity.Response.Error;
@@ -85,6 +86,18 @@ public interface DolaxAPIs {
      */
     @GET("rooms/")
     Call<List<ChatRoom>> getChatRooms(@Header("Authorization") String authToken);
+
+    /*
+    * Get messages by room
+    */
+    @GET("messages/")
+    Call<List<ChatMessage>> getMessagesByRoom(@Header("Authorization") String authToken, @Query("chatroom_id") int chatRoomId);
+
+    /*
+   * Get private messages between two users
+   */
+    @GET("private_messages/")
+    Call<List<ChatMessage>> getPrivateMessages(@Header("Authorization") String authToken, @Query("chatroom_id") int chatRoomId);
 
 
     class Factory {

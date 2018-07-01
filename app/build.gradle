@@ -45,7 +45,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'org.jetbrains:annotations-java5:15.0'
-
+//    compile 'com.github.stfalcon:chatkit:0.2.2'
+    compile "com.google.android:flexbox:0.2.5"
     //firebase chat app
     compile 'com.firebaseui:firebase-ui:0.6.0'
     // websocket

@@ -1,4 +1,4 @@
-package com.example.lin.boylove.entity.Object.ChatSocket;
+package com.example.lin.boylove.entity.ChatSocket;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

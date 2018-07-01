@@ -43,6 +43,7 @@ public class LoginInteractorIml implements LoginInteractor {
                     if (user != null) {
                         SessionManager sessionManager = SessionManager.getInstance(context);
                         sessionManager.setToken(user.getAuth_token());
+                        sessionManager.setUserId(user.getId());
                         listener.onSuccess(context.getString(R.string.toast_login_success));
                     }
                 } else {
