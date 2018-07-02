@@ -2,7 +2,7 @@ package com.example.lin.boylove.fragment.Online;
 
 import android.content.Context;
 
-import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class OnlinePresenterIml implements OnlinePresenter,
     }
 
     @Override
-    public void onSuccess(List<Online> lstOnline) {
+    public void onSuccess(List<User> lstOnline) {
         view.hideProgressBar();
         view.getListOnlineSuccess(lstOnline);
     }

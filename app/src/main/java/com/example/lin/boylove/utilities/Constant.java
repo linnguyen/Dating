@@ -30,7 +30,7 @@ public class Constant {
         public static final String SHARED_PREF = "ah_firebase";
 
 //        public static final String BASE_URL = "http://206.189.71.173/api/";
-//        public static final String SOCKET_URL = "ws://206.189.71.173/cable";
+//        public static final String SOCKET_URL = "ws://206.189.71.173/cable?token=";
 //        public static final String URL_IMAGE = "http://206.189.71.173";
 
         public static final String BASE_URL = "http://192.168.1.11:3000/api/";
@@ -45,6 +45,7 @@ public class Constant {
 
 
     public static final String CHAT_ROOM = "chatRoom";
+    public static final String OTHER_USER = "otherUser";
 
 
     public static final String EMPTY = "";

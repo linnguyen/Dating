@@ -6,4 +6,6 @@ package com.example.lin.boylove.activity.Chat;
 
 public interface ChatInteractor {
     void getChatMessagesByRoom(int chatRoomId, ChatPresenter.OnChatFinishedListener listener);
+
+    void getMessagesForPrivateRoom(int otherUserId, ChatPresenter.OnChatFinishedListener listener);
 }

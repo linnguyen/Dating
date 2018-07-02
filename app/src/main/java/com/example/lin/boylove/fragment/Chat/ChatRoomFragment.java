@@ -107,6 +107,6 @@ public class ChatRoomFragment extends DxBaseFragment implements
 
     @Override
     public void onClick(ChatRoom chatRoom) {
-        ChatActivity.toChatRoomActivity(ChatRoomFragment.this, chatRoom);
+        ChatActivity.open(ChatRoomFragment.this, chatRoom);
     }
 }

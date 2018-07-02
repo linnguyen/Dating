@@ -51,4 +51,29 @@ public class ChatInteractorIml implements ChatInteractor {
             }
         });
     }
+
+    @Override
+    public void getMessagesForPrivateRoom(int otherUserId, final ChatPresenter.OnChatFinishedListener listener) {
+        Call<List<ChatMessage>> call = dolaxAPIs.getPrivateMessages(
+                SessionManager.getInstance(context).getToken(), otherUserId);
+        call.enqueue(new Callback<List<ChatMessage>>() {
+            @Override
+            public void onResponse(Call<List<ChatMessage>> call, Response<List<ChatMessage>> response) {
+                if (response.isSuccessful()) {
+                    List<ChatMessage> lstChatMessage = response.body();
+                    if (lstChatMessage != null) {
+                        listener.onSuccess(lstChatMessage);
+                    }
+                } else {
+                    Error error = DolaxAPIs.Factory.getError(response.errorBody());
+                    listener.onFailure(error.getErrors());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ChatMessage>> call, Throwable t) {
+                listener.onFailure(context.getString(R.string.toast_login_fail));
+            }
+        });
+    }
 }

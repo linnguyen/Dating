@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.utilities.Constant;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder> {
     private Context context;
-    private List<Online> list;
+    private List<User> list;
 
     private OnlineListener listener;
 
@@ -36,9 +37,9 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Online online = list.get(position);
+        User user = list.get(position);
         // Processing for display view here
-        String imageUrl = Constant.Config.URL_IMAGE + online.getImage().getUrl();
+        String imageUrl = Constant.Config.URL_IMAGE + user.getImage().getUrl();
         Glide.with(context)
                 .load(imageUrl)
                 .centerCrop()
@@ -63,11 +64,13 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            listener.onClick();
+            int position = getAdapterPosition();
+            User other = list.get(position);
+            listener.onClick(other);
         }
     }
 
-    public void setData(List<Online> list) {
+    public void setData(List<User> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -77,6 +80,6 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     }
 
     public interface OnlineListener {
-        void onClick();
+        void onClick(User otherUser);
     }
 }

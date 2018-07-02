@@ -16,4 +16,6 @@ public interface ChatPresenter {
     }
 
     void getMessagesByRoom(int chatRoomId);
+
+    void getMessagesForPrivateRoom(int otherUserId);
 }

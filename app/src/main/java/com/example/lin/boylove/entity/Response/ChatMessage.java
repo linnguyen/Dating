@@ -43,7 +43,7 @@ public class ChatMessage implements IMessage {
 
     @Override
     public String getText() {
-        return "HEHEdsdsd";
+        return content;
     }
 
     @Override

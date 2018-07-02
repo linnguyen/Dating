@@ -10,6 +10,7 @@ import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Chat.ChatActivity;
 import com.example.lin.boylove.adapter.OnlineAdapter;
 import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.DxBaseFragment;
 import com.example.lin.boylove.utilities.Utils;
 
@@ -80,13 +81,12 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
     }
 
     @Override
-    public void getListOnlineSuccess(List<Online> lstOnline) {
+    public void getListOnlineSuccess(List<User> lstOnline) {
         adapter.setData(lstOnline);
     }
 
     @Override
-    public void onClick() {
-        Intent intent = new Intent(this.getActivity(), ChatActivity.class);
-        startActivity(intent);
+    public void onClick(User other) {
+        ChatActivity.open(OnlineFragment.this, other);
     }
 }

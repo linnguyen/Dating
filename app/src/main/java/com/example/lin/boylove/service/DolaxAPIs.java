@@ -79,7 +79,7 @@ public interface DolaxAPIs {
      * Get online user
      */
     @GET("users/")
-    Call<List<Online>> getOnlines();
+    Call<List<User>> getOnlines(@Header("Authorization") String authToken);
 
     /*
      * Get list chatrooms
@@ -97,7 +97,7 @@ public interface DolaxAPIs {
    * Get private messages between two users
    */
     @GET("private_messages/")
-    Call<List<ChatMessage>> getPrivateMessages(@Header("Authorization") String authToken, @Query("chatroom_id") int chatRoomId);
+    Call<List<ChatMessage>> getPrivateMessages(@Header("Authorization") String authToken, @Query("other_user_id") int otherUserId);
 
 
     class Factory {

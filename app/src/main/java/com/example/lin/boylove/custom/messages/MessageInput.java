@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 
 import com.example.lin.boylove.R;
+import com.example.lin.boylove.utilities.Constant;
 
 import java.lang.reflect.Field;
 
@@ -90,7 +91,7 @@ public class MessageInput extends RelativeLayout
         if (id == R.id.messageSendButton) {
             boolean isSubmitted = onSubmit();
             if (isSubmitted) {
-                messageInput.setText("");
+                messageInput.setText(Constant.EMPTY);
             }
         } else if (id == R.id.attachmentButton) {
             onAddAttachments();

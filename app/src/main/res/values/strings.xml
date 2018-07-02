@@ -47,6 +47,9 @@
 
     <string name="dialog_loading_payment">Loading payment...</string>
 
+    <string name="date_header_today">Today</string>
+    <string name="date_header_yesterday">Yesterday</string>
+
     <string name="hint_edt_chat">Say something!</string>
     <string name="hint_password">Password</string>
     <string name="hint_email">Email</string>

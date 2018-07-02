@@ -14,6 +14,7 @@ import com.example.lin.boylove.custom.messages.MessagesList;
 import com.example.lin.boylove.custom.messages.MessagesListAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.DateFormatter;
@@ -34,8 +35,9 @@ public class ChatActivity extends DxBaseActivity implements
     @BindView(R.id.input)
     MessageInput input;
 
-    //    private ChatAdapter adapter;
+    // private ChatAdapter adapter;
     private ChatRoom chatRoom;
+    private User otherUser;
 
     public static ChatActivity instance;
     private ChatPresenter presenter;
@@ -45,9 +47,15 @@ public class ChatActivity extends DxBaseActivity implements
     protected ImageLoader imageLoader;
     protected MessagesListAdapter adapter;
 
-    public static void toChatRoomActivity(Fragment fragment, ChatRoom chatRoom) {
+    public static void open(Fragment fragment, ChatRoom chatRoom) {
         Intent intent = new Intent(fragment.getActivity(), ChatActivity.class);
         intent.putExtra(Constant.CHAT_ROOM, chatRoom);
+        fragment.startActivity(intent);
+    }
+
+    public static void open(Fragment fragment, User other) {
+        Intent intent = new Intent(fragment.getActivity(), ChatActivity.class);
+        intent.putExtra(Constant.OTHER_USER, other);
         fragment.startActivity(intent);
     }
 
@@ -69,6 +77,10 @@ public class ChatActivity extends DxBaseActivity implements
         if (intent.hasExtra(Constant.CHAT_ROOM)) {
             chatRoom = intent.getParcelableExtra(Constant.CHAT_ROOM);
         }
+
+        if (intent.hasExtra(Constant.OTHER_USER)) {
+            otherUser = intent.getParcelableExtra(Constant.OTHER_USER);
+        }
 //        adapter = new ChatAdapter(this);
 //        adapter.setListener(this);
 //        linearLayoutManager = new LinearLayoutManager(context,
@@ -82,8 +94,14 @@ public class ChatActivity extends DxBaseActivity implements
         adapter.setDateHeadersFormatter(this);
         input.setInputListener(this);
 
-        // get chat messages by room id
-        presenter.getMessagesByRoom(chatRoom.getId());
+        if (chatRoom != null) {
+            // get chat messages by room id
+            presenter.getMessagesByRoom(chatRoom.getId());
+        }
+
+        if (otherUser != null) {
+            presenter.getMessagesForPrivateRoom(otherUser.getId());
+        }
     }
 
     @OnClick(R.id.imv_back)
@@ -92,18 +110,20 @@ public class ChatActivity extends DxBaseActivity implements
     }
 
     public void setMessageResponse(final ChatMessage message) {
-        ChatActivity.this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.addToStart(message, true);
+        if (message.getChatroom_id() == chatRoom.getId()) {
+            ChatActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.addToStart(message, true);
 //                edtMessage.setText(Constant.EMPTY);
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override
     public void onGetMessagesSuccess(List<ChatMessage> lstChatMessage) {
-//        adapter.setData(lstChatMessage);
+        adapter.addToEnd(lstChatMessage, false);
     }
 
     @Override
@@ -134,12 +154,18 @@ public class ChatActivity extends DxBaseActivity implements
     @Override
     public boolean onSubmit(CharSequence input) {
         DXApplication.get(context).sendMessage(input.toString(), chatRoom.getId());
-        return false;
+        return true;
     }
 
     @Override
     public String format(Date date) {
-        return null;
+        if (DateFormatter.isToday(date)) {
+            return getString(R.string.date_header_today);
+        } else if (DateFormatter.isYesterday(date)) {
+            return getString(R.string.date_header_yesterday);
+        } else {
+            return DateFormatter.format(date, DateFormatter.Template.STRING_DAY_MONTH_YEAR);
+        }
     }
 
     @Override

@@ -37,4 +37,9 @@ public class ChatPresenterIml implements ChatPresenter, ChatPresenter.OnChatFini
     public void getMessagesByRoom(int chatRoomId) {
         interactor.getChatMessagesByRoom(chatRoomId, this);
     }
+
+    @Override
+    public void getMessagesForPrivateRoom(int otherUserId) {
+        interactor.getMessagesForPrivateRoom(otherUserId, this);
+    }
 }

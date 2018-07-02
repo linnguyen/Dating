@@ -1,6 +1,6 @@
 package com.example.lin.boylove.fragment.Online;
 
-import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public interface OnlinePresenter {
 
     interface OnOnlineFinishedListener {
-        void onSuccess(List<Online> lstOnline);
+        void onSuccess(List<User> lstOnline);
 
         void onFailure(String message);
     }

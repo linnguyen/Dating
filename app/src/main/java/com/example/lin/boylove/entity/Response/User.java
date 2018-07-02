@@ -1,19 +1,42 @@
 package com.example.lin.boylove.entity.Response;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.lin.boylove.custom.commons.models.IUser;
 
 /**
  * Created by ryne on 20/09/2017.
  */
 
-public class User implements IUser {
+public class User implements Parcelable, IUser {
     private int id;
     private String email;
     private String auth_token;
     private Image image;
     private String created_at;
     private String updated_at;
+
+    protected User(Parcel in) {
+        id = in.readInt();
+        email = in.readString();
+        auth_token = in.readString();
+        created_at = in.readString();
+        updated_at = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     @Override
     public int getId() {
@@ -72,5 +95,19 @@ public class User implements IUser {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(email);
+        parcel.writeString(auth_token);
+        parcel.writeString(created_at);
+        parcel.writeString(updated_at);
     }
 }
