@@ -1,6 +1,8 @@
 package com.example.lin.boylove.activity.Chat;
 
 import com.example.lin.boylove.entity.Response.ChatMessage;
+import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.MessagesRoom;
 
 import java.util.List;
 
@@ -10,7 +12,9 @@ import java.util.List;
 
 public interface ChatPresenter {
     interface OnChatFinishedListener {
-        void onSuccess(List<ChatMessage> lstChatMessage);
+        void onPrivateRoomSuccess(ChatRoom room);
+
+        void onGetLstMessageSuccess(MessagesRoom messagesRoom);
 
         void onFailure(String message);
     }
@@ -18,4 +22,6 @@ public interface ChatPresenter {
     void getMessagesByRoom(int chatRoomId);
 
     void getMessagesForPrivateRoom(int otherUserId);
+
+    void getPrivateRoom(int otherUserId);
 }

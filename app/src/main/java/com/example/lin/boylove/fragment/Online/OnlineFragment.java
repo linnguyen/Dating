@@ -1,6 +1,5 @@
 package com.example.lin.boylove.fragment.Online;
 
-import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,8 +12,6 @@ import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.DxBaseFragment;
 import com.example.lin.boylove.utilities.Utils;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -81,8 +78,8 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
     }
 
     @Override
-    public void getListOnlineSuccess(List<User> lstOnline) {
-        adapter.setData(lstOnline);
+    public void getListOnlineSuccess(Online online) {
+        adapter.setData(online.getLstUser());
     }
 
     @Override

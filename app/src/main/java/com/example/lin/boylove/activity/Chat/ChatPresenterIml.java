@@ -2,9 +2,8 @@ package com.example.lin.boylove.activity.Chat;
 
 import android.content.Context;
 
-import com.example.lin.boylove.entity.Response.ChatMessage;
-
-import java.util.List;
+import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.MessagesRoom;
 
 /**
  * Created by lin on 19/09/2017.
@@ -22,9 +21,15 @@ public class ChatPresenterIml implements ChatPresenter, ChatPresenter.OnChatFini
     }
 
     @Override
-    public void onSuccess(List<ChatMessage> lstChatMessage) {
+    public void onPrivateRoomSuccess(ChatRoom room) {
         view.hideProgress();
-        view.onGetMessagesSuccess(lstChatMessage);
+        view.onGetPrivateMessageSucess(room);
+    }
+
+    @Override
+    public void onGetLstMessageSuccess(MessagesRoom messagesRoom) {
+        view.hideProgress();
+        view.onGetMessagesSuccess(messagesRoom);
     }
 
     @Override
@@ -40,6 +45,11 @@ public class ChatPresenterIml implements ChatPresenter, ChatPresenter.OnChatFini
 
     @Override
     public void getMessagesForPrivateRoom(int otherUserId) {
+        interactor.getMessagesForPrivateRoom(otherUserId, this);
+    }
+
+    @Override
+    public void getPrivateRoom(int otherUserId) {
         interactor.getMessagesForPrivateRoom(otherUserId, this);
     }
 }

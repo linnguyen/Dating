@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Error;
+import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.DolaxAPIs;
@@ -30,14 +31,14 @@ public class OnlineInteractorIml implements OnlineInteractor {
 
     @Override
     public void getListOnline(final OnlinePresenter.OnOnlineFinishedListener listener) {
-        Call<List<User>> call = dolaxAPIs.getOnlines(SessionManager.getInstance(context).getToken());
-        call.enqueue(new Callback<List<User>>() {
+        Call<Online> call = dolaxAPIs.getOnlines(SessionManager.getInstance(context).getToken());
+        call.enqueue(new Callback<Online>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<Online> call, Response<Online> response) {
                 if (response.isSuccessful()) {
-                    List<User> lstOnline = response.body();
-                    if (lstOnline != null) {
-                        listener.onSuccess(lstOnline);
+                    Online online = response.body();
+                    if (online != null) {
+                        listener.onSuccess(online);
                     }
                 } else {
                     Error error = DolaxAPIs.Factory.getError(response.errorBody());
@@ -46,7 +47,7 @@ public class OnlineInteractorIml implements OnlineInteractor {
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<Online> call, Throwable t) {
                 Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
             }
         });

@@ -2,7 +2,6 @@ package com.example.lin.boylove.activity.Chat;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 
 import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
@@ -14,13 +13,13 @@ import com.example.lin.boylove.custom.messages.MessagesList;
 import com.example.lin.boylove.custom.messages.MessagesListAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.MessagesRoom;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.DateFormatter;
 
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,7 +41,6 @@ public class ChatActivity extends DxBaseActivity implements
     public static ChatActivity instance;
     private ChatPresenter presenter;
 
-    private LinearLayoutManager linearLayoutManager;
     protected int senderId;
     protected ImageLoader imageLoader;
     protected MessagesListAdapter adapter;
@@ -81,12 +79,6 @@ public class ChatActivity extends DxBaseActivity implements
         if (intent.hasExtra(Constant.OTHER_USER)) {
             otherUser = intent.getParcelableExtra(Constant.OTHER_USER);
         }
-//        adapter = new ChatAdapter(this);
-//        adapter.setListener(this);
-//        linearLayoutManager = new LinearLayoutManager(context,
-//                LinearLayoutManager.VERTICAL, false);
-//        rcvChat.setLayoutManager(linearLayoutManager);
-//        rcvChat.setAdapter(adapter);
         adapter = new MessagesListAdapter(senderId, imageLoader);
         messagesList.setAdapter(adapter);
         adapter.enableSelectionMode(this);
@@ -110,7 +102,9 @@ public class ChatActivity extends DxBaseActivity implements
     }
 
     public void setMessageResponse(final ChatMessage message) {
-        if (message.getChatroom_id() == chatRoom.getId()) {
+
+        // if the room is existed
+        if (chatRoom != null && message.getChatroom().getId() == chatRoom.getId()) {
             ChatActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -118,12 +112,35 @@ public class ChatActivity extends DxBaseActivity implements
 //                edtMessage.setText(Constant.EMPTY);
                 }
             });
+            return;
+        }
+
+        // new room created
+        if (chatRoom == null && message.getChatroom() != null) {
+            if (otherUser.getId() == message.getUser().getId() ||
+                    SessionManager.getInstance(context).getUserId() == message.getUser().getId()) {
+                chatRoom = message.getChatroom(); // assigned new chat room
+                otherUser = null; // no  need to user other user for the next sending message
+                ChatActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.addToStart(message, true);
+//                edtMessage.setText(Constant.EMPTY);
+                    }
+                });
+            }
+            return;
         }
     }
 
     @Override
-    public void onGetMessagesSuccess(List<ChatMessage> lstChatMessage) {
-        adapter.addToEnd(lstChatMessage, false);
+    public void onGetMessagesSuccess(MessagesRoom messagesRoom) {
+        adapter.addToEnd(messagesRoom.getLstMessage(), false);
+    }
+
+    @Override
+    public void onGetPrivateMessageSucess(ChatRoom room) {
+        chatRoom = room;
     }
 
     @Override
@@ -153,7 +170,15 @@ public class ChatActivity extends DxBaseActivity implements
 
     @Override
     public boolean onSubmit(CharSequence input) {
-        DXApplication.get(context).sendMessage(input.toString(), chatRoom.getId());
+        if (chatRoom != null) {
+            DXApplication.get(context).sendMessage(input.toString(), chatRoom.getId(), -1);
+            return true;
+        }
+
+        if (otherUser != null) {
+            DXApplication.get(context).sendMessage(input.toString(), -1, otherUser.getId());
+            return true;
+        }
         return true;
     }
 

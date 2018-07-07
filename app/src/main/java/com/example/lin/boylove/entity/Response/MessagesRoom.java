@@ -6,24 +6,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by ryne on 20/09/2017.
+ * Created by lin on 13/05/2018.
  */
 
-public class Online {
-    @SerializedName("users")
+public class MessagesRoom  {
+    @SerializedName("messages")
     @Expose
-    private List<User> lstUser;
+    private List<ChatMessage> lstMessage;
 
     @SerializedName("meta")
     @Expose
     private Pagination pagination;
 
-    public List<User> getLstUser() {
-        return lstUser;
+    public List<ChatMessage> getLstMessage() {
+        return lstMessage;
     }
 
-    public void setLstUser(List<User> lstUser) {
-        this.lstUser = lstUser;
+    public void setLstMessage(List<ChatMessage> lstMessage) {
+        this.lstMessage = lstMessage;
     }
 
     public Pagination getPagination() {

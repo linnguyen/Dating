@@ -1,5 +1,6 @@
 package com.example.lin.boylove.fragment.Online;
 
+import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface OnlineView {
 
     void showMessage(String message);
 
-    void getListOnlineSuccess(List<User> lstOnline);
+    void getListOnlineSuccess(Online online);
 }

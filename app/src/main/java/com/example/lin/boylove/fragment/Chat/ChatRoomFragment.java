@@ -73,7 +73,7 @@ public class ChatRoomFragment extends DxBaseFragment implements
         ChatRoomFragment.this.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Utils.showToast(mContext, message.getContent());
+//                Utils.showToast(mContext, message.getContent());
             }
         });
     }

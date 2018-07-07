@@ -1,6 +1,8 @@
 package com.example.lin.boylove.activity.Chat;
 
 import com.example.lin.boylove.entity.Response.ChatMessage;
+import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.MessagesRoom;
 
 import java.util.List;
 
@@ -9,7 +11,9 @@ import java.util.List;
  */
 
 public interface ChatView {
-    void onGetMessagesSuccess(List<ChatMessage> lstChatMessage);
+    void onGetMessagesSuccess(MessagesRoom messagesRoom);
+
+    void onGetPrivateMessageSucess(ChatRoom room);
 
     void showProgress();
 

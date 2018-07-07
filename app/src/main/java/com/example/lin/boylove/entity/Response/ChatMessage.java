@@ -32,9 +32,9 @@ public class ChatMessage implements IMessage {
     @Expose
     private User user;
 
-    @SerializedName("chatroom_id")
+    @SerializedName("chatroom")
     @Expose
-    private int chatroom_id;
+    private ChatRoom chatroom;
 
     @Override
     public int getId() {
@@ -88,11 +88,11 @@ public class ChatMessage implements IMessage {
         this.user = user;
     }
 
-    public int getChatroom_id() {
-        return chatroom_id;
+    public ChatRoom getChatroom() {
+        return chatroom;
     }
 
-    public void setChatroom_id(int chatroom_id) {
-        this.chatroom_id = chatroom_id;
+    public void setChatroom(ChatRoom chatroom) {
+        this.chatroom = chatroom;
     }
 }

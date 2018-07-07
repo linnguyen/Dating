@@ -14,6 +14,7 @@ import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
+import com.example.lin.boylove.utilities.Utils;
 import com.google.gson.JsonObject;
 
 import java.net.URI;
@@ -160,10 +161,11 @@ public class DXApplication extends android.app.Application {
         socket.send(commandSubcribe.toJson());
     }
 
-    public void sendMessage(String content, int roomId) {
+    public void sendMessage(String content, int roomId, int otherUserId) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("content", content);
         jsonObject.addProperty("room_id", roomId);
+        jsonObject.addProperty("other_user_id", otherUserId);
         Command command = Command.message(channel.toIdentifier(), jsonObject);
         socket.send(command.toJson());
     }
