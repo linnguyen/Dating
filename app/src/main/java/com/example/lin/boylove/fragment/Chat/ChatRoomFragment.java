@@ -11,6 +11,7 @@ import com.example.lin.boylove.activity.Chat.ChatActivity;
 import com.example.lin.boylove.adapter.ChatRoomAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.ListChatRoom;
 import com.example.lin.boylove.fragment.DxBaseFragment;
 import com.example.lin.boylove.utilities.Utils;
 
@@ -95,8 +96,8 @@ public class ChatRoomFragment extends DxBaseFragment implements
     }
 
     @Override
-    public void getLstChatRoomSuccess(List<ChatRoom> lstChatRoom) {
-        adapter.setListData(lstChatRoom);
+    public void getLstChatRoomSuccess(ListChatRoom lstChatRoom) {
+        adapter.setListData(lstChatRoom.getLstChatRoom());
     }
 
     @Override

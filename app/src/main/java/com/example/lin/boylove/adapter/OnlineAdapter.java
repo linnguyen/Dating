@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
@@ -45,6 +46,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
                 .centerCrop()
                 .placeholder(R.drawable.jlbt_flag)
                 .into(holder.imvUser);
+        holder.tvName.setText(user.getEmail());
     }
 
     @Override
@@ -55,10 +57,12 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imvUser;
+        TextView tvName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.imvUser = (ImageView) itemView.findViewById(R.id.imv_user);
+            this.tvName = (TextView) itemView.findViewById(R.id.name);
             itemView.setOnClickListener(this);
         }
 

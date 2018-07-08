@@ -95,4 +95,5 @@ public class ChatMessage implements IMessage {
     public void setChatroom(ChatRoom chatroom) {
         this.chatroom = chatroom;
     }
+
 }

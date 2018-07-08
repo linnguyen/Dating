@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Error;
-import com.example.lin.boylove.entity.Response.MessagesRoom;
+import com.example.lin.boylove.entity.Response.ListChatMessage;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.DolaxAPIs;
 
@@ -28,13 +28,13 @@ public class ChatInteractorIml implements ChatInteractor {
 
     @Override
     public void getChatMessagesByRoom(int chatRoomId, final ChatPresenter.OnChatFinishedListener listener) {
-        Call<MessagesRoom> call = dolaxAPIs.getMessagesByRoom(
+        Call<ListChatMessage> call = dolaxAPIs.getMessagesByRoom(
                 SessionManager.getInstance(context).getToken(), chatRoomId);
-        call.enqueue(new Callback<MessagesRoom>() {
+        call.enqueue(new Callback<ListChatMessage>() {
             @Override
-            public void onResponse(Call<MessagesRoom> call, Response<MessagesRoom> response) {
+            public void onResponse(Call<ListChatMessage> call, Response<ListChatMessage> response) {
                 if (response.isSuccessful()) {
-                    MessagesRoom messagesRoom = response.body();
+                    ListChatMessage messagesRoom = response.body();
                     if (messagesRoom != null) {
                         listener.onGetLstMessageSuccess(messagesRoom);
                     }
@@ -45,7 +45,7 @@ public class ChatInteractorIml implements ChatInteractor {
             }
 
             @Override
-            public void onFailure(Call<MessagesRoom> call, Throwable t) {
+            public void onFailure(Call<ListChatMessage> call, Throwable t) {
                 listener.onFailure(context.getString(R.string.toast_login_fail));
             }
         });
@@ -53,13 +53,13 @@ public class ChatInteractorIml implements ChatInteractor {
 
     @Override
     public void getMessagesForPrivateRoom(int otherUserId, final ChatPresenter.OnChatFinishedListener listener) {
-        Call<MessagesRoom> call = dolaxAPIs.getPrivateMessages(
+        Call<ListChatMessage> call = dolaxAPIs.getPrivateMessages(
                 SessionManager.getInstance(context).getToken(), otherUserId);
-        call.enqueue(new Callback<MessagesRoom>() {
+        call.enqueue(new Callback<ListChatMessage>() {
             @Override
-            public void onResponse(Call<MessagesRoom> call, Response<MessagesRoom> response) {
+            public void onResponse(Call<ListChatMessage> call, Response<ListChatMessage> response) {
                 if (response.isSuccessful()) {
-                    MessagesRoom messagesRoom = response.body();
+                    ListChatMessage messagesRoom = response.body();
                     if (messagesRoom != null) {
                         listener.onGetLstMessageSuccess(messagesRoom);
                     }
@@ -70,7 +70,7 @@ public class ChatInteractorIml implements ChatInteractor {
             }
 
             @Override
-            public void onFailure(Call<MessagesRoom> call, Throwable t) {
+            public void onFailure(Call<ListChatMessage> call, Throwable t) {
                 listener.onFailure(context.getString(R.string.toast_login_fail));
             }
         });

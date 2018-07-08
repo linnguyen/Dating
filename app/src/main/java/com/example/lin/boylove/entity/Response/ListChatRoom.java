@@ -9,21 +9,21 @@ import java.util.List;
  * Created by lin on 13/05/2018.
  */
 
-public class MessagesRoom  {
-    @SerializedName("messages")
+public class ListChatRoom {
+    @SerializedName("rooms")
     @Expose
-    private List<ChatMessage> lstMessage;
+    private List<ChatRoom> lstChatRoom;
 
     @SerializedName("meta")
     @Expose
     private Pagination pagination;
 
-    public List<ChatMessage> getLstMessage() {
-        return lstMessage;
+    public List<ChatRoom> getLstChatRoom() {
+        return lstChatRoom;
     }
 
-    public void setLstMessage(List<ChatMessage> lstMessage) {
-        this.lstMessage = lstMessage;
+    public void setLstChatRoom(List<ChatRoom> lstChatRoom) {
+        this.lstChatRoom = lstChatRoom;
     }
 
     public Pagination getPagination() {

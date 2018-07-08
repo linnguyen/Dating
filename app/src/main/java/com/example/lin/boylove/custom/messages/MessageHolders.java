@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.custom.commons.ImageLoader;
 import com.example.lin.boylove.custom.commons.ViewHolder;
@@ -761,13 +762,20 @@ public class MessageHolders {
             }
 
             if (userAvatar != null) {
-                boolean isAvatarExists = imageLoader != null
-                        && message.getUser().getAvatar() != null
+//                boolean isAvatarExists = imageLoader != null
+//                        && message.getUser().getAvatar() != null
+//                        && !message.getUser().getAvatar().isEmpty();
+                boolean isAvatarExists = message.getUser().getAvatar() != null
                         && !message.getUser().getAvatar().isEmpty();
 
                 userAvatar.setVisibility(isAvatarExists ? View.VISIBLE : View.GONE);
                 if (isAvatarExists) {
-                    imageLoader.loadImage(userAvatar, message.getUser().getAvatar());
+//                    imageLoader.loadImage(userAvatar, message.getUser().getAvatar());
+                    Glide.with()
+                            .load(imageUrl)
+                            .centerCrop()
+                            .placeholder(R.drawable.jlbt_flag)
+                            .into(holder.imvUser);
                 }
             }
         }

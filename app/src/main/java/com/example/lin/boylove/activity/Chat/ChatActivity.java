@@ -13,7 +13,7 @@ import com.example.lin.boylove.custom.messages.MessagesList;
 import com.example.lin.boylove.custom.messages.MessagesListAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
-import com.example.lin.boylove.entity.Response.MessagesRoom;
+import com.example.lin.boylove.entity.Response.ListChatMessage;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
@@ -92,7 +92,8 @@ public class ChatActivity extends DxBaseActivity implements
         }
 
         if (otherUser != null) {
-            presenter.getMessagesForPrivateRoom(otherUser.getId());
+//            presenter.getMessagesForPrivateRoom(otherUser.getId());
+            presenter.getPrivateRoom(otherUser.getId());
         }
     }
 
@@ -134,13 +135,16 @@ public class ChatActivity extends DxBaseActivity implements
     }
 
     @Override
-    public void onGetMessagesSuccess(MessagesRoom messagesRoom) {
-        adapter.addToEnd(messagesRoom.getLstMessage(), false);
+    public void onGetMessagesSuccess(ListChatMessage messagesRoom) {
+        adapter.addToEnd(messagesRoom.getLstMessage(), true);
     }
 
     @Override
-    public void onGetPrivateMessageSucess(ChatRoom room) {
-        chatRoom = room;
+    public void onGetPrivateRoomSucess(ChatRoom room) {
+        if (room != null) {
+            chatRoom = room;
+            presenter.getMessagesByRoom(chatRoom.getId());
+        }
     }
 
     @Override

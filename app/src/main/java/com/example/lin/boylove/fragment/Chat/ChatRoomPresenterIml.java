@@ -3,6 +3,7 @@ package com.example.lin.boylove.fragment.Chat;
 import android.content.Context;
 
 import com.example.lin.boylove.entity.Response.ChatRoom;
+import com.example.lin.boylove.entity.Response.ListChatRoom;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class ChatRoomPresenterIml implements ChatRoomPresenter,
     }
 
     @Override
-    public void onSuccess(List<ChatRoom> lstChatRoom) {
+    public void onSuccess(ListChatRoom lstChatRoom) {
         view.hideProgressBar();
         view.getLstChatRoomSuccess(lstChatRoom);
     }

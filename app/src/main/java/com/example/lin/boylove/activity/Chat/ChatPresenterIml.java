@@ -3,7 +3,7 @@ package com.example.lin.boylove.activity.Chat;
 import android.content.Context;
 
 import com.example.lin.boylove.entity.Response.ChatRoom;
-import com.example.lin.boylove.entity.Response.MessagesRoom;
+import com.example.lin.boylove.entity.Response.ListChatMessage;
 
 /**
  * Created by lin on 19/09/2017.
@@ -23,11 +23,11 @@ public class ChatPresenterIml implements ChatPresenter, ChatPresenter.OnChatFini
     @Override
     public void onPrivateRoomSuccess(ChatRoom room) {
         view.hideProgress();
-        view.onGetPrivateMessageSucess(room);
+        view.onGetPrivateRoomSucess(room);
     }
 
     @Override
-    public void onGetLstMessageSuccess(MessagesRoom messagesRoom) {
+    public void onGetLstMessageSuccess(ListChatMessage messagesRoom) {
         view.hideProgress();
         view.onGetMessagesSuccess(messagesRoom);
     }
@@ -50,6 +50,6 @@ public class ChatPresenterIml implements ChatPresenter, ChatPresenter.OnChatFini
 
     @Override
     public void getPrivateRoom(int otherUserId) {
-        interactor.getMessagesForPrivateRoom(otherUserId, this);
+        interactor.getPrivateChatRoom(otherUserId, this);
     }
 }

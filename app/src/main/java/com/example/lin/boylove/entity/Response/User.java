@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.lin.boylove.custom.commons.models.IUser;
+import com.example.lin.boylove.utilities.Constant;
 
 /**
  * Created by ryne on 20/09/2017.
@@ -50,7 +51,7 @@ public class User implements Parcelable, IUser {
 
     @Override
     public String getAvatar() {
-        return image.getUrl();
+        return Constant.Config.BASE_URL + image.getUrl();
     }
 
     public void setId(int id) {

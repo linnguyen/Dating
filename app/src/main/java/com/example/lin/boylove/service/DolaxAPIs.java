@@ -4,7 +4,8 @@ import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Debt;
 import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Income;
-import com.example.lin.boylove.entity.Response.MessagesRoom;
+import com.example.lin.boylove.entity.Response.ListChatMessage;
+import com.example.lin.boylove.entity.Response.ListChatRoom;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.Payment;
 import com.example.lin.boylove.entity.Response.User;
@@ -48,8 +49,8 @@ public interface DolaxAPIs {
     /*
      *Logout
      */
-    @POST("sessions/")
-    Call<User> logout(@Query("email") String email, @Query("password") String password);
+    @POST("signout/")
+    Call<User> logout(@Body JsonObject jsonObject);
 
     /*
      *Get list payment
@@ -85,19 +86,19 @@ public interface DolaxAPIs {
      * Get list chatrooms
      */
     @GET("rooms/")
-    Call<List<ChatRoom>> getChatRooms(@Header("Authorization") String authToken);
+    Call<ListChatRoom> getChatRooms(@Header("Authorization") String authToken);
 
     /*
     * Get messages by room
     */
     @GET("messages/")
-    Call<MessagesRoom> getMessagesByRoom(@Header("Authorization") String authToken, @Query("chatroom_id") int chatRoomId);
+    Call<ListChatMessage> getMessagesByRoom(@Header("Authorization") String authToken, @Query("chatroom_id") int chatRoomId);
 
     /*
    * Get private messages between two users
    */
     @GET("private_messages/")
-    Call<MessagesRoom> getPrivateMessages(@Header("Authorization") String authToken, @Query("other_user_id") int otherUserId);
+    Call<ListChatMessage> getPrivateMessages(@Header("Authorization") String authToken, @Query("other_user_id") int otherUserId);
 
     /*
   * Get private messages between two users

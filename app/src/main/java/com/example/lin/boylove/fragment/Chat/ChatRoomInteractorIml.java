@@ -3,13 +3,11 @@ package com.example.lin.boylove.fragment.Chat;
 import android.content.Context;
 
 import com.example.lin.boylove.R;
-import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.Error;
+import com.example.lin.boylove.entity.Response.ListChatRoom;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.utilities.Utils;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,14 +28,14 @@ public class ChatRoomInteractorIml implements ChatRoomInteractor {
 
     @Override
     public void getLstChatRoom(final ChatRoomPresenter.OnChatFinishedListener listener) {
-        Call<List<ChatRoom>> call = dolaxAPIs.getChatRooms(SessionManager.getInstance(context).getToken());
-        call.enqueue(new Callback<List<ChatRoom>>() {
+        Call<ListChatRoom> call = dolaxAPIs.getChatRooms(SessionManager.getInstance(context).getToken());
+        call.enqueue(new Callback<ListChatRoom>() {
             @Override
-            public void onResponse(Call<List<ChatRoom>> call, Response<List<ChatRoom>> response) {
+            public void onResponse(Call<ListChatRoom> call, Response<ListChatRoom> response) {
                 if (response.isSuccessful()) {
-                    List<ChatRoom> lstChatRoom = response.body();
-                    if (lstChatRoom != null) {
-                        listener.onSuccess(lstChatRoom);
+                    ListChatRoom listChatRoom = response.body();
+                    if (listChatRoom != null) {
+                        listener.onSuccess(listChatRoom);
                     }
                 } else {
                     Error error = DolaxAPIs.Factory.getError(response.errorBody());
@@ -46,7 +44,7 @@ public class ChatRoomInteractorIml implements ChatRoomInteractor {
             }
 
             @Override
-            public void onFailure(Call<List<ChatRoom>> call, Throwable t) {
+            public void onFailure(Call<ListChatRoom> call, Throwable t) {
                 Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
             }
         });

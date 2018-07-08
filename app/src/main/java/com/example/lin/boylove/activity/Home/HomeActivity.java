@@ -29,7 +29,7 @@ import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
-import com.example.lin.boylove.activity.PrivacyPolicyActivity;
+import com.example.lin.boylove.activity.Login.LoginActivity;
 import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
@@ -37,6 +37,7 @@ import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.helper.BottomNavigationBehavior;
+import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.example.lin.boylove.utilities.Utils;
@@ -46,7 +47,8 @@ import butterknife.BindView;
 
 public class HomeActivity extends DxBaseActivity implements
         DatePickerFragment.UpdateToolbarTitleInterface,
-        BottomNavigationView.OnNavigationItemSelectedListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        HomeView{
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.drawer_layout)
@@ -55,16 +57,14 @@ public class HomeActivity extends DxBaseActivity implements
     NavigationView navigationView;
     @BindView(R.id.bottom_nav_view)
     BottomNavigationView bottomNavView;
-    //    @BindView(R.id.tv_website)
-//    TextView tvWebsite;
-//    @BindView(R.id.img_profile)
-//    ImageView imvProfile;
 
     private View navHeader;
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private FinanceFragment financeFragment;
+
+    private HomePresenter presenter;
 
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
@@ -142,6 +142,7 @@ public class HomeActivity extends DxBaseActivity implements
     @Override
     protected void initAttributes() {
         mHandler = new Handler();
+        presenter = new HomePresenterIml(this, context);
     }
 
     @Override
@@ -282,8 +283,17 @@ public class HomeActivity extends DxBaseActivity implements
                         return true;
                     case R.id.nav_privacy_policy:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
-                        drawer.closeDrawers();
+//                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
+//                        drawer.closeDrawers();
+                        presenter.logout();
+
+                        // clear token
+                        SessionManager.getInstance(context).clear();
+
+                        // navigate to login
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         return true;
                     default:
                         navItemIndex = 0;
@@ -419,6 +429,16 @@ public class HomeActivity extends DxBaseActivity implements
         transaction.replace(R.id.main_container_wrapper, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
     }
 }
 
