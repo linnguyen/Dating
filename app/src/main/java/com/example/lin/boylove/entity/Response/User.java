@@ -51,7 +51,7 @@ public class User implements Parcelable, IUser {
 
     @Override
     public String getAvatar() {
-        return Constant.Config.BASE_URL + image.getUrl();
+        return Constant.Config.URL_IMAGE + image.getUrl();
     }
 
     public void setId(int id) {

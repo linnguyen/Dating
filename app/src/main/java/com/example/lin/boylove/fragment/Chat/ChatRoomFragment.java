@@ -1,9 +1,8 @@
 package com.example.lin.boylove.fragment.Chat;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
@@ -12,22 +11,24 @@ import com.example.lin.boylove.adapter.ChatRoomAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.ListChatRoom;
+import com.example.lin.boylove.fragment.Chat.adapter.DialogsList;
+import com.example.lin.boylove.fragment.Chat.adapter.DialogsListAdapter;
 import com.example.lin.boylove.fragment.DxBaseFragment;
-import com.example.lin.boylove.utilities.Utils;
-
-import java.util.List;
+import com.example.lin.boylove.utilities.GlideUtils;
 
 import butterknife.BindView;
 
 
 public class ChatRoomFragment extends DxBaseFragment implements
-        ChatRoomView, ChatRoomAdapter.ChatRoomListener {
-    @BindView(R.id.rcv_chat_room)
-    RecyclerView rcvChatRoom;
+        ChatRoomView, ChatRoomAdapter.ChatRoomListener, GlideUtils.ImageLoader {
+    //    @BindView(R.id.rcv_chat_room)
+//    RecyclerView rcvChatRoom;
+    @BindView(R.id.list_chat_room)
+    DialogsList listChatRoom;
     @BindView(R.id.pg_loading)
     ProgressBar pgLoading;
 
-    private ChatRoomAdapter adapter;
+    private DialogsListAdapter adapter;
     public static ChatRoomFragment instance;
 
 
@@ -55,10 +56,7 @@ public class ChatRoomFragment extends DxBaseFragment implements
     }
 
     private void setupLstChatRoom() {
-        rcvChatRoom.setLayoutManager(new LinearLayoutManager(mContext));
-        adapter = new ChatRoomAdapter(mContext);
-        adapter.setListener(this);
-        rcvChatRoom.setAdapter(adapter);
+
     }
 
     private void getLstChatRoom() {
@@ -68,6 +66,8 @@ public class ChatRoomFragment extends DxBaseFragment implements
     @Override
     protected void initAttributes() {
         presenter = new ChatRoomPresenterIml(mContext, this);
+        adapter = new DialogsListAdapter(this);
+        listChatRoom.setAdapter(adapter);
     }
 
     public void setMessageResponse(final ChatMessage message) {
@@ -97,7 +97,7 @@ public class ChatRoomFragment extends DxBaseFragment implements
 
     @Override
     public void getLstChatRoomSuccess(ListChatRoom lstChatRoom) {
-        adapter.setListData(lstChatRoom.getLstChatRoom());
+        adapter.setItems(lstChatRoom.getLstChatRoom());
     }
 
     @Override
@@ -109,5 +109,10 @@ public class ChatRoomFragment extends DxBaseFragment implements
     @Override
     public void onClick(ChatRoom chatRoom) {
         ChatActivity.open(ChatRoomFragment.this, chatRoom);
+    }
+
+    @Override
+    public void loadImage(String url, ImageView imv) {
+        GlideUtils.loadImage(mContext, url, imv);
     }
 }

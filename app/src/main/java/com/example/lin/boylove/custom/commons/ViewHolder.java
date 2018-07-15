@@ -4,9 +4,6 @@ package com.example.lin.boylove.custom.commons;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Base ViewHolder
- */
 public abstract class ViewHolder<DATA> extends RecyclerView.ViewHolder {
 
     public abstract void onBind(DATA data);

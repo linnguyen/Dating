@@ -1,12 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_chat_room"
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rcv_chat_room"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="5dp" />-->
+    <com.example.lin.boylove.fragment.Chat.adapter.DialogsList
+        android:id="@+id/list_chat_room"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp" />
+        app:dialogDividerLeftPadding="0dp"
+        app:dialogMessageTextSize="17sp"
+        app:dialogTitleTextStyle="bold"
+        app:dialogUnreadBubbleBackgroundColor="@color/red"
+        app:dialogUnreadItemBackground="@color/gray_transparent"
+        app:dialogUnreadTitleTextStyle="bold"/>
 
     <include layout="@layout/progress_bar" />
 </RelativeLayout>

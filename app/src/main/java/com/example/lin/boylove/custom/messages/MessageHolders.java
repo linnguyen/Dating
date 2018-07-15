@@ -21,6 +21,7 @@ import com.example.lin.boylove.custom.commons.ViewHolder;
 import com.example.lin.boylove.custom.commons.models.IMessage;
 import com.example.lin.boylove.custom.commons.models.MessageContentType;
 import com.example.lin.boylove.utilities.DateFormatter;
+import com.example.lin.boylove.utilities.GlideUtils;
 import com.example.lin.boylove.utilities.RoundedImageView;
 
 import java.lang.reflect.Constructor;
@@ -771,11 +772,7 @@ public class MessageHolders {
                 userAvatar.setVisibility(isAvatarExists ? View.VISIBLE : View.GONE);
                 if (isAvatarExists) {
 //                    imageLoader.loadImage(userAvatar, message.getUser().getAvatar());
-                    Glide.with()
-                            .load(imageUrl)
-                            .centerCrop()
-                            .placeholder(R.drawable.jlbt_flag)
-                            .into(holder.imvUser);
+                    GlideUtils.loadImage(itemView.getContext(), message.getUser().getAvatar(), userAvatar);
                 }
             }
         }
