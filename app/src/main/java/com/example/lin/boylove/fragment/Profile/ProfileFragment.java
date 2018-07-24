@@ -1,4 +1,4 @@
-package com.example.lin.boylove.fragment.Online;
+package com.example.lin.boylove.fragment.Profile;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,10 +7,10 @@ import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Chat.ChatActivity;
-import com.example.lin.boylove.fragment.Online.adapter.OnlineAdapter;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.DxBaseFragment;
+import com.example.lin.boylove.fragment.Online.adapter.OnlineAdapter;
 import com.example.lin.boylove.utilities.Utils;
 
 import butterknife.BindView;
@@ -19,17 +19,17 @@ import butterknife.BindView;
  * Created by lin on 20/08/2017.
  */
 
-public class OnlineFragment extends DxBaseFragment implements OnlineView,
+public class ProfileFragment extends DxBaseFragment implements ProfileView,
         OnlineAdapter.OnlineListener {
     @BindView(R.id.rcv_online)
     RecyclerView rcvOnline;
     @BindView(R.id.pg_loading)
     ProgressBar pgLoading;
 
-    private OnlinePresenter presenter;
+    private ProfilePresenter presenter;
     private OnlineAdapter adapter;
 
-    public OnlineFragment() {
+    public ProfileFragment() {
 
     }
 
@@ -46,7 +46,7 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
 
     @Override
     protected void initAttributes() {
-        presenter = new OnlinePresenterIml(mContext, this);
+        presenter = new ProfilePresenterIml(mContext, this);
     }
 
     private void setupLstOnline() {
@@ -84,6 +84,6 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
 
     @Override
     public void onClick(User other) {
-        ChatActivity.open(OnlineFragment.this, other);
+        ChatActivity.open(ProfileFragment.this, other);
     }
 }

@@ -48,7 +48,7 @@ import butterknife.BindView;
 public class HomeActivity extends DxBaseActivity implements
         DatePickerFragment.UpdateToolbarTitleInterface,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        HomeView{
+        HomeView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.drawer_layout)
@@ -211,7 +211,7 @@ public class HomeActivity extends DxBaseActivity implements
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
-                // finance fragment
+                // app_menu fragment
                 financeFragment = new FinanceFragment();
                 return financeFragment;
             case 1:
@@ -353,7 +353,7 @@ public class HomeActivity extends DxBaseActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.finance, menu);
+        inflater.inflate(R.menu.app_menu, menu);
         return true;
     }
 
@@ -394,23 +394,28 @@ public class HomeActivity extends DxBaseActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment;
         switch (item.getItemId()) {
-            case R.id.navigation_shop:
+            case R.id.navigation_newfeed:
                 toolbar.setTitle(getString(R.string.title_newfeed));
                 fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;
-            case R.id.navigation_gifts:
-                toolbar.setTitle(getString(R.string.title_online));
-                fragment = new OnlineFragment();
-                loadFragment(fragment);
-                return true;
-            case R.id.navigation_cart:
+            case R.id.navigation_chat:
                 toolbar.setTitle(getString(R.string.title_chat));
                 fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;
-            case R.id.navigation_profile:
+            case R.id.navigation_online:
+                toolbar.setTitle(getString(R.string.title_online));
+                fragment = new OnlineFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_livestream:
                 toolbar.setTitle(getString(R.string.title_livestream));
+                fragment = new ChatRoomFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_profile:
+                toolbar.setTitle(getString(R.string.title_profile));
                 fragment = new ChatRoomFragment();
                 loadFragment(fragment);
                 return true;

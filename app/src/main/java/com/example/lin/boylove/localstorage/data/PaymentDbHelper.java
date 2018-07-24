@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class PaymentDbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "finance.db";
+    private static final String DATABASE_NAME = "app_menu.db";
 
     private static final int DATABASE_VERSION = 1;
 

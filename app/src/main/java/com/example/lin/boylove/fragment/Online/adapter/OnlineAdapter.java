@@ -1,4 +1,4 @@
-package com.example.lin.boylove.adapter;
+package com.example.lin.boylove.fragment.Online.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
-import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.utilities.Constant;
 
