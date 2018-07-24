@@ -146,6 +146,7 @@ public class DXApplication extends android.app.Application {
                 public void onConnectSuccess() {
                     // subcribe to channel
                     subcribeChannel("RoomChannel");
+//                    subcribeChannel("ChatChannel");
                 }
             });
             socket.connect();

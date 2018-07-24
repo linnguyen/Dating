@@ -18,6 +18,7 @@ import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.DateFormatter;
+import com.example.lin.boylove.utilities.Utils;
 
 import java.util.Date;
 
@@ -103,7 +104,6 @@ public class ChatActivity extends DxBaseActivity implements
     }
 
     public void setMessageResponse(final ChatMessage message) {
-
         // if the room is existed
         if (chatRoom != null && message.getChatroom().getId() == chatRoom.getId()) {
             ChatActivity.this.runOnUiThread(new Runnable() {

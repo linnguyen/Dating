@@ -7,7 +7,6 @@ import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Chat.ChatActivity;
-import com.example.lin.boylove.adapter.ChatRoomAdapter;
 import com.example.lin.boylove.entity.Response.ChatMessage;
 import com.example.lin.boylove.entity.Response.ChatRoom;
 import com.example.lin.boylove.entity.Response.ListChatRoom;
@@ -20,7 +19,8 @@ import butterknife.BindView;
 
 
 public class ChatRoomFragment extends DxBaseFragment implements
-        ChatRoomView, ChatRoomAdapter.ChatRoomListener, GlideUtils.ImageLoader {
+        ChatRoomView, GlideUtils.ImageLoader,
+        DialogsListAdapter.OnDialogClickListener<ChatRoom> {
     //    @BindView(R.id.rcv_chat_room)
 //    RecyclerView rcvChatRoom;
     @BindView(R.id.list_chat_room)
@@ -67,6 +67,7 @@ public class ChatRoomFragment extends DxBaseFragment implements
     protected void initAttributes() {
         presenter = new ChatRoomPresenterIml(mContext, this);
         adapter = new DialogsListAdapter(this);
+        adapter.setOnDialogClickListener(this);
         listChatRoom.setAdapter(adapter);
     }
 
@@ -107,12 +108,12 @@ public class ChatRoomFragment extends DxBaseFragment implements
     }
 
     @Override
-    public void onClick(ChatRoom chatRoom) {
-        ChatActivity.open(ChatRoomFragment.this, chatRoom);
+    public void loadImage(String url, ImageView imv) {
+        GlideUtils.loadImage(mContext, url, imv);
     }
 
     @Override
-    public void loadImage(String url, ImageView imv) {
-        GlideUtils.loadImage(mContext, url, imv);
+    public void onDialogClick(ChatRoom room) {
+        ChatActivity.open(ChatRoomFragment.this, room);
     }
 }
