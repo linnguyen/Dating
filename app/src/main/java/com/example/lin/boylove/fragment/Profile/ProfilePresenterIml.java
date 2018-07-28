@@ -2,14 +2,14 @@ package com.example.lin.boylove.fragment.Profile;
 
 import android.content.Context;
 
-import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 
 /**
  * Created by ryne on 27/10/2017.
  */
 
 public class ProfilePresenterIml implements ProfilePresenter,
-        ProfilePresenter.OnOnlineFinishedListener {
+        ProfilePresenter.OnProfileFinishedListener {
     private Context context;
     private ProfileView view;
     private ProfileInteractor interactor;
@@ -21,20 +21,20 @@ public class ProfilePresenterIml implements ProfilePresenter,
     }
 
     @Override
-    public void getLstOnline() {
+    public void onSuccess(User user) {
         view.showProgressBar();
-        interactor.getListOnline(this);
-    }
-
-    @Override
-    public void onSuccess(Online online) {
-        view.hideProgressBar();
-        view.getListOnlineSuccess(online);
+        view.onGetUserProfileSuccess(user);
     }
 
     @Override
     public void onFailure(String message) {
         view.hideProgressBar();
         view.showMessage(message);
+    }
+
+    @Override
+    public void getUserProfile() {
+        view.showProgressBar();
+        interactor.getUserProfile(this);
     }
 }

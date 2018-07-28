@@ -1,6 +1,6 @@
 package com.example.lin.boylove.fragment.Profile;
 
-import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 
 /**
  * Created by ryne on 27/10/2017.
@@ -8,11 +8,11 @@ import com.example.lin.boylove.entity.Response.Online;
 
 public interface ProfilePresenter {
 
-    interface OnOnlineFinishedListener {
-        void onSuccess(Online online);
+    interface OnProfileFinishedListener {
+        void onSuccess(User user);
 
         void onFailure(String message);
     }
 
-    void getLstOnline();
+    void getUserProfile();
 }

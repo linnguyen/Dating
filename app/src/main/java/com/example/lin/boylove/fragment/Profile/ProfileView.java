@@ -1,6 +1,6 @@
 package com.example.lin.boylove.fragment.Profile;
 
-import com.example.lin.boylove.entity.Response.Online;
+import com.example.lin.boylove.entity.Response.User;
 
 /**
  * Created by ryne on 27/10/2017.
@@ -13,5 +13,5 @@ public interface ProfileView {
 
     void showMessage(String message);
 
-    void getListOnlineSuccess(Online online);
+    void onGetUserProfileSuccess(User user);
 }

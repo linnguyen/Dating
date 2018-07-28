@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.example.lin.boylove.activity.Chat.ChatActivity;
 import com.example.lin.boylove.entity.ChatSocket.Channel;
@@ -14,11 +15,12 @@ import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.WebSocketClient;
 import com.example.lin.boylove.utilities.Constant;
-import com.example.lin.boylove.utilities.Utils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 public class DXApplication extends android.app.Application {
     /**
@@ -134,12 +136,26 @@ public class DXApplication extends android.app.Application {
                     URI(Constant.Config.SOCKET_URL + SessionManager.getInstance(getApplicationContext()).getToken()));
             socket.setListener(new WebSocketClient.WebSocketListener() {
                 @Override
-                public void onMessageResponse(ChatMessage message) {
-                    if (ChatActivity.instance != null)
-                        ChatActivity.instance.setMessageResponse(message);
+                public void onMessageResponse(final ChatMessage message) {
 
-                    if (ChatRoomFragment.instance != null)
+                    if (ChatActivity.instance != null) {
+                        ChatActivity.instance.setMessageResponse(message);
+                    }
+
+                    if (ChatRoomFragment.instance != null) {
                         ChatRoomFragment.instance.setMessageResponse(message);
+                    }
+
+                    if (message.isFirstMessage()){
+                        // if this is a new message of chat room,
+                        // user need to re-subribe the channel to update the stream from channel
+                        new Thread(new Runnable() {
+                            public void run() {
+                                unsubscribeChannel("RoomChannel");
+                                subcribeChannel("RoomChannel");
+                            }
+                        }).start();
+                    }
                 }
 
                 @Override
@@ -155,19 +171,30 @@ public class DXApplication extends android.app.Application {
         }
     }
 
-    public void subcribeChannel(String subcribedChannel) {
-        // RoomChannel
-        channel = new Channel(subcribedChannel);
-        Command commandSubcribe = Command.subscribe(channel.toIdentifier());
-        socket.send(commandSubcribe.toJson());
-    }
-
-    public void sendMessage(String content, int roomId, int otherUserId) {
+    public void sendMessage(String content, int roomId, List<Integer> lstOtherUser) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("content", content);
         jsonObject.addProperty("room_id", roomId);
-        jsonObject.addProperty("other_user_id", otherUserId);
+        JsonArray arrJsonOtherUser = new JsonArray();
+        for (int other_user_id : lstOtherUser) {
+            arrJsonOtherUser.add(other_user_id);
+        }
+        jsonObject.add("other_users", arrJsonOtherUser);
         Command command = Command.message(channel.toIdentifier(), jsonObject);
+        socket.send(command.toJson());
+    }
+
+    public void subcribeChannel(String subcribedChannel) {
+        // RoomChannel
+        channel = new Channel(subcribedChannel);
+        Command command = Command.subscribe(channel.toIdentifier());
+        socket.send(command.toJson());
+    }
+
+    public void unsubscribeChannel(String unsubscribeChannel){
+        // RoomChannel
+        channel = new Channel(unsubscribeChannel);
+        Command command = Command.unsubscribe(channel.toIdentifier());
         socket.send(command.toJson());
     }
 }

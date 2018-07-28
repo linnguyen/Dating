@@ -19,6 +19,14 @@ public class GlideUtils {
                 .into(imv);
     }
 
+    public static void loadImageAvatar(Context context, String url, ImageView imv) {
+        Glide.with(context)
+                .load(url)
+                .centerCrop()
+                .placeholder(R.drawable.ic_profile_avatar)
+                .into(imv);
+    }
+
     public interface ImageLoader{
         void loadImage(String url, ImageView imv);
     }

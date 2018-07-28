@@ -39,7 +39,8 @@
     <!-- text size -->
     <dimen name="text_size_x">4dp</dimen>
     <dimen name="text_size_xx">12dp</dimen>
-    <dimen name="text_size_xxx">16dp</dimen>
+    <dimen name="text_size_xxx">14dp</dimen>
+    <dimen name="text_size_normal">16dp</dimen>
     <dimen name="text_size_big">20dp</dimen>
     <dimen name="text_size_xbig">24dp</dimen>
     <!-- height -->

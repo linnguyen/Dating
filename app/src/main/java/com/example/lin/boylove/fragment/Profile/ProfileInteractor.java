@@ -5,5 +5,5 @@ package com.example.lin.boylove.fragment.Profile;
  */
 
 public interface ProfileInteractor {
-    void getListOnline(ProfilePresenter.OnOnlineFinishedListener listener);
+    void getUserProfile(ProfilePresenter.OnProfileFinishedListener listener);
 }

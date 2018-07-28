@@ -36,6 +36,10 @@ public class ChatMessage implements IMessage {
     @Expose
     private ChatRoom chatroom;
 
+    @SerializedName("first_message")
+    @Expose
+    private boolean firstMessage;
+
     @Override
     public int getId() {
         return id;
@@ -96,4 +100,11 @@ public class ChatMessage implements IMessage {
         this.chatroom = chatroom;
     }
 
+    public boolean isFirstMessage() {
+        return firstMessage;
+    }
+
+    public void setFirstMessage(boolean firstMessage) {
+        this.firstMessage = firstMessage;
+    }
 }

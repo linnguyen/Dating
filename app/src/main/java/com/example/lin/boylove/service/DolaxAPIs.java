@@ -106,6 +106,12 @@ public interface DolaxAPIs {
     @GET("private_room/")
     Call<ChatRoom> getPrivateRoom(@Header("Authorization") String authToken, @Query("other_user_id") int otherUserId);
 
+    /*
+   * Get user profile
+   */
+    @GET("profile/")
+    Call<User> getUserProfile(@Header("Authorization") String authToken, @Query("id") int userId);
+
     class Factory {
         public static DolaxAPIs create() {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

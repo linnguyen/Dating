@@ -20,7 +20,9 @@ import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.DateFormatter;
 import com.example.lin.boylove.utilities.Utils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -121,7 +123,7 @@ public class ChatActivity extends DxBaseActivity implements
             if (otherUser.getId() == message.getUser().getId() ||
                     SessionManager.getInstance(context).getUserId() == message.getUser().getId()) {
                 chatRoom = message.getChatroom(); // assigned new chat room
-                otherUser = null; // no  need to user other user for the next sending message
+                otherUser = null; // no  need to use other user for the next sending message
                 ChatActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -174,13 +176,16 @@ public class ChatActivity extends DxBaseActivity implements
 
     @Override
     public boolean onSubmit(CharSequence input) {
+        List<Integer> lstOtherUser = new ArrayList<>();
         if (chatRoom != null) {
-            DXApplication.get(context).sendMessage(input.toString(), chatRoom.getId(), -1);
+            lstOtherUser.add(-1);
+            DXApplication.get(context).sendMessage(input.toString(), chatRoom.getId(), lstOtherUser);
             return true;
         }
 
         if (otherUser != null) {
-            DXApplication.get(context).sendMessage(input.toString(), -1, otherUser.getId());
+            lstOtherUser.add(otherUser.getId());
+            DXApplication.get(context).sendMessage(input.toString(), -1, lstOtherUser);
             return true;
         }
         return true;
