@@ -21,10 +21,10 @@ import butterknife.BindView;
 
 public class ProfileFragment extends DxBaseFragment implements ProfileView,
         OnlineAdapter.OnlineListener {
-    @BindView(R.id.rcv_online)
-    RecyclerView rcvOnline;
-    @BindView(R.id.pg_loading)
-    ProgressBar pgLoading;
+//    @BindView(R.id.rcv_online)
+//    RecyclerView rcvOnline;
+//    @BindView(R.id.pg_loading)
+//    ProgressBar pgLoading;
 
     private ProfilePresenter presenter;
     private OnlineAdapter adapter;
@@ -35,7 +35,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView,
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.fragment_online;
+        return R.layout.fragment_profile;
     }
 
     @Override
@@ -50,11 +50,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView,
     }
 
     private void setupLstOnline() {
-        rcvOnline.setHasFixedSize(true);
-        rcvOnline.setLayoutManager(new GridLayoutManager(mContext, 3));
-        adapter = new OnlineAdapter(getContext());
-        adapter.setListener(this);
-        rcvOnline.setAdapter(adapter);
+
     }
 
     private void getLstOnline() {
@@ -63,13 +59,11 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView,
 
     @Override
     public void showProgressBar() {
-        pgLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        if (pgLoading != null)
-            pgLoading.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -79,7 +73,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView,
 
     @Override
     public void getListOnlineSuccess(Online online) {
-        adapter.setData(online.getLstUser());
+
     }
 
     @Override

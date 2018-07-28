@@ -33,8 +33,10 @@ import com.example.lin.boylove.activity.Login.LoginActivity;
 import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
+import com.example.lin.boylove.fragment.LiveStream.LiveStreamFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
+import com.example.lin.boylove.fragment.Profile.ProfileFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.helper.BottomNavigationBehavior;
 import com.example.lin.boylove.localstorage.SessionManager;
@@ -411,12 +413,13 @@ public class HomeActivity extends DxBaseActivity implements
                 return true;
             case R.id.navigation_livestream:
                 toolbar.setTitle(getString(R.string.title_livestream));
-                fragment = new ChatRoomFragment();
+                fragment = new LiveStreamFragment();
                 loadFragment(fragment);
                 return true;
             case R.id.navigation_profile:
                 toolbar.setTitle(getString(R.string.title_profile));
-                fragment = new ChatRoomFragment();
+                fragment = new ProfileFragment();
+//                loadIconFragment(item.getItemId());
                 loadFragment(fragment);
                 return true;
         }
@@ -435,6 +438,14 @@ public class HomeActivity extends DxBaseActivity implements
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+//    private void loadIconFragment(int itemId) {
+//        switch (itemId) {
+//            case R.id.navigation_profile:
+//                loadIconFragment();
+//                break;
+//        }
+//    }
 
     @Override
     public void showMessage(String message) {
