@@ -45,7 +45,6 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
                 .centerCrop()
                 .placeholder(R.drawable.jlbt_flag)
                 .into(holder.imvUser);
-        holder.tvName.setText(user.getEmail());
     }
 
     @Override
@@ -61,7 +60,6 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
             this.imvUser = (ImageView) itemView.findViewById(R.id.imv_user);
-            this.tvName = (TextView) itemView.findViewById(R.id.name);
             itemView.setOnClickListener(this);
         }
 

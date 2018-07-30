@@ -24,6 +24,8 @@
     <dimen name="margin_tinyx">5dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_normal">10dp</dimen>
+    <dimen name="margin_medium">14dp</dimen>
+    <dimen name="margin_big">18dp</dimen>
 
     <!-- padding -->
     <dimen name="padding_tiny">5dp</dimen>

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_tiny"
         android:background="@color/white"
-        android:padding="@dimen/padding_small">
+        android:padding="@dimen/padding_normal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,36 +27,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="@dimen/text_size_xxx"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:fontFamily="@string/font_fontFamily_medium"
+                android:textSize="@dimen/dialog_title_text_size"
+                android:textStyle="bold"
                 android:theme="@style/TextBlack" />
         </LinearLayout>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_tiny"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/padding_small">
+        android:padding="@dimen/padding_normal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_big"
             android:orientation="horizontal">
 
             <ImageView
-                android:gravity="center_vertical"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:gravity="center_vertical"
                 android:src="@drawable/ic_send" />
 
             <TextView
-                android:layout_gravity="center"
-                android:text="Update profile"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xxx"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="Update profile"
+                android:textSize="@dimen/text_size_normal"
                 android:theme="@style/TextBlack" />
         </LinearLayout>
 
@@ -66,18 +71,18 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_send" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
-                android:text="See who follow you"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xxx"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="See who follow you"
+                android:textSize="@dimen/text_size_normal"
                 android:theme="@style/TextBlack" />
         </LinearLayout>
     </LinearLayout>
@@ -85,29 +90,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_tiny"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/padding_small">
+        android:padding="@dimen/padding_normal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_big"
             android:orientation="horizontal">
 
             <ImageView
-                android:gravity="center_vertical"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:gravity="center_vertical"
                 android:src="@drawable/ic_send" />
 
             <TextView
-                android:layout_gravity="center"
-                android:text="Update profile"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xxx"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="Update profile"
+                android:textSize="@dimen/text_size_normal"
                 android:theme="@style/TextBlack" />
         </LinearLayout>
 
@@ -117,18 +123,70 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_send" />
 
             <TextView
-                android:layout_gravity="center_horizontal"
-                android:text="See who follow you"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xxx"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="See who follow you"
+                android:textSize="@dimen/text_size_normal"
+                android:theme="@style/TextBlack" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_big"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:src="@drawable/ic_send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="Update profile"
+                android:textSize="@dimen/text_size_normal"
+                android:theme="@style/TextBlack" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:text="See who follow you"
+                android:textSize="@dimen/text_size_normal"
                 android:theme="@style/TextBlack" />
         </LinearLayout>
     </LinearLayout>
