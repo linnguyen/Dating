@@ -34,6 +34,7 @@ import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
 import com.example.lin.boylove.fragment.LiveStream.LiveStreamFragment;
+import com.example.lin.boylove.fragment.NewFeed.NewfeedFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
 import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.Profile.ProfileFragment;
@@ -398,7 +399,7 @@ public class HomeActivity extends DxBaseActivity implements
         switch (item.getItemId()) {
             case R.id.navigation_newfeed:
                 toolbar.setTitle(getString(R.string.title_newfeed));
-                fragment = new ChatRoomFragment();
+                fragment = new NewfeedFragment();
                 loadFragment(fragment);
                 return true;
             case R.id.navigation_chat:
