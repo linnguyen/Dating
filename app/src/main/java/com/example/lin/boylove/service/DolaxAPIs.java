@@ -6,6 +6,7 @@ import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.Income;
 import com.example.lin.boylove.entity.Response.ListChatMessage;
 import com.example.lin.boylove.entity.Response.ListChatRoom;
+import com.example.lin.boylove.entity.Response.ListNewFeed;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.Payment;
 import com.example.lin.boylove.entity.Response.User;
@@ -111,6 +112,12 @@ public interface DolaxAPIs {
    */
     @GET("profile/")
     Call<User> getUserProfile(@Header("Authorization") String authToken, @Query("id") int userId);
+
+    /*
+    * Get new feeds
+    */
+    @GET("newfeeds/")
+    Call<ListNewFeed> getNewFeeds(@Header("Authorization") String authToken);
 
     class Factory {
         public static DolaxAPIs create() {

@@ -1,5 +1,6 @@
 package com.example.lin.boylove.fragment.NewFeed;
 
+import com.example.lin.boylove.entity.Response.ListNewFeed;
 import com.example.lin.boylove.entity.Response.NewFeed;
 
 /**
@@ -13,5 +14,5 @@ public interface NewfeedView {
 
     void showMessage(String message);
 
-    void onGetNewFeedsSuccess(NewFeed newFeed);
+    void onGetNewFeedsSuccess(ListNewFeed lstNewFeed);
 }

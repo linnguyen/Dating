@@ -2,6 +2,7 @@ package com.example.lin.boylove.fragment.NewFeed;
 
 import android.content.Context;
 
+import com.example.lin.boylove.entity.Response.ListNewFeed;
 import com.example.lin.boylove.entity.Response.NewFeed;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.Profile.ProfileView;
@@ -23,9 +24,9 @@ public class NewfeedPresenterIml implements NewfeedPresenter,
     }
 
     @Override
-    public void onSuccess(NewFeed newFeed) {
+    public void onSuccess(ListNewFeed lstNewFeed) {
         view.showProgressBar();
-        view.onGetNewFeedsSuccess(newFeed);
+        view.onGetNewFeedsSuccess(lstNewFeed);
     }
 
     @Override

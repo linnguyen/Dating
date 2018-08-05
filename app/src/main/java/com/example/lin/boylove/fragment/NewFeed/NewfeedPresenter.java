@@ -1,6 +1,6 @@
 package com.example.lin.boylove.fragment.NewFeed;
 
-import com.example.lin.boylove.entity.Response.NewFeed;
+import com.example.lin.boylove.entity.Response.ListNewFeed;
 
 /**
  * Created by ryne on 27/10/2017.
@@ -9,7 +9,7 @@ import com.example.lin.boylove.entity.Response.NewFeed;
 public interface NewfeedPresenter {
 
     interface OnNewfeedFinishedListener {
-        void onSuccess(NewFeed newFeed);
+        void onSuccess(ListNewFeed lstNewFeed);
 
         void onFailure(String message);
     }

@@ -17,10 +17,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class ProfileFragment extends DxBaseFragment implements ProfileView {
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.civ_profile)
-    CircleImageView civProfile;
+//    @BindView(R.id.tv_name)
+//    TextView tvName;
+//    @BindView(R.id.civ_profile)
+//    CircleImageView civProfile;
 
     private ProfilePresenter presenter;
 
@@ -69,7 +69,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView {
     @Override
     public void onGetUserProfileSuccess(User user) {
         // it should be the full name here
-        tvName.setText(user.getEmail());
-        GlideUtils.loadImageAvatar(mContext, user.getAvatar(), civProfile);
+//        tvName.setText(user.getEmail());
+//        GlideUtils.loadImageAvatar(mContext, user.getAvatar(), civProfile);
     }
 }
