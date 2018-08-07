@@ -72,11 +72,11 @@ public class NewfeedFragment extends DxBaseFragment implements NewfeedView {
 
     @Override
     public void onGetNewFeedsSuccess(ListNewFeed lstNewFeed) {
-      adapter.setNewFeeds(lstNewFeed);
+        adapter.setNewFeeds(lstNewFeed.getLstNewFeed());
     }
 
-    private void getNewFeeds(){
-       presenter.getNewFeeds();
+    private void getNewFeeds() {
+        presenter.getNewFeeds();
     }
 
 //    public void populateRecyclerView() {

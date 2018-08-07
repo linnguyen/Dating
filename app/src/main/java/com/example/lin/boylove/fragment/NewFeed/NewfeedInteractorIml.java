@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.Error;
 import com.example.lin.boylove.entity.Response.ListNewFeed;
-import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.service.DolaxAPIs;
 import com.example.lin.boylove.utilities.Utils;
@@ -29,14 +28,14 @@ public class NewfeedInteractorIml implements NewfeedInteractor {
 
     @Override
     public void getNewFeeds(final NewfeedPresenter.OnNewfeedFinishedListener listener) {
-        Call<User> call = dolaxAPIs.getUserProfile(SessionManager.getInstance(context).getToken(), 10);
-        call.enqueue(new Callback<User>() {
+        Call<ListNewFeed> call = dolaxAPIs.getNewFeeds(SessionManager.getInstance(context).getToken());
+        call.enqueue(new Callback<ListNewFeed>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<ListNewFeed> call, Response<ListNewFeed> response) {
                 if (response.isSuccessful()) {
-                    User lstNewFeed = response.body();
+                    ListNewFeed lstNewFeed = response.body();
                     if (lstNewFeed != null) {
-//                        listener.onSuccess(lstNewFeed);
+                        listener.onSuccess(lstNewFeed);
                     }
                 } else {
                     Error error = DolaxAPIs.Factory.getError(response.errorBody());
@@ -45,29 +44,9 @@ public class NewfeedInteractorIml implements NewfeedInteractor {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
+            public void onFailure(Call<ListNewFeed> call, Throwable t) {
+                Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
             }
         });
-
-        //        call.enqueue(new Callback<ListNewFeed>() {
-//            @Override
-//            public void onResponse(Call<ListNewFeed> call, Response<ListNewFeed> response) {
-//                if (response.isSuccessful()) {
-//                    ListNewFeed lstNewFeed = response.body();
-//                    if (lstNewFeed != null) {
-//                        listener.onSuccess(lstNewFeed);
-//                    }
-//                } else {
-//                    Error error = DolaxAPIs.Factory.getError(response.errorBody());
-//                    listener.onFailure(error.getErrors());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ListNewFeed> call, Throwable t) {
-//                Utils.showToast(context, context.getString(R.string.toast_st_went_wrong));
-//            }
-//        });
     }
 }

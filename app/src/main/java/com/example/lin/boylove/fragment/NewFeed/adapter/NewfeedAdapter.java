@@ -11,10 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.example.lin.boylove.R;
-import com.example.lin.boylove.entity.Response.ListNewFeed;
 import com.example.lin.boylove.entity.Response.NewFeed;
 import com.example.lin.boylove.utilities.Constant;
-import com.example.lin.boylove.utilities.Utils;
+import com.example.lin.boylove.utilities.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ import java.util.List;
 public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHolder> {
 
     Context context;
-    List<NewFeed> lstNewFeed = new ArrayList<>();
+    List<NewFeed> lstNewFeed;
     RequestManager glide;
 
     public NewfeedAdapter(Context context, ArrayList<NewFeed> modelFeedArrayList) {
@@ -39,6 +38,7 @@ public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHo
     public NewfeedAdapter(Context context) {
         this.context = context;
         glide = Glide.with(context);
+        lstNewFeed = new ArrayList<>();
     }
 
     @Override
@@ -52,21 +52,21 @@ public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final NewFeed modelFeed = lstNewFeed.get(position);
-
-        holder.tv_name.setText(modelFeed.getDescription());
-        holder.tv_time.setText("14h");
+        final NewFeed feed = lstNewFeed.get(position);
+        holder.tv_name.setText(feed.getUser().getEmail());
+        holder.tv_time.setText(feed.getCreated_at());
+        holder.tv_status.setText(feed.getDescription());
 //        holder.tv_likes.setText(String.valueOf(modelFeed.getLikes()));
 //        holder.tv_comments.setText(modelFeed.getComments() + " comments");
 //        holder.tv_status.setText(modelFeed.getStatus());
 
-        glide.load(modelFeed.getUser().getAvatar()).into(holder.imgView_proPic);
+        glide.load(feed.getUser().getAvatar()).into(holder.imgView_proPic);
 
-        if (modelFeed.getImage() != Constant.EMPTY) {
+        if (feed.getImage().getUrl() != Constant.EMPTY) {
             holder.imgView_postPic.setVisibility(View.GONE);
         } else {
             holder.imgView_postPic.setVisibility(View.VISIBLE);
-            glide.load(modelFeed.getImage()).into(holder.imgView_postPic);
+            GlideUtils.loadImage(context, feed.getImage().getUrl(), holder.imgView_postPic);
         }
     }
 
@@ -75,8 +75,9 @@ public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHo
         return lstNewFeed.size();
     }
 
-    public void setNewFeeds(ListNewFeed lstNewFeed) {
-        lstNewFeed = lstNewFeed;
+    public void setNewFeeds(List<NewFeed> lstNewFeed) {
+        this.lstNewFeed = lstNewFeed;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

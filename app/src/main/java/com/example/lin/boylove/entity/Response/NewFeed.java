@@ -15,11 +15,19 @@ public class NewFeed {
 
     @SerializedName("image")
     @Expose
-    private String image;
+    private Image image;
 
     @SerializedName("user")
     @Expose
     private User user;
+
+    @SerializedName("created_at")
+    @Expose
+    private String created_at;
+
+    @SerializedName("updated_at")
+    @Expose
+    private String updated_at;
 
 //    int likes, comments, propic, postpic;
 //    String name, time, status;
@@ -107,11 +115,11 @@ public class NewFeed {
         this.description = description;
     }
 
-    public String getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -121,5 +129,21 @@ public class NewFeed {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
     }
 }
