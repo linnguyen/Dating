@@ -63,10 +63,10 @@ public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHo
         glide.load(feed.getUser().getAvatar()).into(holder.imgView_proPic);
 
         if (feed.getImage().getUrl() != Constant.EMPTY) {
-            holder.imgView_postPic.setVisibility(View.GONE);
-        } else {
             holder.imgView_postPic.setVisibility(View.VISIBLE);
             GlideUtils.loadImage(context, feed.getImage().getUrl(), holder.imgView_postPic);
+        } else {
+            holder.imgView_postPic.setVisibility(View.GONE);
         }
     }
 

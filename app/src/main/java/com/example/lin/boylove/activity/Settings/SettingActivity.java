@@ -21,7 +21,7 @@ public class SettingActivity extends DxBaseActivity
 
     @Override
     protected void initAttributes() {
-      presenter = new SettingPresenterIml(this, context);
+        presenter = new SettingPresenterIml(this, context);
     }
 
     @Override
@@ -40,5 +40,10 @@ public class SettingActivity extends DxBaseActivity
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.imv_back)
+    public void onClickBack() {
+        finish();
     }
 }

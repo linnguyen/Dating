@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -30,7 +29,6 @@ import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.activity.Settings.SettingActivity;
-import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
 import com.example.lin.boylove.fragment.LiveStream.LiveStreamFragment;
@@ -48,7 +46,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import butterknife.BindView;
 
 public class HomeActivity extends DxBaseActivity implements
-        DatePickerFragment.UpdateToolbarTitleInterface,
         BottomNavigationView.OnNavigationItemSelectedListener,
         HomeView {
     @BindView(R.id.toolbar)
@@ -180,8 +177,6 @@ public class HomeActivity extends DxBaseActivity implements
     private void loadHomeFragment() {
         // selecting appropriate nav menu item
         selectNavMenu();
-        // set toolbar title
-        setToolbarTitle();
         // if user select the current navigation menu again, don't do anything, just close
         // the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
@@ -238,11 +233,6 @@ public class HomeActivity extends DxBaseActivity implements
             default:
                 return new FinanceFragment();
         }
-    }
-
-    private void setToolbarTitle() {
-//        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
-        getSupportActionBar().setTitle("October");
     }
 
     private void selectNavMenu() {
@@ -358,8 +348,8 @@ public class HomeActivity extends DxBaseActivity implements
         int id = item.getItemId();
         if (id == R.id.action_date_picker) {
             // This will be done later, call the method from Payment fragment, use interface or something
-            DialogFragment dialogFragment = new DatePickerFragment(this);
-            dialogFragment.show(getSupportFragmentManager(), "datePicker");
+//            DialogFragment dialogFragment = new DatePickerFragment();
+//            dialogFragment.show(getSupportFragmentManager(), "datePicker");
         }
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingActivity.class);
@@ -382,12 +372,6 @@ public class HomeActivity extends DxBaseActivity implements
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
-    }
-
-
-    @Override
-    public void updateToolbarTitle(int month, int year) {
-        getSupportActionBar().setTitle(month + " / " + year);
     }
 
     @Override

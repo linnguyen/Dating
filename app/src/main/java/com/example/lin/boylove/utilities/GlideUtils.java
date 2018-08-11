@@ -13,7 +13,7 @@ import com.example.lin.boylove.R;
 public class GlideUtils {
     public static void loadImage(Context context, String url, ImageView imv) {
         Glide.with(context)
-                .load(url)
+                .load(Constant.Config.URL_IMAGE + url)
                 .centerCrop()
                 .placeholder(R.drawable.jlbt_flag)
                 .into(imv);
@@ -21,13 +21,13 @@ public class GlideUtils {
 
     public static void loadImageAvatar(Context context, String url, ImageView imv) {
         Glide.with(context)
-                .load(url)
+                .load(Constant.Config.URL_IMAGE + url)
                 .centerCrop()
                 .placeholder(R.drawable.ic_profile_avatar)
                 .into(imv);
     }
 
-    public interface ImageLoader{
+    public interface ImageLoader {
         void loadImage(String url, ImageView imv);
     }
 }
