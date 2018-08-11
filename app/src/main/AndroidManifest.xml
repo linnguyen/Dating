@@ -25,6 +25,7 @@
         <activity android:name=".activity.Login.LoginActivity" />
         <activity android:name=".activity.AddPayment.AddPaymentActivity" />
         <activity android:name=".activity.Chat.ChatActivity"/>
+        <activity android:name=".activity.Settings.SettingActivity"/>
         <activity android:name=".activity.WeeklyFinanceReport.DetailFinanceActivity">
             <intent-filter>
                 <action android:name="android.action.Dolax_Finance_Report_Notification" />

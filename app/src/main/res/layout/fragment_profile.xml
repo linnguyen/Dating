@@ -19,16 +19,15 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/jlbt_flag" />
 
-            <ImageButton
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imv_user_profile"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/margin_normal"
                 android:background="@drawable/profile_circular_border_imageview"
-                android:padding="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/jlbt_flag" />
+                />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -130,151 +129,151 @@
 
         </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_follow"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+        <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/layout_follow"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:orientation="vertical">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical">-->
 
-                <ImageView
-                    android:layout_width="@dimen/size_icon_small"
-                    android:layout_height="@dimen/size_icon_small"
-                    android:layout_marginLeft="@dimen/margin_tiny"
-                    android:padding="@dimen/padding_big"
-                    android:src="@drawable/ic_send_black_24dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/size_icon_small"-->
+                    <!--android:layout_height="@dimen/size_icon_small"-->
+                    <!--android:layout_marginLeft="@dimen/margin_tiny"-->
+                    <!--android:padding="@dimen/padding_big"-->
+                    <!--android:src="@drawable/ic_send_black_24dp" />-->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Android Profile UI Design"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="fill_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:elevation="4dp"-->
+                    <!--android:padding="20dp"-->
+                    <!--android:text="Android Profile UI Design"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
     </RelativeLayout>
 </ScrollView>

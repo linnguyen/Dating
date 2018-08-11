@@ -29,7 +29,7 @@ import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
-import com.example.lin.boylove.activity.Login.LoginActivity;
+import com.example.lin.boylove.activity.Settings.SettingActivity;
 import com.example.lin.boylove.dialog.DatePicker.DatePickerFragment;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.FinanceFragment;
@@ -40,7 +40,6 @@ import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.Profile.ProfileFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.helper.BottomNavigationBehavior;
-import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.example.lin.boylove.utilities.Utils;
@@ -85,6 +84,8 @@ public class HomeActivity extends DxBaseActivity implements
     private Handler mHandler;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,15 +289,6 @@ public class HomeActivity extends DxBaseActivity implements
                         // launch new intent instead of loading fragment
 //                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
 //                        drawer.closeDrawers();
-                        presenter.logout();
-
-                        // clear token
-                        SessionManager.getInstance(context).clear();
-
-                        // navigate to login
-                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
                         return true;
                     default:
                         navItemIndex = 0;
@@ -355,6 +347,7 @@ public class HomeActivity extends DxBaseActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        this.menu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.app_menu, menu);
         return true;
@@ -367,6 +360,10 @@ public class HomeActivity extends DxBaseActivity implements
             // This will be done later, call the method from Payment fragment, use interface or something
             DialogFragment dialogFragment = new DatePickerFragment(this);
             dialogFragment.show(getSupportFragmentManager(), "datePicker");
+        }
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -399,6 +396,7 @@ public class HomeActivity extends DxBaseActivity implements
         switch (item.getItemId()) {
             case R.id.navigation_newfeed:
                 toolbar.setTitle(getString(R.string.title_newfeed));
+                loadIconFragment(item.getItemId());
                 fragment = new NewfeedFragment();
                 loadFragment(fragment);
                 return true;
@@ -418,6 +416,7 @@ public class HomeActivity extends DxBaseActivity implements
                 loadFragment(fragment);
                 return true;
             case R.id.navigation_profile:
+                loadIconFragment(item.getItemId());
                 toolbar.setTitle(getString(R.string.title_profile));
                 fragment = new ProfileFragment();
 //                loadIconFragment(item.getItemId());
@@ -440,13 +439,37 @@ public class HomeActivity extends DxBaseActivity implements
         transaction.commit();
     }
 
-//    private void loadIconFragment(int itemId) {
-//        switch (itemId) {
-//            case R.id.navigation_profile:
-//                loadIconFragment();
-//                break;
-//        }
-//    }
+    private void loadIconFragment(int itemId) {
+        if (menu == null) {
+            return;
+        }
+        MenuItem setting = menu.findItem(R.id.action_settings);
+        MenuItem calendar = menu.findItem(R.id.action_calendar);
+        switch (itemId) {
+            case R.id.navigation_profile:
+                setting.setVisible(true);
+                calendar.setVisible(false);
+                break;
+            case R.id.navigation_newfeed:
+                setting.setVisible(false);
+                calendar.setVisible(true);
+                break;
+            case R.id.navigation_chat:
+                setting.setVisible(false);
+                calendar.setVisible(false);
+                break;
+            case R.id.navigation_livestream:
+                setting.setVisible(false);
+                calendar.setVisible(false);
+                break;
+            case R.id.navigation_online:
+                setting.setVisible(false);
+                calendar.setVisible(false);
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     public void showMessage(String message) {

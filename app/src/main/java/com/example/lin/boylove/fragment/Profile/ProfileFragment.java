@@ -10,6 +10,7 @@ import com.example.lin.boylove.utilities.GlideUtils;
 import com.example.lin.boylove.utilities.Utils;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by lin on 20/08/2017.
@@ -19,7 +20,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView {
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.imv_user_profile)
-    ImageButton imv_user_profile;
+    CircleImageView civUserProfile;
 
     private ProfilePresenter presenter;
 
@@ -69,6 +70,7 @@ public class ProfileFragment extends DxBaseFragment implements ProfileView {
     public void onGetUserProfileSuccess(User user) {
 //         it should be the full name here
         tvName.setText(user.getEmail());
-        GlideUtils.loadImageAvatar(mContext, user.getAvatar(), imv_user_profile);
+        GlideUtils.loadImageAvatar(mContext, user.getAvatar(), civUserProfile);
     }
+
 }

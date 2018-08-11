@@ -14,7 +14,7 @@
             android:id="@+id/imv_back"
             android:layout_width="@dimen/size_icon_small"
             android:layout_height="@dimen/size_icon_small"
-            android:padding="@dimen/padding_big"
+            android:padding="@dimen/padding_xxbig"
             android:src="@drawable/ic_back_arrow_white" />
 
         <RelativeLayout

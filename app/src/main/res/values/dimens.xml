@@ -32,6 +32,8 @@
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_normal">10dp</dimen>
     <dimen name="padding_big">12dp</dimen>
+    <dimen name="padding_xbig">14dp</dimen>
+    <dimen name="padding_xxbig">14dp</dimen>
 
     <!-- dot size -->
     <dimen name="dot_x">4dp</dimen>
