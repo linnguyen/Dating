@@ -1,9 +1,7 @@
 package com.example.lin.boylove.activity.Home;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +10,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
@@ -22,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
@@ -30,7 +26,6 @@ import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.activity.Settings.SettingActivity;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
-import com.example.lin.boylove.fragment.FinanceFragment;
 import com.example.lin.boylove.fragment.LiveStream.LiveStreamFragment;
 import com.example.lin.boylove.fragment.NewFeed.NewfeedFragment;
 import com.example.lin.boylove.fragment.NotificationsFragment;
@@ -38,15 +33,11 @@ import com.example.lin.boylove.fragment.Online.OnlineFragment;
 import com.example.lin.boylove.fragment.Profile.ProfileFragment;
 import com.example.lin.boylove.fragment.SettingsFragment;
 import com.example.lin.boylove.helper.BottomNavigationBehavior;
-import com.example.lin.boylove.utilities.Constant;
-import com.example.lin.boylove.utilities.NotificationUtils;
-import com.example.lin.boylove.utilities.Utils;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import butterknife.BindView;
 
 public class HomeActivity extends DxBaseActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener,
+        NavigationView.OnNavigationItemSelectedListener,
         HomeView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -57,83 +48,32 @@ public class HomeActivity extends DxBaseActivity implements
     @BindView(R.id.bottom_nav_view)
     BottomNavigationView bottomNavView;
 
-    private View navHeader;
-
-    private FragmentManager fragmentManager;
-    private Fragment fragment;
-    private FinanceFragment financeFragment;
-
-    private HomePresenter presenter;
-
     // tags used to attach the fragments
     private static final String TAG_HOME = "home";
     private static final String TAG_ONLINE = "online";
     private static final String TAG_MOVIES = "movies";
     private static final String TAG_NOTIFICATIONS = "notifications";
     private static final String TAG_SETTINGS = "settings";
+    private static final String TAB_NEWFEED = "newfeed";
+    private static final String TAB_CHAT = "chat";
+    private static final String TAB_ONLINE = "online";
+    private static final String TAB_LIVESTREAM = "livestream";
+    private static final String TAB_PROFILE = "profile";
     public static String CURRENT_TAG = TAG_HOME;
+    public static String CURRENT_TAB = TAB_ONLINE;
     public static int navItemIndex = 0;
+    public static int botNavItemIndex = 2;
 
     // toolbar titles respected to selected nav menu item
     private String[] activityTitles;
     // flag to load home fragment when user presses back key
     private boolean shouldLoadHomeFragOnBackPress = true;
-    private Handler mHandler;
-
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-
     private Menu menu;
+    private Handler mHandler;
+    private View navHeader;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // load toolbar titles from string resources
-        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(HomeActivity.this, AddPaymentActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-        // load nav menu header data
-        loadNavHeader();
-
-        // initializing navigation menu
-        setUpNavigationView();
-
-        if (savedInstanceState == null) {
-            navItemIndex = 0;
-            CURRENT_TAG = TAG_HOME;
-            loadHomeFragment();
-        }
-
-        fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = new FinanceFragment();
-        fragmentTransaction.replace(R.id.main_container_wrapper, fragment);
-        fragmentTransaction.commit();
-
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().equals(Constant.Config.REGISTRATION_COMPLETE)) {
-                    FirebaseMessaging.getInstance().subscribeToTopic(Constant.Config.TOPIC_GLOBAL);
-                } else if (intent.getAction().equals(Constant.Config.PUSH_NOTIFICATION)) {
-                    String message = intent.getStringExtra("message");
-                    Utils.showToast(getApplicationContext(), message);
-                }
-
-            }
-        };
-
-        // connect to websocket
-        DXApplication.get(context).connectToWebsocket();
-    }
+    private HomePresenter presenter;
 
     @Override
     protected int getLayoutRes() {
@@ -147,16 +87,40 @@ public class HomeActivity extends DxBaseActivity implements
     }
 
     @Override
-    protected void initViews() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setSupportActionBar(toolbar);
-        // Navigation view header
-        navHeader = navigationView.getHeaderView(0);
-        bottomNavView.setOnNavigationItemSelectedListener(this);
 
+        //initialize bottom view
+        setupBottomNavView();
         // attaching bottom sheet behaviour - hide / show on scroll
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) bottomNavView.getLayoutParams();
         layoutParams.setBehavior(new BottomNavigationBehavior());
+
+        // Online fragment is displayed when user enter the app
+        if (savedInstanceState == null) {
+            botNavItemIndex = 2;
+            CURRENT_TAB = TAB_ONLINE;
+            //set title
+            toolbar.setTitle(getString(R.string.title_online));
+            bottomNavView.getMenu().getItem(2).setChecked(true);
+            loadBotNavFragment();
+        }
+
+        // load nav menu header data
+        loadNavHeader();
+        // Navigation view header
+        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+        navigationView.setNavigationItemSelectedListener(this);
+        navHeader = navigationView.getHeaderView(0);
+
+        // connect to websocket
+        DXApplication.get(context).connectToWebsocket();
+    }
+
+    @Override
+    protected void initViews() {
     }
 
     private void loadNavHeader() {
@@ -174,7 +138,7 @@ public class HomeActivity extends DxBaseActivity implements
      * Returns respected fragment that user
      * selected from navigation menu
      */
-    private void loadHomeFragment() {
+    private void loadNavFragment() {
         // selecting appropriate nav menu item
         selectNavMenu();
         // if user select the current navigation menu again, don't do anything, just close
@@ -187,10 +151,11 @@ public class HomeActivity extends DxBaseActivity implements
         Runnable mPendingRunnable = new Runnable() {
             @Override
             public void run() {
-                Fragment fragment = getHomeFragment();
+                Fragment fragment = getNavFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                 fragmentTransaction.replace(R.id.main_container_wrapper, fragment, CURRENT_TAG);
+                fragmentTransaction.addToBackStack(TAB_ONLINE);
                 fragmentTransaction.commitAllowingStateLoss();
             }
         };
@@ -207,12 +172,27 @@ public class HomeActivity extends DxBaseActivity implements
         invalidateOptionsMenu();
     }
 
-    private Fragment getHomeFragment() {
+    private void loadBotNavFragment() {
+        Runnable mPendingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Fragment fragment = getBotNavFragment();
+                loadFragment(fragment);
+            }
+        };
+
+//         If mPendingRunnable is not null, then add to the message queue
+        if (mPendingRunnable != null) {
+            mHandler.post(mPendingRunnable);
+        }
+    }
+
+    private Fragment getNavFragment() {
         switch (navItemIndex) {
             case 0:
                 // app_menu fragment
-                financeFragment = new FinanceFragment();
-                return financeFragment;
+//                financeFragment = new FinanceFragment();
+//                return financeFragment;
             case 1:
                 // photos
                 OnlineFragment photosFragment = new OnlineFragment();
@@ -231,7 +211,35 @@ public class HomeActivity extends DxBaseActivity implements
                 SettingsFragment settingsFragment = new SettingsFragment();
                 return settingsFragment;
             default:
-                return new FinanceFragment();
+                return null;
+        }
+    }
+
+    private Fragment getBotNavFragment() {
+        switch (botNavItemIndex) {
+            case 0:
+                // newfeed fragment
+                NewfeedFragment newfeedFragment = new NewfeedFragment();
+                return newfeedFragment;
+            case 1:
+                // chatroom fragment
+                ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
+                return chatRoomFragment;
+            case 2:
+                // online fragment
+                OnlineFragment onlineFragment = new OnlineFragment();
+                return onlineFragment;
+            case 3:
+                // livestream fragment
+                LiveStreamFragment liveStreamFragment = new LiveStreamFragment();
+                return liveStreamFragment;
+
+            case 4:
+                // profile fragment
+                ProfileFragment profileFragment = new ProfileFragment();
+                return profileFragment;
+            default:
+                return null;
         }
     }
 
@@ -239,65 +247,44 @@ public class HomeActivity extends DxBaseActivity implements
         navigationView.getMenu().getItem(navItemIndex).setChecked(true);
     }
 
-    private void setUpNavigationView() {
+    private void setupBottomNavView() {
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
-            // This method will trigger on item Click of navigation menu
+        bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                //Check to see which item was being clicked and perform appropriate action
-                switch (menuItem.getItemId()) {
-                    //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_home:
-                        navItemIndex = 0;
-                        CURRENT_TAG = TAG_HOME;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_newfeed:
+                        CURRENT_TAB = TAB_NEWFEED;
+                        botNavItemIndex = 0;
                         break;
-                    case R.id.nav_online:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_ONLINE;
+                    case R.id.navigation_chat:
+                        CURRENT_TAB = TAB_CHAT;
+                        botNavItemIndex = 1;
                         break;
-                    case R.id.nav_movies:
-                        Toast.makeText(getApplicationContext(), "Movies", Toast.LENGTH_LONG).show();
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_MOVIES;
+                    case R.id.navigation_online:
+                        CURRENT_TAB = TAB_ONLINE;
+                        botNavItemIndex = 2;
                         break;
-                    case R.id.nav_notifications:
-                        navItemIndex = 3;
-                        CURRENT_TAG = TAG_NOTIFICATIONS;
+                    case R.id.navigation_livestream:
+                        CURRENT_TAB = TAB_LIVESTREAM;
+                        botNavItemIndex = 3;
                         break;
-                    case R.id.nav_settings:
-                        navItemIndex = 4;
-                        CURRENT_TAG = TAG_SETTINGS;
+                    case R.id.navigation_profile:
+                        CURRENT_TAB = TAB_PROFILE;
+                        botNavItemIndex = 4;
                         break;
-                    case R.id.nav_about_us:
-                        // launch new intent instead of loading fragment
-                        startActivity(new Intent(HomeActivity.this, AboutUsActivity.class));
-                        drawer.closeDrawers();
-                        return true;
-                    case R.id.nav_privacy_policy:
-                        // launch new intent instead of loading fragment
-//                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
-//                        drawer.closeDrawers();
-                        return true;
                     default:
-                        navItemIndex = 0;
+                        return false;
                 }
+                // change the icon and the title
+                loadIconFragment();
 
-                //Checking if the item is in checked state or not, if not make it in checked state
-                if (menuItem.isChecked()) {
-                    menuItem.setChecked(false);
-                } else {
-                    menuItem.setChecked(true);
-                }
-                menuItem.setChecked(true);
+                // load the according fragment
+                loadBotNavFragment();
 
-                loadHomeFragment();
-
-                return true;
+                return false;
             }
         });
-
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
@@ -320,20 +307,6 @@ public class HomeActivity extends DxBaseActivity implements
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
     }
-
-//    // show or hide the fab
-//    private void toggleFab() {
-//        if (navItemIndex == 0)
-//            fab.show();
-//        else
-//            fab.hide();
-//    }
-
-//    @OnClick(R.id.fab)
-//    public void navigateToAddPayment() {
-//        Intent intent = new Intent(this, AddPaymentActivity.class);
-//        startActivity(intent);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -359,16 +332,6 @@ public class HomeActivity extends DxBaseActivity implements
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(Constant.Config.REGISTRATION_COMPLETE));
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter(Constant.Config.PUSH_NOTIFICATION));
-
-        NotificationUtils.clearNotifications(getApplicationContext());
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
@@ -376,38 +339,55 @@ public class HomeActivity extends DxBaseActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment;
+        // This method will trigger on item Click of navigation menu
+        //Check to see which item was being clicked and perform appropriate action
         switch (item.getItemId()) {
-            case R.id.navigation_newfeed:
-                toolbar.setTitle(getString(R.string.title_newfeed));
-                loadIconFragment(item.getItemId());
-                fragment = new NewfeedFragment();
-                loadFragment(fragment);
+            //Replacing the main content with ContentFragment Which is our Inbox View;
+            case R.id.nav_home:
+                navItemIndex = 0;
+                CURRENT_TAG = TAG_HOME;
+                break;
+            case R.id.nav_online:
+                navItemIndex = 1;
+                CURRENT_TAG = TAG_ONLINE;
+                break;
+            case R.id.nav_movies:
+                navItemIndex = 2;
+                CURRENT_TAG = TAG_MOVIES;
+                break;
+            case R.id.nav_notifications:
+                navItemIndex = 3;
+                CURRENT_TAG = TAG_NOTIFICATIONS;
+                break;
+            case R.id.nav_settings:
+                navItemIndex = 4;
+                CURRENT_TAG = TAG_SETTINGS;
+                break;
+            case R.id.nav_about_us:
+                // launch new intent instead of loading fragment
+                startActivity(new Intent(HomeActivity.this, AboutUsActivity.class));
+                drawer.closeDrawers();
                 return true;
-            case R.id.navigation_chat:
-                toolbar.setTitle(getString(R.string.title_chat));
-                fragment = new ChatRoomFragment();
-                loadFragment(fragment);
+            case R.id.nav_privacy_policy:
+                // launch new intent instead of loading fragment
+//                        startActivity(new Intent(HomeActivity.this, PrivacyPolicyActivity.class));
+//                        drawer.closeDrawers();
                 return true;
-            case R.id.navigation_online:
-                toolbar.setTitle(getString(R.string.title_online));
-                fragment = new OnlineFragment();
-                loadFragment(fragment);
-                return true;
-            case R.id.navigation_livestream:
-                toolbar.setTitle(getString(R.string.title_livestream));
-                fragment = new LiveStreamFragment();
-                loadFragment(fragment);
-                return true;
-            case R.id.navigation_profile:
-                loadIconFragment(item.getItemId());
-                toolbar.setTitle(getString(R.string.title_profile));
-                fragment = new ProfileFragment();
-//                loadIconFragment(item.getItemId());
-                loadFragment(fragment);
-                return true;
+            default:
+                navItemIndex = 0;
         }
-        return false;
+
+        //Checking if the item is in checked state or not, if not make it in checked state
+        if (item.isChecked()) {
+            item.setChecked(false);
+        } else {
+            item.setChecked(true);
+        }
+        item.setChecked(true);
+
+        loadNavFragment();
+
+        return true;
     }
 
     /**
@@ -416,38 +396,42 @@ public class HomeActivity extends DxBaseActivity implements
      * @param fragment
      */
     private void loadFragment(Fragment fragment) {
-        // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_container_wrapper, fragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.main_container_wrapper, fragment, CURRENT_TAB);
+        transaction.addToBackStack(TAB_ONLINE);
         transaction.commit();
     }
 
-    private void loadIconFragment(int itemId) {
+    private void loadIconFragment() {
         if (menu == null) {
             return;
         }
         MenuItem setting = menu.findItem(R.id.action_settings);
         MenuItem calendar = menu.findItem(R.id.action_calendar);
-        switch (itemId) {
-            case R.id.navigation_profile:
-                setting.setVisible(true);
-                calendar.setVisible(false);
-                break;
-            case R.id.navigation_newfeed:
+        switch (botNavItemIndex) {
+            case 0:
+                toolbar.setTitle(getString(R.string.title_newfeed));
                 setting.setVisible(false);
                 calendar.setVisible(true);
                 break;
-            case R.id.navigation_chat:
+            case 1:
+                toolbar.setTitle(getString(R.string.title_chat));
                 setting.setVisible(false);
                 calendar.setVisible(false);
                 break;
-            case R.id.navigation_livestream:
+            case 2:
+                toolbar.setTitle(getString(R.string.title_online));
                 setting.setVisible(false);
                 calendar.setVisible(false);
                 break;
-            case R.id.navigation_online:
+            case 3:
+                toolbar.setTitle(getString(R.string.title_livestream));
                 setting.setVisible(false);
+                calendar.setVisible(false);
+                break;
+            case 4:
+                toolbar.setTitle(getString(R.string.title_profile));
+                setting.setVisible(true);
                 calendar.setVisible(false);
                 break;
             default:

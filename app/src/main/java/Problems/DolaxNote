@@ -1,0 +1,11 @@
+LINK
++ Tutorial for Nav view:
+https://inducesmile.com/android/add-swipe-tabs-inside-navigation-drawer-in-android/
+
++ Tutorial for BotNav view:
+https://www.androidhive.info/2017/12/android-working-with-bottom-navigation/
+
+TECHIQUE:
+
+- Refresh toolbar menu
+ invalidateOptionsMenu();

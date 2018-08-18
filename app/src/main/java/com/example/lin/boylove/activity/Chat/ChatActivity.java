@@ -18,7 +18,6 @@ import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.localstorage.SessionManager;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.DateFormatter;
-import com.example.lin.boylove.utilities.Utils;
 
 import java.util.ArrayList;
 import java.util.Date;

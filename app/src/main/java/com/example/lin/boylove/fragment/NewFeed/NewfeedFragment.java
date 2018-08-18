@@ -5,12 +5,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.ListNewFeed;
-import com.example.lin.boylove.entity.Response.NewFeed;
 import com.example.lin.boylove.fragment.DxBaseFragment;
 import com.example.lin.boylove.fragment.NewFeed.adapter.NewfeedAdapter;
 import com.example.lin.boylove.utilities.Utils;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 
