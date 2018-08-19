@@ -3,53 +3,53 @@ package com.example.lin.boylove.activity.Login;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.lin.boylove.R;
+import com.example.lin.boylove.activity.DxBaseActivity;
 import com.example.lin.boylove.activity.Home.HomeActivity;
-import com.example.lin.boylove.localstorage.SessionManager;
-import com.example.lin.boylove.service.WebSocketClient;
-import com.example.lin.boylove.utilities.Constant;
+import com.example.lin.boylove.activity.Signup.SignupActivity;
 import com.example.lin.boylove.utilities.Utils;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import butterknife.BindView;
+import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView, View.OnClickListener {
-    private Context context;
+public class LoginActivity extends DxBaseActivity implements LoginView {
+    @BindView(R.id.edt_email)
+    EditText edtEmail;
+    @BindView(R.id.edt_password)
+    EditText edtPassword;
+
     private ProgressDialog progressDialog;
-
     private LoginPresenter loginPresenter;
 
-    private EditText edtEmail;
-    private EditText edtPassword;
-    private Button btnLogin;
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.activity_login;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        context = getApplicationContext();
+    protected void initAttributes() {
         loginPresenter = new LoginPresenterIml(this, context);
-        edtEmail = (EditText) findViewById(R.id.edtEmail);
-        edtPassword = (EditText) findViewById(R.id.edtPassword);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnLogin:
-                Utils.hiddenKeyBoard(this);
-                loginPresenter.validateCredentials(Utils.getText(edtEmail), Utils.getText(edtPassword));
-                break;
-        }
+    protected void initViews() {
+
     }
+
+    @OnClick(R.id.btn_login)
+    public void onClickLogin() {
+        Utils.hiddenKeyBoard(this);
+        loginPresenter.validateCredentials(Utils.getText(edtEmail), Utils.getText(edtPassword));
+    }
+
+    @OnClick(R.id.tv_link_signup)
+    public void onClickSignupLink() {
+        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void showProgress() {

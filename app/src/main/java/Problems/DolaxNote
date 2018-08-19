@@ -9,3 +9,6 @@ TECHIQUE:
 
 - Refresh toolbar menu
  invalidateOptionsMenu();
+
+-get the link to reference the item emty
+https://github.com/willowtreeapps/spruce-android
