@@ -40,6 +40,11 @@
     <dimen name="dot_xx">10dp</dimen>
     <dimen name="dot_xxx">12dp</dimen>
 
+    <!-- radio  size -->
+    <dimen name="radio_x">4dp</dimen>
+    <dimen name="radio_xx">10dp</dimen>
+    <dimen name="radio_xxx">12dp</dimen>
+
     <!-- text size -->
     <dimen name="text_size_x">4dp</dimen>
     <dimen name="text_size_xx">12dp</dimen>
