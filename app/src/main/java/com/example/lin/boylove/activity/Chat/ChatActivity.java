@@ -2,6 +2,7 @@ package com.example.lin.boylove.activity.Chat;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
 import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
@@ -35,6 +36,10 @@ public class ChatActivity extends DxBaseActivity implements
     MessagesList messagesList;
     @BindView(R.id.input)
     MessageInput input;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_status)
+    TextView tvStatus;
 
     // private ChatAdapter adapter;
     private ChatRoom chatRoom;
@@ -89,11 +94,13 @@ public class ChatActivity extends DxBaseActivity implements
         input.setInputListener(this);
 
         if (chatRoom != null) {
+            tvName.setText(chatRoom.getTopic());
             // get chat messages by room id
             presenter.getMessagesByRoom(chatRoom.getId());
         }
 
         if (otherUser != null) {
+            tvName.setText(otherUser.getName());
 //            presenter.getMessagesForPrivateRoom(otherUser.getId());
             presenter.getPrivateRoom(otherUser.getId());
         }

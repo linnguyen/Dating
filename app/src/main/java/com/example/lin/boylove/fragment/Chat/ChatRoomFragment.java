@@ -21,8 +21,6 @@ import butterknife.BindView;
 public class ChatRoomFragment extends DxBaseFragment implements
         ChatRoomView, GlideUtils.ImageLoader,
         DialogsListAdapter.OnDialogClickListener<ChatRoom> {
-    //    @BindView(R.id.rcv_chat_room)
-//    RecyclerView rcvChatRoom;
     @BindView(R.id.list_chat_room)
     DialogsList listChatRoom;
     @BindView(R.id.pg_loading)

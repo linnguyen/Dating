@@ -15,7 +15,7 @@
             android:layout_width="@dimen/size_icon_small"
             android:layout_height="@dimen/size_icon_small"
             android:padding="@dimen/padding_xxbig"
-            android:src="@drawable/ic_back_arrow_white" />
+            app:srcCompat="@drawable/ic_arrow_back_white_24dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -40,15 +40,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="@string/app_name"
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_name"
                     android:gravity="center_vertical"
-                    android:text="Active"
+                    android:text="@string/txt_active"
                     android:textColor="@color/white" />
             </RelativeLayout>
         </RelativeLayout>
