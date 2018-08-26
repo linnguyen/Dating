@@ -8,4 +8,6 @@
         android:id="@+id/rcv_newfeed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <include layout="@layout/progress_bar" />
 </RelativeLayout>

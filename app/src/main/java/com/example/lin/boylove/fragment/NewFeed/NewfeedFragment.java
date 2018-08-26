@@ -2,6 +2,8 @@ package com.example.lin.boylove.fragment.NewFeed;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.ListNewFeed;
@@ -18,6 +20,8 @@ import butterknife.BindView;
 public class NewfeedFragment extends DxBaseFragment implements NewfeedView {
     @BindView(R.id.rcv_newfeed)
     RecyclerView rcvNewFeed;
+    @BindView(R.id.pg_loading)
+    ProgressBar pgLoading;
 
     private NewfeedPresenter presenter;
     private NewfeedAdapter adapter;
@@ -35,8 +39,6 @@ public class NewfeedFragment extends DxBaseFragment implements NewfeedView {
     protected void initViews() {
         setupLstNewfeeds();
         getNewFeeds();
-
-//        populateRecyclerView();
     }
 
     private void setupLstNewfeeds() {
@@ -55,11 +57,12 @@ public class NewfeedFragment extends DxBaseFragment implements NewfeedView {
 
     @Override
     public void showProgressBar() {
+        pgLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        pgLoading.setVisibility(View.GONE);
     }
 
     @Override

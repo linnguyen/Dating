@@ -25,7 +25,7 @@ public class NewfeedPresenterIml implements NewfeedPresenter,
 
     @Override
     public void onSuccess(ListNewFeed lstNewFeed) {
-        view.showProgressBar();
+        view.hideProgressBar();
         view.onGetNewFeedsSuccess(lstNewFeed);
     }
 

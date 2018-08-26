@@ -131,7 +131,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.civ_profile)
         CircleImageView civProfile;
 
-
         public ReceivedMessageHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

@@ -14,12 +14,10 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp">
 
-        <ImageView
-            android:id="@+id/imgView_proPic"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imv_user"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
             android:src="@drawable/ic_profile_avatar" />
 
         <LinearLayout
@@ -27,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/imgView_proPic"
+            android:layout_toRightOf="@+id/imv_user"
             android:orientation="vertical">
 
             <TextView
@@ -65,7 +63,7 @@
         android:textSize="16sp" />
 
     <ImageView
-        android:id="@+id/imgView_postPic"
+        android:id="@+id/imv_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_status"
@@ -79,7 +77,7 @@
         android:id="@+id/rellay2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imgView_postPic"
+        android:layout_below="@+id/imv_post"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp">
