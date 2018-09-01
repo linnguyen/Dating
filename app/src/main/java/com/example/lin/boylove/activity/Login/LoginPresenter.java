@@ -6,10 +6,6 @@ package com.example.lin.boylove.activity.Login;
 
 public interface LoginPresenter {
     interface OnLoginFinishedListener {
-        void onUsernameError();
-
-        void onPasswordError();
-
         void onSuccess(String message);
 
         void onFailure(String message);

@@ -38,10 +38,12 @@
     <string name="dialog_login">Logging in</string>
 
     <string name="btn_send">Send</string>
+    <string name="btn_create_account">Create Account</string>
 
     <!-- TODO: Should get this message from server -->
     <string name="toast_login_fail">Something went wrong!</string>
     <string name="toast_login_success">Login success</string>
+    <string name="toast_register_success">Welcome to Dolax!</string>
     <string name="toast_get_payment_fail">Fail to get payments</string>
     <string name="toast_st_went_wrong">Something went wrong!</string>
 
@@ -53,10 +55,14 @@
     <string name="hint_edt_chat">Say something!</string>
     <string name="hint_password">Password</string>
     <string name="hint_email">Email</string>
+    <string name="hint_username">Dolax Name</string>
+    <string name="hint_reenter_password">Re-enter Password</string>
 
     <string name="txt_not_member">Not a member? Signup here.</string>
     <string name="txt_active">active</string>
     <string name="txt_off_line">off line</string>
+    <string name="txt_member_already">Already a member? Login</string>
+    <string name="txt_under_development">Under Development</string>
 
     <string name="title_newfeed">New Feed</string>
     <string name="title_online">Online</string>

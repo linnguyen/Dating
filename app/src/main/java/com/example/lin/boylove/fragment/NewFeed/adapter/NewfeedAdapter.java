@@ -21,9 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * Created by karsk on 25/04/2018.
- */
 
 public class NewfeedAdapter extends RecyclerView.Adapter<NewfeedAdapter.MyViewHolder> {
 

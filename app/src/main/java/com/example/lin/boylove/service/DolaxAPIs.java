@@ -42,10 +42,16 @@ public interface DolaxAPIs {
     Call<List<User>> getUsers();
 
     /*
-     * Login
-     */
+   * Login
+   */
     @POST("signin/")
     Call<User> login(@Body JsonObject jsonObject);
+
+    /*
+     * Register new account
+     */
+    @POST("users/")
+    Call<User> createAccount(@Body JsonObject jsonObject);
 
     /*
      *Logout

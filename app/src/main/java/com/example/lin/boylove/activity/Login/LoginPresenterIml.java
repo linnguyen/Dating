@@ -18,16 +18,6 @@ public class LoginPresenterIml implements LoginPresenter, LoginPresenter.OnLogin
     }
 
     @Override
-    public void onUsernameError() {
-
-    }
-
-    @Override
-    public void onPasswordError() {
-
-    }
-
-    @Override
     public void onSuccess(String message) {
         loginView.hideProgress();
         loginView.navigateToHome();

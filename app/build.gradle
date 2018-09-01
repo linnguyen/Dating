@@ -53,6 +53,8 @@ dependencies {
     compile 'org.java-websocket:Java-WebSocket:1.3.0'
     // circle imageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // zoom image view
+    compile 'com.jsibbold:zoomage:1.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
 

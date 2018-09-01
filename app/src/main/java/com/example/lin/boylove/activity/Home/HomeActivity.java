@@ -1,5 +1,6 @@
 package com.example.lin.boylove.activity.Home;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,6 +25,7 @@ import com.example.lin.boylove.DXApplication;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.AboutUsActivity;
 import com.example.lin.boylove.activity.DxBaseActivity;
+import com.example.lin.boylove.activity.Login.LoginActivity;
 import com.example.lin.boylove.activity.Settings.SettingActivity;
 import com.example.lin.boylove.fragment.Chat.ChatRoomFragment;
 import com.example.lin.boylove.fragment.LiveStream.LiveStreamFragment;
@@ -74,6 +76,11 @@ public class HomeActivity extends DxBaseActivity implements
     private View navHeader;
 
     private HomePresenter presenter;
+
+//    public void openHome(Activity activity){
+//        Intent intent = new Intent(, HomeActivity.class);
+//        startActivity(intent);
+//    }
 
     @Override
     protected int getLayoutRes() {

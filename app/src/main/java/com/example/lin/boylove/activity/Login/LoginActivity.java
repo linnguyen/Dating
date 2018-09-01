@@ -21,7 +21,7 @@ public class LoginActivity extends DxBaseActivity implements LoginView {
     EditText edtPassword;
 
     private ProgressDialog progressDialog;
-    private LoginPresenter loginPresenter;
+    private LoginPresenter presenter;
 
     @Override
     protected int getLayoutRes() {
@@ -30,7 +30,7 @@ public class LoginActivity extends DxBaseActivity implements LoginView {
 
     @Override
     protected void initAttributes() {
-        loginPresenter = new LoginPresenterIml(this, context);
+        presenter = new LoginPresenterIml(this, context);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class LoginActivity extends DxBaseActivity implements LoginView {
     @OnClick(R.id.btn_login)
     public void onClickLogin() {
         Utils.hiddenKeyBoard(this);
-        loginPresenter.validateCredentials(Utils.getText(edtEmail), Utils.getText(edtPassword));
+        presenter.validateCredentials(Utils.getText(edtEmail), Utils.getText(edtPassword));
     }
 
     @OnClick(R.id.tv_link_signup)

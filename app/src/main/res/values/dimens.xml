@@ -26,6 +26,7 @@
     <dimen name="margin_normal">10dp</dimen>
     <dimen name="margin_medium">14dp</dimen>
     <dimen name="margin_big">18dp</dimen>
+    <dimen name="margin_xbig">20dp</dimen>
 
     <!-- padding -->
     <dimen name="padding_tiny">5dp</dimen>
@@ -34,6 +35,7 @@
     <dimen name="padding_big">12dp</dimen>
     <dimen name="padding_xbig">14dp</dimen>
     <dimen name="padding_xxbig">18dp</dimen>
+    <dimen name="padding_xxxbig">18dp</dimen>
 
     <!-- dot size -->
     <dimen name="dot_x">4dp</dimen>
