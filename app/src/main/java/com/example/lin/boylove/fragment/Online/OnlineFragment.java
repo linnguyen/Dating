@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Chat.ChatActivity;
+import com.example.lin.boylove.activity.Profile.ProfileDetailActivity;
 import com.example.lin.boylove.fragment.Online.adapter.OnlineAdapter;
 import com.example.lin.boylove.entity.Response.Online;
 import com.example.lin.boylove.entity.Response.User;
@@ -84,6 +85,7 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
 
     @Override
     public void onClick(User other) {
-        ChatActivity.open(OnlineFragment.this, other);
+//        ChatActivity.open(this, other);
+        ProfileDetailActivity.open(this);
     }
 }

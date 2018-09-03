@@ -42,7 +42,7 @@ public class SignupInteractorIml implements SignupInteractor {
                     User user = response.body();
                     if (user != null) {
                         SessionManager sessionManager = SessionManager.getInstance(context);
-                        sessionManager.setToken(user.getAuth_token());
+                        sessionManager.setToken(user.getAuthToken());
                         sessionManager.setUserId(user.getId());
                         listener.onSuccess(context.getString(R.string.toast_register_success));
                     }

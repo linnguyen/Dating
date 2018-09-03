@@ -5,24 +5,52 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.lin.boylove.custom.commons.models.IUser;
-import com.example.lin.boylove.utilities.Constant;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by ryne on 20/09/2017.
  */
 
 public class User implements Parcelable, IUser {
+    @SerializedName("id")
+    @Expose
     private int id;
+
+    @SerializedName("email")
+    @Expose
     private String email;
-    private String auth_token;
+
+    @SerializedName("auth_token")
+    @Expose
+    private String authToken;
+
+    @SerializedName("image")
+    @Expose
     private Image image;
+
+    @SerializedName("user_name")
+    @Expose
+    private String userName;
+
+    @SerializedName("online")
+    @Expose
+    private boolean online;
+
+    @SerializedName("created_at")
+    @Expose
     private String created_at;
+
+    @SerializedName("updated_at")
+    @Expose
     private String updated_at;
 
     protected User(Parcel in) {
         id = in.readInt();
         email = in.readString();
-        auth_token = in.readString();
+        authToken = in.readString();
+        userName = in.readString();
+        online = in.readByte() != 0;
         created_at = in.readString();
         updated_at = in.readString();
     }
@@ -66,14 +94,6 @@ public class User implements Parcelable, IUser {
         this.email = email;
     }
 
-    public String getAuth_token() {
-        return auth_token;
-    }
-
-    public void setAuth_token(String auth_token) {
-        this.auth_token = auth_token;
-    }
-
     public Image getImage() {
         return image;
     }
@@ -98,6 +118,34 @@ public class User implements Parcelable, IUser {
         this.updated_at = updated_at;
     }
 
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public static Creator<User> getCREATOR() {
+        return CREATOR;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,7 +155,7 @@ public class User implements Parcelable, IUser {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(id);
         parcel.writeString(email);
-        parcel.writeString(auth_token);
+        parcel.writeString(authToken);
         parcel.writeString(created_at);
         parcel.writeString(updated_at);
     }

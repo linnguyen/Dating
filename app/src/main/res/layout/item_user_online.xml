@@ -13,6 +13,7 @@
         android:src="@drawable/jlbt_flag" />
 
     <TextView
+        android:id="@+id/tv_status"
         android:layout_width="@dimen/dot_xx"
         android:layout_height="@dimen/dot_xx"
         android:layout_margin="@dimen/margin_normal"

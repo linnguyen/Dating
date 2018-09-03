@@ -2,6 +2,7 @@ package com.example.lin.boylove.activity.Chat;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.lin.boylove.DXApplication;
@@ -85,6 +86,12 @@ public class ChatActivity extends DxBaseActivity implements
 
         if (intent.hasExtra(Constant.OTHER_USER)) {
             otherUser = intent.getParcelableExtra(Constant.OTHER_USER);
+            // This logic is not tempararily kept here, but it not right
+            if (otherUser.isOnline()) {
+                tvStatus.setVisibility(View.VISIBLE);
+            } else {
+                tvStatus.setVisibility(View.GONE);
+            }
         }
         adapter = new MessagesListAdapter(senderId, imageLoader);
         messagesList.setAdapter(adapter);

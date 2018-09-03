@@ -15,6 +15,9 @@ import com.example.lin.boylove.utilities.Constant;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ryne on 13/10/2017.
  */
@@ -38,6 +41,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = list.get(position);
+        holder.tvStatus.setVisibility(user.isOnline() ? View.VISIBLE : View.GONE);
         // Processing for display view here
         String imageUrl = Constant.Config.URL_IMAGE + user.getImage().getUrl();
         Glide.with(context)
@@ -54,12 +58,15 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.imv_user)
         ImageView imvUser;
-        TextView tvName;
+
+        @BindView(R.id.tv_status)
+        TextView tvStatus;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.imvUser = (ImageView) itemView.findViewById(R.id.imv_user);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 

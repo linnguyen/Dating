@@ -59,7 +59,7 @@
     <string name="hint_reenter_password">Re-enter Password</string>
 
     <string name="txt_not_member">Not a member? Signup here.</string>
-    <string name="txt_active">active</string>
+    <string name="txt_active">Active now</string>
     <string name="txt_off_line">off line</string>
     <string name="txt_member_already">Already a member? Login</string>
     <string name="txt_under_development">Under Development</string>

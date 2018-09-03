@@ -30,7 +30,7 @@
             android:theme="@style/AuthenticateTheme" />
         <activity android:name=".activity.Chat.ChatActivity" />
         <activity android:name=".activity.Settings.SettingActivity" />
-
+        <activity android:name=".activity.Profile.ProfileDetailActivity" />
         <!-- Firebase Notifications Service-->
         <service android:name=".service.DolaxFirebaseMessageService">
             <intent-filter>
