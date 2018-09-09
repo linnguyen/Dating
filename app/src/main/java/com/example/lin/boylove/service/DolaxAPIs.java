@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -27,7 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -124,6 +127,13 @@ public interface DolaxAPIs {
     */
     @GET("newfeeds/")
     Call<ListNewFeed> getNewFeeds(@Header("Authorization") String authToken);
+
+    /*
+    * Upload images
+    */
+    @Multipart
+    @POST("upload/")
+    Call<ResponseBody> uploadImage(@Header("Authorization") String authToken, @Part MultipartBody.Part image);
 
     class Factory {
         public static DolaxAPIs create() {

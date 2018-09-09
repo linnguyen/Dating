@@ -47,8 +47,8 @@ public class Constant {
     public static final String CHAT_ROOM = "chatRoom";
     public static final String OTHER_USER = "otherUser";
 
-
     public static final String EMPTY = "";
+    public static final String IMAGE_FOLDER_PATH = "Dolax";
 
 
     public static class TestBuilder {
@@ -68,6 +68,4 @@ public class Constant {
             return this;
         }
     }
-
-
 }

@@ -18,6 +18,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by lin on 20/09/2017.
@@ -159,4 +160,9 @@ public class Utils {
         }
         return statusBarHeight;
     }
+
+    public static boolean isEmpty(List<?> list) {
+        return list == null || list.size() <= 0;
+    }
+
 }
