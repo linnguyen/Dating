@@ -2,8 +2,11 @@ package com.example.lin.boylove.fragment.Profile;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
 import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.DxBaseFragment;
@@ -12,6 +15,7 @@ import com.example.lin.boylove.helper.ImageHelper.SelectImageAsFragment;
 import com.example.lin.boylove.helper.UploadImage.ImageUploadPresenter;
 import com.example.lin.boylove.helper.UploadImage.ImageUploadPresenterIml;
 import com.example.lin.boylove.helper.UploadImage.ImageUploadView;
+import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.GlideUtils;
 import com.example.lin.boylove.utilities.Utils;
 
@@ -98,8 +102,8 @@ public class ProfileFragment extends DxBaseFragment implements
 
     @Override
     public void onUploadImageSuccess(String imagePath) {
-//        uploadPresenter.uploadImage();
         GlideUtils.loadImageAvatar(mContext, imagePath, civUserProfile);
+        Log.i("IMAGE_PATH", Constant.Config.URL_IMAGE + imagePath);
     }
 
     @Override
@@ -109,8 +113,7 @@ public class ProfileFragment extends DxBaseFragment implements
 
     @Override
     public void onGetUserProfileSuccess(User user) {
-//         it should be the full name here
-        tvName.setText(user.getEmail());
+        tvName.setText(user.getUserName());
         GlideUtils.loadImageAvatar(mContext, user.getAvatar(), civUserProfile);
     }
 

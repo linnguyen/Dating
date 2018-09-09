@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.lin.boylove.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by lin on 10/07/2018.
  */
@@ -19,12 +21,14 @@ public class GlideUtils {
                 .into(imv);
     }
 
-    public static void loadImageAvatar(Context context, String url, ImageView imv) {
+    // this method for hdodenhof circle image view
+    public static void loadImageAvatar(Context context, String url, CircleImageView civ) {
         Glide.with(context)
                 .load(Constant.Config.URL_IMAGE + url)
                 .centerCrop()
+                .dontAnimate()
                 .placeholder(R.drawable.ic_profile_avatar)
-                .into(imv);
+                .into(civ);
     }
 
     public interface ImageLoader {

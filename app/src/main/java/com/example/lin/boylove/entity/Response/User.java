@@ -53,6 +53,7 @@ public class User implements Parcelable, IUser {
         online = in.readByte() != 0;
         created_at = in.readString();
         updated_at = in.readString();
+        image = in.readParcelable(Image.class.getClassLoader());
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -74,7 +75,7 @@ public class User implements Parcelable, IUser {
 
     @Override
     public String getName() {
-        return email;
+        return userName;
     }
 
     @Override
@@ -156,7 +157,10 @@ public class User implements Parcelable, IUser {
         parcel.writeInt(id);
         parcel.writeString(email);
         parcel.writeString(authToken);
+        parcel.writeString(userName);
+        parcel.writeByte((byte) (online ? 1 : 0));
         parcel.writeString(created_at);
         parcel.writeString(updated_at);
+        parcel.writeParcelable(this.image, i);
     }
 }

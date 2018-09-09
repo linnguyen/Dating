@@ -8,13 +8,4 @@ import com.example.lin.boylove.entity.Response.ListChatMessage;
  */
 
 public interface ProfileDetailView {
-    void onGetMessagesSuccess(ListChatMessage messagesRoom);
-
-    void onGetPrivateRoomSucess(ChatRoom room);
-
-    void showProgress();
-
-    void showMessage(String message);
-
-    void hideProgress();
 }

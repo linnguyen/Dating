@@ -14,6 +14,8 @@ import com.example.lin.boylove.entity.Response.User;
 import com.example.lin.boylove.fragment.DxBaseFragment;
 import com.example.lin.boylove.utilities.Utils;
 
+import java.util.List;
+
 import butterknife.BindView;
 
 /**
@@ -84,8 +86,7 @@ public class OnlineFragment extends DxBaseFragment implements OnlineView,
     }
 
     @Override
-    public void onClick(User other) {
-//        ChatActivity.open(this, other);
-        ProfileDetailActivity.open(this);
+    public void onClick(List<User> lstUser) {
+        ProfileDetailActivity.open(this, lstUser);
     }
 }

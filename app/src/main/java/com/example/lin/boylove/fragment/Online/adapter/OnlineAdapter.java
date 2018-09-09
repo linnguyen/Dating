@@ -72,9 +72,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            int position = getAdapterPosition();
-            User other = list.get(position);
-            listener.onClick(other);
+            listener.onClick(list);
         }
     }
 
@@ -88,6 +86,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
     }
 
     public interface OnlineListener {
-        void onClick(User otherUser);
+        // should not pass list of user here, cause if the list is bigger, may cause crash when pass with the bundle
+        void onClick(List<User> lstUser);
     }
 }

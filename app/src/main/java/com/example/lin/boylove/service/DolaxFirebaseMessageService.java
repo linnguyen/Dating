@@ -1,17 +1,12 @@
 package com.example.lin.boylove.service;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.lin.boylove.R;
 import com.example.lin.boylove.activity.Home.HomeActivity;
-import com.example.lin.boylove.activity.WeeklyFinanceReport.DetailFinanceActivity;
 import com.example.lin.boylove.utilities.Constant;
 import com.example.lin.boylove.utilities.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -48,7 +43,7 @@ public class DolaxFirebaseMessageService extends FirebaseMessagingService {
             Intent pushNotification = new Intent(Constant.Config.PUSH_NOTIFICATION);
             pushNotification.putExtra("message", data.get(JSON_KEY_MESSAGE));
             LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
-            sendNotification(data);
+//            sendNotification(data);
         }
 //        if (remoteMessage == null)
 //            return;
@@ -143,23 +138,21 @@ public class DolaxFirebaseMessageService extends FirebaseMessagingService {
         notificationUtils.showNotificationMessage(title, message, timeStamp, intent, imageUrl);
     }
 
-    private void sendNotification(Map<String, String> data) {
-        Intent intent = new Intent(this, DetailFinanceActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        // Create a pending intent to launch the activity
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        String message = data.get(JSON_KEY_MESSAGE);
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.dog)
-                .setContentTitle("My Data Notification")
-                .setContentText(message)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0 /*ID of notification */, notificationBuilder.build());
-    }
-
-
+//    private void sendNotification(Map<String, String> data) {
+//        Intent intent = new Intent(this, DetailFinanceActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        // Create a pending intent to launch the activity
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
+//
+//        String message = data.get(JSON_KEY_MESSAGE);
+//
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+//                .setSmallIcon(R.drawable.dog)
+//                .setContentTitle("My Data Notification")
+//                .setContentText(message)
+//                .setAutoCancel(true)
+//                .setContentIntent(pendingIntent);
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(0 /*ID of notification */, notificationBuilder.build());
+//    }
 }

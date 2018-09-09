@@ -1,7 +1,5 @@
 package com.example.lin.boylove.utilities;
 
-import com.example.lin.boylove.localstorage.SessionManager;
-
 /**
  * Created by ryne on 20/09/2017.
  */
@@ -46,6 +44,7 @@ public class Constant {
 
     public static final String CHAT_ROOM = "chatRoom";
     public static final String OTHER_USER = "otherUser";
+    public static final String LIST_USER = "listUser";
 
     public static final String EMPTY = "";
     public static final String IMAGE_FOLDER_PATH = "Dolax";
